@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>One Tile Project</title>
 
 <style>
-
 body{
 margin:0;
 background:#0e0e0e;
@@ -24,8 +24,6 @@ color:#bfbfbf;
 margin-bottom:30px;
 }
 
-/* FRAME */
-
 .artboard{
 margin:40px auto 60px auto;
 width:min(92vw,1100px);
@@ -41,15 +39,14 @@ overflow:hidden;
 position:relative;
 }
 
-/* ΧΕΛΙΔΟΝΙ */
-
+/* προσωρινό σχήμα χελιδονιού */
 .swallow-shape{
 position:absolute;
 width:70%;
 height:60%;
 background:#151515;
 opacity:0.95;
-
+filter:blur(8px);
 clip-path:polygon(
 0% 55%,
 12% 42%,
@@ -71,12 +68,10 @@ clip-path:polygon(
 28% 64%,
 16% 60%
 );
-
 z-index:1;
 }
 
-/* ΚΛΑΔΙ ΕΛΙΑΣ */
-
+/* προσωρινό κλαδί */
 .olive-branch{
 position:absolute;
 width:28%;
@@ -87,10 +82,9 @@ top:60%;
 transform:rotate(-18deg);
 border-radius:999px;
 opacity:0.9;
+filter:blur(6px);
 z-index:1;
 }
-
-/* GRID */
 
 .grid{
 width:min(78vw,760px);
@@ -100,8 +94,6 @@ gap:1px;
 position:relative;
 z-index:2;
 }
-
-/* TILE */
 
 .tile{
 width:100%;
@@ -116,33 +108,24 @@ opacity:0.92;
 .tile:hover{
 background:#2c2c2c;
 }
-
 </style>
 </head>
-
 <body>
 
 <h1>One Tile Project</h1>
-
-<p>Claim your tile. Leave your mark and be part of digital history.</p>
+<p>Claim your tile. Leave your mark. Be part of digital history.</p>
 
 <div class="artboard">
 <div class="swallow-shape"></div>
 <div class="olive-branch"></div>
+
 <div class="grid">
-
 <script>
-
 for(let i=0;i<1600;i++){
-
-document.write('<div class="tile"></div>')
-
+document.write('<div class="tile"></div>');
 }
-
 </script>
-
 </div>
-
 </div>
 
 </body>
