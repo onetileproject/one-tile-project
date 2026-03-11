@@ -6,17 +6,15 @@
 <title>One Tile Project</title>
 
 <style>
-* {
-box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 html, body {
 margin: 0;
 width: 100%;
 height: 100%;
 overflow: hidden;
-background: #060606;
 font-family: Arial, Helvetica, sans-serif;
+background: #0a0a0a;
 color: #fff;
 }
 
@@ -24,6 +22,8 @@ body {
 display: flex;
 align-items: center;
 justify-content: center;
+background:
+radial-gradient(circle at 50% 20%, #1e1e1e 0%, #101010 45%, #070707 100%);
 }
 
 .page {
@@ -32,31 +32,88 @@ height: 100vh;
 height: 100svh;
 display: flex;
 flex-direction: column;
+padding: 14px;
 gap: 10px;
-padding: 12px;
 overflow: hidden;
-background:
-radial-gradient(circle at center, #111 0%, #0a0a0a 56%, #050505 100%);
 }
 
-.top {
+.header {
 flex: 0 0 auto;
 text-align: center;
-padding-top: 2px;
 }
 
-.top h1 {
-margin: 0 0 6px 0;
-font-size: clamp(28px, 4vw, 44px);
+.header h1 {
+margin: 0 0 8px 0;
+font-size: clamp(30px, 4vw, 46px);
 line-height: 1.05;
-letter-spacing: 0.3px;
-color: #f4f4f4;
+color: #f7f7f7;
+text-shadow: 0 0 18px rgba(255,255,255,0.08);
 }
 
-.top p {
-margin: 0;
+.header p {
+margin: 0 0 14px 0;
 font-size: clamp(13px, 1.5vw, 17px);
-color: #bdbdbd;
+color: #d2d2d2;
+}
+
+.topbar {
+width: min(96vw, 1100px);
+margin: 0 auto;
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 14px;
+flex-wrap: wrap;
+}
+
+.progress-wrap {
+width: min(440px, 70vw);
+text-align: left;
+}
+
+.progress-label {
+display: flex;
+justify-content: space-between;
+align-items: center;
+font-size: 12px;
+color: #cfcfcf;
+margin-bottom: 6px;
+}
+
+.progress-bar {
+width: 100%;
+height: 12px;
+border-radius: 999px;
+background: rgba(255,255,255,0.10);
+overflow: hidden;
+box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+.progress-fill {
+width: 12%;
+height: 100%;
+border-radius: 999px;
+background: linear-gradient(90deg, #d9d9d9 0%, #ffffff 100%);
+box-shadow: 0 0 18px rgba(255,255,255,0.18);
+}
+
+.buy-btn {
+border: 0;
+border-radius: 999px;
+padding: 12px 22px;
+font-size: 15px;
+font-weight: bold;
+cursor: pointer;
+color: #111;
+background: #f2f2f2;
+box-shadow: 0 8px 24px rgba(255,255,255,0.10);
+transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+
+.buy-btn:hover {
+transform: translateY(-1px);
+background: #ffffff;
+box-shadow: 0 10px 28px rgba(255,255,255,0.16);
 }
 
 .board-wrap {
@@ -72,17 +129,17 @@ overflow: hidden;
 position: relative;
 width: min(96vw, 1100px);
 aspect-ratio: 1 / 1;
-max-height: calc(100vh - 90px);
-max-height: calc(100svh - 90px);
-border-radius: 24px;
+max-height: calc(100vh - 150px);
+max-height: calc(100svh - 150px);
+border-radius: 26px;
 overflow: hidden;
-border: 1px solid #1b1b1b;
+border: 1px solid rgba(255,255,255,0.10);
 background:
-radial-gradient(circle at 50% 46%, rgba(255,255,255,0.04), transparent 30%),
-radial-gradient(circle at center, #141414 0%, #0e0e0e 55%, #080808 100%);
+radial-gradient(circle at 50% 45%, rgba(255,255,255,0.10), transparent 22%),
+radial-gradient(circle at center, #1f1f1f 0%, #141414 45%, #0b0b0b 100%);
 box-shadow:
-0 0 0 1px rgba(255,255,255,0.02) inset,
-0 0 60px rgba(0,0,0,0.5);
+inset 0 0 0 1px rgba(255,255,255,0.03),
+0 0 60px rgba(0,0,0,0.40);
 }
 
 .artboard::before {
@@ -91,8 +148,8 @@ position: absolute;
 inset: 0;
 pointer-events: none;
 background:
-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03), transparent 34%),
-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.016), transparent 52%);
+radial-gradient(circle at 50% 50%, rgba(255,255,255,0.07), transparent 26%),
+radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03), transparent 48%);
 }
 
 canvas {
@@ -103,17 +160,20 @@ height: 100%;
 display: block;
 }
 
-.meta {
+.hint {
 position: absolute;
 left: 50%;
-bottom: 10px;
+bottom: 14px;
 transform: translateX(-50%);
-font-size: 11px;
-color: rgba(255,255,255,0.28);
-letter-spacing: 0.4px;
-pointer-events: none;
-z-index: 2;
+font-size: 12px;
+color: rgba(255,255,255,0.72);
+background: rgba(255,255,255,0.06);
+border: 1px solid rgba(255,255,255,0.08);
+padding: 8px 12px;
+border-radius: 999px;
+backdrop-filter: blur(6px);
 user-select: none;
+pointer-events: none;
 white-space: nowrap;
 }
 
@@ -125,29 +185,49 @@ gap: 8px;
 
 .artboard {
 width: 96vw;
+max-height: calc(100vh - 180px);
+max-height: calc(100svh - 180px);
 border-radius: 18px;
-max-height: calc(100vh - 78px);
-max-height: calc(100svh - 78px);
 }
 
-.meta {
+.hint {
 font-size: 10px;
-bottom: 8px;
+bottom: 10px;
+padding: 7px 10px;
+}
+
+.buy-btn {
+padding: 11px 18px;
+font-size: 14px;
 }
 }
 </style>
 </head>
 <body>
 <div class="page">
-<div class="top">
+<div class="header">
 <h1>One Tile Project</h1>
 <p>Claim your tile. Leave your mark. Be part of digital history.</p>
+</div>
+
+<div class="topbar">
+<div class="progress-wrap">
+<div class="progress-label">
+<span>Project Progress</span>
+<span>12%</span>
+</div>
+<div class="progress-bar">
+<div class="progress-fill"></div>
+</div>
+</div>
+
+<button class="buy-btn" type="button">Buy Tiles</button>
 </div>
 
 <div class="board-wrap">
 <div class="artboard">
 <canvas id="board" width="1000" height="1000"></canvas>
-<div class="meta">50,000 tiles inside the swallow</div>
+<div class="hint">The swallow is revealed tile by tile</div>
 </div>
 </div>
 </div>
@@ -156,94 +236,67 @@ bottom: 8px;
 const canvas = document.getElementById("board");
 const ctx = canvas.getContext("2d");
 
-const SIZE = 1000;
-const TILE_COUNT = 50000;
+const W = 1000;
+const H = 1000;
+const TARGET_TILES = 50000;
 
-function roundedRect(ctx, x, y, w, h, r) {
+function roundedRect(c, x, y, w, h, r) {
 const rr = Math.min(r, w / 2, h / 2);
-ctx.beginPath();
-ctx.moveTo(x + rr, y);
-ctx.lineTo(x + w - rr, y);
-ctx.quadraticCurveTo(x + w, y, x + w, y + rr);
-ctx.lineTo(x + w, y + h - rr);
-ctx.quadraticCurveTo(x + w, y + h, x + w - rr, y + h);
-ctx.lineTo(x + rr, y + h);
-ctx.quadraticCurveTo(x, y + h, x, y + h - rr);
-ctx.lineTo(x, y + rr);
-ctx.quadraticCurveTo(x, y, x + rr, y);
-ctx.closePath();
-}
-
-function drawSwallowPath(c) {
 c.beginPath();
-c.moveTo(500, 320);
-
-c.bezierCurveTo(455, 250, 360, 188, 245, 164);
-c.bezierCurveTo(212, 157, 168, 154, 118, 157);
-c.bezierCurveTo(153, 177, 188, 206, 222, 245);
-c.bezierCurveTo(170, 257, 130, 281, 106, 317);
-c.bezierCurveTo(153, 314, 201, 324, 252, 346);
-c.bezierCurveTo(201, 383, 171, 424, 159, 467);
-c.bezierCurveTo(209, 453, 258, 452, 308, 465);
-c.bezierCurveTo(279, 512, 266, 560, 271, 615);
-c.bezierCurveTo(324, 586, 382, 571, 442, 570);
-c.bezierCurveTo(408, 651, 339, 770, 212, 930);
-c.bezierCurveTo(316, 891, 415, 814, 500, 700);
-c.bezierCurveTo(585, 814, 684, 891, 788, 930);
-c.bezierCurveTo(661, 770, 592, 651, 558, 570);
-c.bezierCurveTo(618, 571, 676, 586, 729, 615);
-c.bezierCurveTo(734, 560, 721, 512, 692, 465);
-c.bezierCurveTo(742, 452, 791, 453, 841, 467);
-c.bezierCurveTo(829, 424, 799, 383, 748, 346);
-c.bezierCurveTo(799, 324, 847, 314, 894, 317);
-c.bezierCurveTo(870, 281, 830, 257, 778, 245);
-c.bezierCurveTo(812, 206, 847, 177, 882, 157);
-c.bezierCurveTo(832, 154, 788, 157, 755, 164);
-c.bezierCurveTo(640, 188, 545, 250, 500, 320);
+c.moveTo(x + rr, y);
+c.lineTo(x + w - rr, y);
+c.quadraticCurveTo(x + w, y, x + w, y + rr);
+c.lineTo(x + w, y + h - rr);
+c.quadraticCurveTo(x + w, y + h, x + w - rr, y + h);
+c.lineTo(x + rr, y + h);
+c.quadraticCurveTo(x, y + h, x, y + h - rr);
+c.lineTo(x, y + rr);
+c.quadraticCurveTo(x, y, x + rr, y);
 c.closePath();
 }
 
-function drawBranchStroke(c) {
+function swallowShapePath(c) {
 c.beginPath();
-c.moveTo(505, 335);
-c.bezierCurveTo(548, 332, 590, 325, 628, 315);
-c.bezierCurveTo(664, 306, 697, 292, 732, 274);
+
+c.moveTo(500, 305);
+
+c.bezierCurveTo(470, 250, 410, 205, 345, 182);
+c.bezierCurveTo(290, 163, 220, 153, 128, 154);
+c.bezierCurveTo(176, 188, 221, 226, 267, 274);
+c.bezierCurveTo(211, 285, 154, 309, 106, 350);
+c.bezierCurveTo(170, 347, 236, 358, 300, 383);
+c.bezierCurveTo(243, 421, 196, 471, 169, 531);
+c.bezierCurveTo(228, 510, 292, 503, 352, 510);
+c.bezierCurveTo(324, 572, 320, 641, 338, 710);
+c.bezierCurveTo(396, 658, 452, 616, 500, 564);
+c.bezierCurveTo(548, 616, 604, 658, 662, 710);
+c.bezierCurveTo(680, 641, 676, 572, 648, 510);
+c.bezierCurveTo(708, 503, 772, 510, 831, 531);
+c.bezierCurveTo(804, 471, 757, 421, 700, 383);
+c.bezierCurveTo(764, 358, 830, 347, 894, 350);
+c.bezierCurveTo(846, 309, 789, 285, 733, 274);
+c.bezierCurveTo(779, 226, 824, 188, 872, 154);
+c.bezierCurveTo(780, 153, 710, 163, 655, 182);
+c.bezierCurveTo(590, 205, 530, 250, 500, 305);
+
+c.bezierCurveTo(478, 365, 470, 420, 473, 486);
+c.bezierCurveTo(457, 598, 402, 741, 277, 920);
+c.bezierCurveTo(368, 878, 447, 792, 500, 688);
+c.bezierCurveTo(553, 792, 632, 878, 723, 920);
+c.bezierCurveTo(598, 741, 543, 598, 527, 486);
+c.bezierCurveTo(530, 420, 522, 365, 500, 305);
+
+c.closePath();
 }
 
-function drawLeaf(c, x, y, rx, ry, rot) {
-c.save();
-c.translate(x, y);
-c.rotate(rot);
+function branchStrokePath(c) {
 c.beginPath();
-c.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
-c.fill();
-c.restore();
+c.moveTo(514, 319);
+c.bezierCurveTo(555, 313, 595, 306, 634, 292);
+c.bezierCurveTo(669, 280, 703, 262, 736, 238);
 }
 
-function isInsideSwallow(x, y) {
-return ctx.isPointInPath(swallowPath, x, y);
-}
-
-function distancePointToSegment(px, py, x1, y1, x2, y2) {
-const dx = x2 - x1;
-const dy = y2 - y1;
-const lenSq = dx * dx + dy * dy;
-let t = ((px - x1) * dx + (py - y1) * dy) / lenSq;
-t = Math.max(0, Math.min(1, t));
-const cx = x1 + t * dx;
-const cy = y1 + t * dy;
-const ddx = px - cx;
-const ddy = py - cy;
-return Math.sqrt(ddx * ddx + ddy * ddy);
-}
-
-function isInsideBranchApprox(x, y) {
-const d1 = distancePointToSegment(x, y, 505, 335, 628, 315);
-const d2 = distancePointToSegment(x, y, 628, 315, 732, 274);
-
-const onStem = d1 <= 10 || d2 <= 10;
-
-function inEllipse(px, py, cx, cy, rx, ry, rot) {
+function pointInLeaf(px, py, cx, cy, rx, ry, rot) {
 const cos = Math.cos(-rot);
 const sin = Math.sin(-rot);
 const dx = px - cx;
@@ -253,17 +306,42 @@ const ey = dx * sin + dy * cos;
 return (ex * ex) / (rx * rx) + (ey * ey) / (ry * ry) <= 1;
 }
 
-const inLeaves =
-inEllipse(x, y, 596, 303, 13, 25, -0.45) ||
-inEllipse(x, y, 632, 292, 12, 23, 0.20) ||
-inEllipse(x, y, 668, 279, 13, 26, -0.48) ||
-inEllipse(x, y, 700, 264, 12, 24, 0.25);
-
-return onStem || inLeaves;
+function distancePointToSegment(px, py, x1, y1, x2, y2) {
+const dx = x2 - x1;
+const dy = y2 - y1;
+const lenSq = dx * dx + dy * dy;
+let t = ((px - x1) * dx + (py - y1) * dy) / lenSq;
+t = Math.max(0, Math.min(1, t));
+const sx = x1 + t * dx;
+const sy = y1 + t * dy;
+const ox = px - sx;
+const oy = py - sy;
+return Math.sqrt(ox * ox + oy * oy);
 }
 
-function isInsideCombinedShape(x, y) {
-return isInsideSwallow(x, y) || isInsideBranchApprox(x, y);
+const swallowPath = new Path2D();
+swallowShapePath(swallowPath);
+
+function inSwallow(x, y) {
+return ctx.isPointInPath(swallowPath, x, y);
+}
+
+function inBranch(x, y) {
+const stem =
+distancePointToSegment(x, y, 514, 319, 634, 292) <= 10 ||
+distancePointToSegment(x, y, 634, 292, 736, 238) <= 10;
+
+const leaves =
+pointInLeaf(x, y, 603, 286, 14, 29, -0.55) ||
+pointInLeaf(x, y, 640, 272, 13, 27, 0.10) ||
+pointInLeaf(x, y, 680, 255, 14, 30, -0.55) ||
+pointInLeaf(x, y, 715, 236, 13, 27, 0.20);
+
+return stem || leaves;
+}
+
+function inShape(x, y) {
+return inSwallow(x, y) || inBranch(x, y);
 }
 
 function mulberry32(seed) {
@@ -275,122 +353,130 @@ return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 };
 }
 
-const swallowPath = new Path2D();
-drawSwallowPath(swallowPath);
+function generateTiles() {
+const rand = mulberry32(20260311);
+const candidates = [];
 
-function generateTilePoints() {
-const points = [];
-const rand = mulberry32(123456);
-
-const cols = 420;
-const rows = 420;
-const stepX = SIZE / cols;
-const stepY = SIZE / rows;
+const cols = 430;
+const rows = 430;
+const stepX = W / cols;
+const stepY = H / rows;
 
 for (let row = 0; row < rows; row++) {
 for (let col = 0; col < cols; col++) {
-const jx = (rand() - 0.5) * stepX * 0.35;
-const jy = (rand() - 0.5) * stepY * 0.35;
-const x = col * stepX + stepX * 0.5 + jx;
-const y = row * stepY + stepY * 0.5 + jy;
+const x = col * stepX + stepX * 0.5 + (rand() - 0.5) * stepX * 0.32;
+const y = row * stepY + stepY * 0.5 + (rand() - 0.5) * stepY * 0.32;
 
-if (x < 8 || x > SIZE - 8 || y < 8 || y > SIZE - 8) continue;
-
-if (isInsideCombinedShape(x, y)) {
-points.push({ x, y });
-}
+if (x < 4 || x > W - 4 || y < 4 || y > H - 4) continue;
+if (inShape(x, y)) candidates.push({ x, y });
 }
 }
 
-points.sort((a, b) => {
-const da = Math.abs(a.y - 500) + Math.abs(a.x - 500) * 0.35;
-const db = Math.abs(b.y - 500) + Math.abs(b.x - 500) * 0.35;
-return da - db;
+candidates.sort((a, b) => {
+const ay = Math.abs(a.y - 470);
+const by = Math.abs(b.y - 470);
+const ax = Math.abs(a.x - 500);
+const bx = Math.abs(b.x - 500);
+return (ay + ax * 0.45) - (by + bx * 0.45);
 });
 
-if (points.length < TILE_COUNT) {
-console.error("Δεν βρέθηκαν αρκετά σημεία για 50.000 tiles.");
-}
-
-return points.slice(0, TILE_COUNT);
+return candidates.slice(0, TARGET_TILES);
 }
 
 function drawBackground() {
-const g = ctx.createRadialGradient(500, 470, 60, 500, 500, 620);
-g.addColorStop(0, "rgba(255,255,255,0.035)");
-g.addColorStop(0.45, "rgba(255,255,255,0.012)");
+const g = ctx.createRadialGradient(500, 440, 30, 500, 500, 680);
+g.addColorStop(0, "rgba(255,255,255,0.11)");
+g.addColorStop(0.28, "rgba(255,255,255,0.05)");
 g.addColorStop(1, "rgba(255,255,255,0)");
 ctx.fillStyle = g;
-ctx.fillRect(0, 0, SIZE, SIZE);
+ctx.fillRect(0, 0, W, H);
 }
 
-function drawSwallowShadow() {
+function drawBoardFrameGuide() {
 ctx.save();
-ctx.shadowColor = "rgba(255,255,255,0.12)";
-ctx.shadowBlur = 12;
-ctx.fillStyle = "rgba(255,255,255,0.18)";
-drawSwallowPath(ctx);
+ctx.strokeStyle = "rgba(255,255,255,0.12)";
+ctx.lineWidth = 2;
+ctx.strokeRect(110, 110, 780, 780);
+
+ctx.strokeStyle = "rgba(255,255,255,0.05)";
+ctx.lineWidth = 1;
+for (let i = 1; i < 6; i++) {
+const x = 110 + i * 130;
+const y = 110 + i * 130;
+ctx.beginPath();
+ctx.moveTo(x, 110);
+ctx.lineTo(x, 890);
+ctx.stroke();
+
+ctx.beginPath();
+ctx.moveTo(110, y);
+ctx.lineTo(890, y);
+ctx.stroke();
+}
+ctx.restore();
+}
+
+function drawVisibleSwallowBase() {
+ctx.save();
+
+ctx.shadowColor = "rgba(255,255,255,0.22)";
+ctx.shadowBlur = 26;
+ctx.fillStyle = "rgba(255,255,255,0.24)";
+swallowShapePath(ctx);
 ctx.fill();
 
-ctx.lineWidth = 11;
+ctx.shadowBlur = 12;
 ctx.lineCap = "round";
-ctx.strokeStyle = "rgba(255,255,255,0.06)";
-drawBranchStroke(ctx);
+ctx.lineWidth = 12;
+ctx.strokeStyle = "rgba(255,255,255,0.25)";
+branchStrokePath(ctx);
 ctx.stroke();
 
-ctx.fillStyle = "rgba(255,255,255,0.055)";
-drawLeaf(ctx, 596, 303, 14, 27, -0.45);
-drawLeaf(ctx, 632, 292, 13, 24, 0.20);
-drawLeaf(ctx, 668, 279, 14, 27, -0.48);
-drawLeaf(ctx, 700, 264, 13, 24, 0.25);
+ctx.fillStyle = "rgba(255,255,255,0.26)";
+ctx.beginPath(); ctx.ellipse(603, 286, 14, 29, -0.55, 0, Math.PI * 2); ctx.fill();
+ctx.beginPath(); ctx.ellipse(640, 272, 13, 27, 0.10, 0, Math.PI * 2); ctx.fill();
+ctx.beginPath(); ctx.ellipse(680, 255, 14, 30, -0.55, 0, Math.PI * 2); ctx.fill();
+ctx.beginPath(); ctx.ellipse(715, 236, 13, 27, 0.20, 0, Math.PI * 2); ctx.fill();
+
 ctx.restore();
 }
 
-function drawShapeOutline() {
-ctx.save();
-ctx.strokeStyle = "rgba(255,255,255,0.08)";
-ctx.lineWidth = 1.4;
-drawSwallowPath(ctx);
-ctx.stroke();
+function clipToShape() {
+ctx.beginPath();
+swallowShapePath(ctx);
 
-ctx.lineWidth = 5;
+ctx.save();
+ctx.lineWidth = 18;
 ctx.lineCap = "round";
-ctx.strokeStyle = "rgba(255,255,255,0.08)";
-drawBranchStroke(ctx);
+branchStrokePath(ctx);
+ctx.strokeStyle = "#fff";
 ctx.stroke();
 ctx.restore();
+
+ctx.save();
+ctx.fillStyle = "#fff";
+ctx.beginPath(); ctx.ellipse(603, 286, 16, 31, -0.55, 0, Math.PI * 2); ctx.fill();
+ctx.beginPath(); ctx.ellipse(640, 272, 15, 29, 0.10, 0, Math.PI * 2); ctx.fill();
+ctx.beginPath(); ctx.ellipse(680, 255, 16, 32, -0.55, 0, Math.PI * 2); ctx.fill();
+ctx.beginPath(); ctx.ellipse(715, 236, 15, 29, 0.20, 0, Math.PI * 2); ctx.fill();
+ctx.restore();
+
+ctx.clip();
 }
 
 function drawTiles(points) {
 ctx.save();
+clipToShape();
 
-ctx.beginPath();
-drawSwallowPath(ctx);
-ctx.closePath();
-
-drawBranchStroke(ctx);
-ctx.lineWidth = 16;
-ctx.lineCap = "round";
-ctx.stroke();
-
-ctx.fillStyle = "#fff";
-drawLeaf(ctx, 596, 303, 16, 30, -0.45);
-drawLeaf(ctx, 632, 292, 15, 28, 0.20);
-drawLeaf(ctx, 668, 279, 16, 31, -0.48);
-drawLeaf(ctx, 700, 264, 15, 29, 0.25);
-
-ctx.clip();
-
-const tileSize = 2.7;
-const radius = 0.78;
+const tileSize = 2.85;
+const radius = 0.82;
 
 for (let i = 0; i < points.length; i++) {
 const p = points[i];
+const fillAlpha = 0.19 + (i % 9) * 0.007;
+const strokeAlpha = 0.07 + (i % 5) * 0.006;
 
-const alphaBase = 0.10 + ((i % 7) * 0.008);
-const strokeAlpha = 0.030 + ((i % 5) * 0.004);
-
-ctx.fillStyle = `rgba(238,238,238,${alphaBase.toFixed(3)})`;
+ctx.fillStyle = `rgba(250,250,250,${fillAlpha.toFixed(3)})`;
 ctx.strokeStyle = `rgba(255,255,255,${strokeAlpha.toFixed(3)})`;
 ctx.lineWidth = 0.35;
 
@@ -409,14 +495,31 @@ ctx.stroke();
 ctx.restore();
 }
 
-function render() {
-ctx.clearRect(0, 0, SIZE, SIZE);
-drawBackground();
-drawSwallowShadow();
+function drawOutline() {
+ctx.save();
 
-const points = generateTilePoints();
-drawTiles(points);
-drawShapeOutline();
+ctx.strokeStyle = "rgba(255,255,255,0.35)";
+ctx.lineWidth = 2.2;
+swallowShapePath(ctx);
+ctx.stroke();
+
+ctx.lineCap = "round";
+ctx.lineWidth = 5;
+ctx.strokeStyle = "rgba(255,255,255,0.34)";
+branchStrokePath(ctx);
+ctx.stroke();
+
+ctx.restore();
+}
+
+function render() {
+ctx.clearRect(0, 0, W, H);
+drawBackground();
+drawBoardFrameGuide();
+drawVisibleSwallowBase();
+const tiles = generateTiles();
+drawTiles(tiles);
+drawOutline();
 }
 
 render();
