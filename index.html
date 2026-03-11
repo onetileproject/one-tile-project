@@ -39,16 +39,6 @@ radial-gradient(circle at center, #171717 0%, #101010 58%, #080808 100%);
 box-shadow:0 0 50px rgba(0,0,0,0.45);
 }
 
-.artwork{
-position:absolute;
-inset:0;
-z-index:1;
-opacity:0.92;
-filter:blur(6px);
-transform:scale(0.94);
-pointer-events:none;
-}
-
 .grid{
 position:absolute;
 inset:0;
@@ -84,88 +74,6 @@ transform:scale(1.02);
 <p>Claim your tile. Leave your mark. Be part of digital history.</p>
 
 <div class="artboard">
-
-<svg class="artwork" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<rect x="0" y="0" width="1000" height="1000" fill="transparent"/>
-
-<!-- left wing -->
-<path
-d="M180 520
-C250 455, 320 395, 400 355
-C345 435, 320 495, 320 560
-C270 550, 225 537, 180 520 Z"
-fill="#171717"
-/>
-
-<!-- right wing -->
-<path
-d="M820 520
-C750 455, 680 395, 600 355
-C655 435, 680 495, 680 560
-C730 550, 775 537, 820 520 Z"
-fill="#171717"
-/>
-
-<!-- body -->
-<path
-d="M420 360
-C455 325, 545 325, 580 360
-C620 400, 636 455, 625 520
-C614 584, 580 638, 530 690
-C515 706, 485 706, 470 690
-C420 638, 386 584, 375 520
-C364 455, 380 400, 420 360 Z"
-fill="#202020"
-/>
-
-<!-- head -->
-<circle cx="500" cy="332" r="38" fill="#191919"/>
-
-<!-- tail left -->
-<path
-d="M468 686
-L420 870
-L500 760
-L500 700
-Z"
-fill="#161616"
-/>
-
-<!-- tail right -->
-<path
-d="M532 686
-L580 870
-L500 760
-L500 700
-Z"
-fill="#161616"
-/>
-
-<!-- inner chest highlight -->
-<path
-d="M445 405
-C470 382, 530 382, 555 405
-C580 430, 590 468, 582 515
-C573 563, 548 604, 512 642
-C506 648, 494 648, 488 642
-C452 604, 427 563, 418 515
-C410 468, 420 430, 445 405 Z"
-fill="#252525"
-opacity="0.75"
-/>
-
-<!-- olive branch -->
-<g transform="translate(555 585) rotate(-18)">
-<rect x="0" y="0" width="210" height="14" rx="7" fill="#1a1a1a"/>
-<ellipse cx="28" cy="-16" rx="16" ry="7" fill="#222"/>
-<ellipse cx="58" cy="24" rx="16" ry="7" fill="#222"/>
-<ellipse cx="94" cy="-16" rx="16" ry="7" fill="#222"/>
-<ellipse cx="126" cy="24" rx="16" ry="7" fill="#222"/>
-<ellipse cx="160" cy="-16" rx="16" ry="7" fill="#222"/>
-<ellipse cx="194" cy="24" rx="16" ry="7" fill="#222"/>
-</g>
-</svg>
-
 <div class="grid">
 <script>
 for(let i=0;i<1600;i++){
@@ -173,7 +81,6 @@ document.write('<div class="tile"></div>');
 }
 </script>
 </div>
-
 </div>
 
 </body>
