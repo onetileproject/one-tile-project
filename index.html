@@ -17,7 +17,7 @@ text-align:center;
 h1{
 margin:28px 0 10px 0;
 font-size:36px;
-letter-spacing:0.5px;
+letter-spacing:0.4px;
 }
 
 p{
@@ -33,7 +33,7 @@ aspect-ratio:1 / 1;
 position:relative;
 border-radius:24px;
 overflow:hidden;
-border:1px solid #1e1e1e;
+border:1px solid #1d1d1d;
 background:
 radial-gradient(circle at center, #171717 0%, #101010 58%, #080808 100%);
 box-shadow:0 0 50px rgba(0,0,0,0.45);
@@ -43,9 +43,10 @@ box-shadow:0 0 50px rgba(0,0,0,0.45);
 position:absolute;
 inset:0;
 z-index:1;
-opacity:0.95;
-filter:blur(7px);
+opacity:0.92;
+filter:blur(6px);
 transform:scale(0.94);
+pointer-events:none;
 }
 
 .grid{
@@ -85,53 +86,83 @@ transform:scale(1.02);
 <div class="artboard">
 
 <svg class="artwork" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-<!-- background haze -->
 <rect x="0" y="0" width="1000" height="1000" fill="transparent"/>
 
-<!-- swallow -->
+<!-- left wing -->
 <path
-d="M145 510
-C210 460, 255 405, 325 350
-C410 282, 515 255, 600 278
-C650 292, 690 318, 735 355
-C780 330, 825 285, 900 230
-C858 315, 816 378, 760 432
-C720 470, 675 496, 628 515
-C676 545, 723 595, 784 692
-C705 650, 647 616, 596 580
-C555 551, 530 536, 500 525
-C462 545, 432 573, 390 618
-C344 666, 284 726, 190 812
-C240 707, 280 630, 328 560
-C255 551, 198 536, 145 510 Z"
-fill="#151515"
+d="M180 520
+C250 455, 320 395, 400 355
+C345 435, 320 495, 320 560
+C270 550, 225 537, 180 520 Z"
+fill="#171717"
 />
 
-<!-- inner swallow volume -->
+<!-- right wing -->
 <path
-d="M255 505
-C320 452, 370 404, 438 360
-C505 317, 570 305, 632 322
-C675 334, 712 357, 744 386
-C701 418, 662 440, 621 458
-C662 485, 705 532, 754 606
-C689 580, 638 555, 592 527
-C557 506, 533 492, 500 481
-C457 503, 425 532, 389 572
-C351 613, 311 657, 256 714
-C286 643, 313 591, 352 540
-C315 531, 283 520, 255 505 Z"
-fill="#1d1d1d"
+d="M820 520
+C750 455, 680 395, 600 355
+C655 435, 680 495, 680 560
+C730 550, 775 537, 820 520 Z"
+fill="#171717"
+/>
+
+<!-- body -->
+<path
+d="M420 360
+C455 325, 545 325, 580 360
+C620 400, 636 455, 625 520
+C614 584, 580 638, 530 690
+C515 706, 485 706, 470 690
+C420 638, 386 584, 375 520
+C364 455, 380 400, 420 360 Z"
+fill="#202020"
+/>
+
+<!-- head -->
+<circle cx="500" cy="332" r="38" fill="#191919"/>
+
+<!-- tail left -->
+<path
+d="M468 686
+L420 870
+L500 760
+L500 700
+Z"
+fill="#161616"
+/>
+
+<!-- tail right -->
+<path
+d="M532 686
+L580 870
+L500 760
+L500 700
+Z"
+fill="#161616"
+/>
+
+<!-- inner chest highlight -->
+<path
+d="M445 405
+C470 382, 530 382, 555 405
+C580 430, 590 468, 582 515
+C573 563, 548 604, 512 642
+C506 648, 494 648, 488 642
+C452 604, 427 563, 418 515
+C410 468, 420 430, 445 405 Z"
+fill="#252525"
+opacity="0.75"
 />
 
 <!-- olive branch -->
-<g transform="translate(575 585) rotate(-20)">
-<rect x="0" y="0" width="220" height="16" rx="8" fill="#191919"/>
-<ellipse cx="38" cy="-16" rx="18" ry="8" fill="#202020"/>
-<ellipse cx="76" cy="30" rx="18" ry="8" fill="#202020"/>
-<ellipse cx="120" cy="-18" rx="18" ry="8" fill="#202020"/>
-<ellipse cx="158" cy="30" rx="18" ry="8" fill="#202020"/>
-<ellipse cx="198" cy="-16" rx="18" ry="8" fill="#202020"/>
+<g transform="translate(555 585) rotate(-18)">
+<rect x="0" y="0" width="210" height="14" rx="7" fill="#1a1a1a"/>
+<ellipse cx="28" cy="-16" rx="16" ry="7" fill="#222"/>
+<ellipse cx="58" cy="24" rx="16" ry="7" fill="#222"/>
+<ellipse cx="94" cy="-16" rx="16" ry="7" fill="#222"/>
+<ellipse cx="126" cy="24" rx="16" ry="7" fill="#222"/>
+<ellipse cx="160" cy="-16" rx="16" ry="7" fill="#222"/>
+<ellipse cx="194" cy="24" rx="16" ry="7" fill="#222"/>
 </g>
 </svg>
 
