@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>One Tile Project</title>
 
 <style>
@@ -9,7 +10,7 @@
 body{
 margin:0;
 background:#0b0b0b;
-font-family:Arial;
+font-family:Arial,Helvetica,sans-serif;
 color:white;
 text-align:center;
 overflow:hidden;
@@ -17,12 +18,12 @@ overflow:hidden;
 
 h1{
 margin-top:30px;
-font-size:40px;
+font-size:42px;
 }
 
 .tagline{
-color:#bdbdbd;
-margin-bottom:20px;
+color:#cfcfcf;
+margin-bottom:18px;
 }
 
 .progress{
@@ -37,7 +38,7 @@ overflow:hidden;
 .progress-bar{
 height:100%;
 width:0%;
-background:white;
+background:#ffffff;
 }
 
 .board{
@@ -62,7 +63,29 @@ filter:blur(14px);
 .overlay{
 position:absolute;
 inset:0;
-background:rgba(0,0,0,0.45);
+background:rgba(0,0,0,0.4);
+}
+
+.admin{
+position:absolute;
+top:10px;
+right:10px;
+background:#111;
+padding:6px 10px;
+border-radius:6px;
+font-size:12px;
+opacity:.7;
+}
+
+button{
+margin-top:12px;
+padding:10px 18px;
+border-radius:20px;
+border:none;
+background:#ffffff;
+color:#000;
+font-weight:bold;
+cursor:pointer;
 }
 
 </style>
@@ -77,11 +100,15 @@ background:rgba(0,0,0,0.45);
 <div class="progress-bar"></div>
 </div>
 
+<button>Buy Tiles</button>
+
 <div class="board">
 
-<img class="art" src="a_digital_artwork_serves_as_a_template_for_the_on.png">
+<img class="art" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAIAAADwf7zUAAAgAElEQVR4nOzdeZhcV33/8d8hN..." />
 
 <div class="overlay"></div>
+
+<div class="admin">ADMIN PREVIEW</div>
 
 </div>
 
