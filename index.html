@@ -25,15 +25,15 @@ color:#bbb;
 
 .grid{
 margin:40px auto;
-width:900px;
+width:min(90vw, 900px);
 display:grid;
-grid-template-columns:repeat(40,1fr);
-gap:2px;
+grid-template-columns:repeat(40, 1fr);
+gap:1px;
 }
 
 .tile{
-width:40px;
-height:40px;
+width:100%;
+aspect-ratio:1 / 1;
 background:#1c1c1c;
 border-radius:6px;
 cursor:pointer;
