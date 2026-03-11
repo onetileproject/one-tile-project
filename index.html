@@ -1,398 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
 <title>One Tile Project</title>
 
 <style>
-* { box-sizing: border-box; }
 
-html, body {
-margin: 0;
-width: 100%;
-height: 100%;
-overflow: hidden;
-font-family: Arial, Helvetica, sans-serif;
-background: #0b0b0b;
-color: white;
+body{
+margin:0;
+background:#0b0b0b;
+font-family:Arial;
+color:white;
+text-align:center;
+overflow:hidden;
 }
 
-body {
-display: flex;
-align-items: center;
-justify-content: center;
-background:
-radial-gradient(circle at 50% 20%, #232323 0%, #111111 42%, #080808 100%);
+h1{
+margin-top:30px;
+font-size:40px;
 }
 
-.page {
-width: 100vw;
-height: 100vh;
-height: 100svh;
-display: flex;
-flex-direction: column;
-gap: 12px;
-padding: 14px;
-overflow: hidden;
+.tagline{
+color:#bdbdbd;
+margin-bottom:20px;
 }
 
-.header {
-text-align: center;
-flex: 0 0 auto;
+.progress{
+width:300px;
+height:10px;
+background:#222;
+margin:10px auto;
+border-radius:10px;
+overflow:hidden;
 }
 
-.header h1 {
-margin: 0 0 8px 0;
-font-size: clamp(30px, 4vw, 48px);
-line-height: 1.04;
-color: #f7f7f7;
-text-shadow: 0 0 18px rgba(255,255,255,0.08);
+.progress-bar{
+height:100%;
+width:0%;
+background:white;
 }
 
-.header p {
-margin: 0;
-font-size: clamp(13px, 1.6vw, 18px);
-color: #d4d4d4;
+.board{
+position:relative;
+width:80vmin;
+height:80vmin;
+margin:auto;
+border-radius:20px;
+overflow:hidden;
+border:1px solid #333;
+box-shadow:0 0 40px rgba(0,0,0,0.6);
 }
 
-.topbar {
-width: min(96vw, 1100px);
-margin: 0 auto;
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 14px;
-flex-wrap: wrap;
-flex: 0 0 auto;
+.art{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+filter:blur(14px);
 }
 
-.progress-wrap {
-width: min(440px, 72vw);
+.overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.45);
 }
 
-.progress-line {
-display: flex;
-justify-content: space-between;
-font-size: 12px;
-color: #d7d7d7;
-margin-bottom: 6px;
-}
-
-.progress-bar {
-height: 12px;
-border-radius: 999px;
-background: rgba(255,255,255,0.13);
-overflow: hidden;
-box-shadow: inset 0 0 0 1px rgba(255,255,255,0.05);
-}
-
-.progress-fill {
-width: 12%;
-height: 100%;
-border-radius: 999px;
-background: linear-gradient(90deg, #cfd7dd 0%, #ffffff 100%);
-box-shadow: 0 0 18px rgba(255,255,255,0.22);
-}
-
-.buy-btn {
-border: 0;
-border-radius: 999px;
-padding: 12px 22px;
-font-size: 15px;
-font-weight: bold;
-cursor: pointer;
-color: #111;
-background: #f2f2f2;
-box-shadow: 0 8px 24px rgba(255,255,255,0.10);
-}
-
-.board-wrap {
-flex: 1 1 auto;
-min-height: 0;
-display: flex;
-align-items: center;
-justify-content: center;
-overflow: hidden;
-}
-
-.artboard {
-position: relative;
-width: min(96vw, 1100px);
-aspect-ratio: 1 / 1;
-max-height: calc(100vh - 160px);
-max-height: calc(100svh - 160px);
-border-radius: 26px;
-overflow: hidden;
-border: 1px solid rgba(255,255,255,0.12);
-background:
-radial-gradient(circle at 50% 45%, rgba(255,255,255,0.08), transparent 22%),
-radial-gradient(circle at center, #202020 0%, #151515 44%, #0b0b0b 100%);
-box-shadow:
-inset 0 0 0 1px rgba(255,255,255,0.03),
-0 0 60px rgba(0,0,0,0.38);
-}
-
-.artboard::before {
-content: "";
-position: absolute;
-inset: 0;
-pointer-events: none;
-background:
-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.06), transparent 28%),
-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.02), transparent 50%);
-}
-
-svg {
-position: absolute;
-inset: 0;
-width: 100%;
-height: 100%;
-display: block;
-}
-
-.hint {
-position: absolute;
-left: 50%;
-bottom: 12px;
-transform: translateX(-50%);
-font-size: 12px;
-color: rgba(255,255,255,0.78);
-background: rgba(255,255,255,0.07);
-border: 1px solid rgba(255,255,255,0.10);
-padding: 8px 12px;
-border-radius: 999px;
-backdrop-filter: blur(6px);
-white-space: nowrap;
-}
-
-@media (max-width: 700px) {
-.page { padding: 10px; gap: 8px; }
-.artboard {
-width: 96vw;
-max-height: calc(100vh - 182px);
-max-height: calc(100svh - 182px);
-border-radius: 18px;
-}
-.buy-btn {
-padding: 11px 18px;
-font-size: 14px;
-}
-.hint {
-font-size: 10px;
-bottom: 8px;
-padding: 7px 10px;
-}
-}
 </style>
 </head>
+
 <body>
-<div class="page">
-<div class="header">
+
 <h1>One Tile Project</h1>
-<p>Claim your tile. Leave your mark. Be part of digital history.</p>
+<div class="tagline">Claim your tile. Leave your mark. Be part of digital history.</div>
+
+<div class="progress">
+<div class="progress-bar"></div>
 </div>
 
-<div class="topbar">
-<div class="progress-wrap">
-<div class="progress-line">
-<span>Project Progress</span>
-<span>12%</span>
-</div>
-<div class="progress-bar">
-<div class="progress-fill"></div>
-</div>
+<div class="board">
+
+<img class="art" src="a_digital_artwork_serves_as_a_template_for_the_on.png">
+
+<div class="overlay"></div>
+
 </div>
 
-<button class="buy-btn" type="button">Buy Tiles</button>
-</div>
-
-<div class="board-wrap">
-<div class="artboard">
-<svg id="board" viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid meet">
-<defs>
-<filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
-<feGaussianBlur stdDeviation="18" />
-</filter>
-
-<clipPath id="swallowClip">
-<path id="swallowClipPath"
-d="M500 300
-C470 250 410 205 345 182
-C290 163 220 153 128 154
-C176 188 221 226 267 274
-C211 285 154 309 106 350
-C170 347 236 358 300 383
-C243 421 196 471 169 531
-C228 510 292 503 352 510
-C324 572 320 641 338 710
-C396 658 452 616 500 564
-C548 616 604 658 662 710
-C680 641 676 572 648 510
-C708 503 772 510 831 531
-C804 471 757 421 700 383
-C764 358 830 347 894 350
-C846 309 789 285 733 274
-C779 226 824 188 872 154
-C780 153 710 163 655 182
-C590 205 530 250 500 300
-C478 365 470 420 473 486
-C457 598 402 741 277 920
-C368 878 447 792 500 688
-C553 792 632 878 723 920
-C598 741 543 598 527 486
-C530 420 522 365 500 300 Z" />
-<path d="M514 319 C555 313 595 306 634 292 C669 280 703 262 736 238"
-fill="none" stroke="black" stroke-width="20" stroke-linecap="round"/>
-<ellipse cx="603" cy="286" rx="16" ry="31" transform="rotate(-32 603 286)" />
-<ellipse cx="640" cy="272" rx="15" ry="29" transform="rotate(8 640 272)" />
-<ellipse cx="680" cy="255" rx="16" ry="32" transform="rotate(-32 680 255)" />
-<ellipse cx="715" cy="236" rx="15" ry="29" transform="rotate(12 715 236)" />
-</clipPath>
-</defs>
-
-<!-- frame -->
-<rect x="110" y="110" width="780" height="780" rx="18"
-fill="rgba(255,255,255,0.02)"
-stroke="rgba(255,255,255,0.18)"
-stroke-width="2"/>
-
-<!-- faint grid frame -->
-<g opacity="0.16">
-<line x1="240" y1="110" x2="240" y2="890" stroke="white" stroke-opacity="0.22"/>
-<line x1="370" y1="110" x2="370" y2="890" stroke="white" stroke-opacity="0.22"/>
-<line x1="500" y1="110" x2="500" y2="890" stroke="white" stroke-opacity="0.22"/>
-<line x1="630" y1="110" x2="630" y2="890" stroke="white" stroke-opacity="0.22"/>
-<line x1="760" y1="110" x2="760" y2="890" stroke="white" stroke-opacity="0.22"/>
-
-<line x1="110" y1="240" x2="890" y2="240" stroke="white" stroke-opacity="0.22"/>
-<line x1="110" y1="370" x2="890" y2="370" stroke="white" stroke-opacity="0.22"/>
-<line x1="110" y1="500" x2="890" y2="500" stroke="white" stroke-opacity="0.22"/>
-<line x1="110" y1="630" x2="890" y2="630" stroke="white" stroke-opacity="0.22"/>
-<line x1="110" y1="760" x2="890" y2="760" stroke="white" stroke-opacity="0.22"/>
-</g>
-
-<!-- visible blurred swallow -->
-<g filter="url(#glow)">
-<path
-d="M500 300
-C470 250 410 205 345 182
-C290 163 220 153 128 154
-C176 188 221 226 267 274
-C211 285 154 309 106 350
-C170 347 236 358 300 383
-C243 421 196 471 169 531
-C228 510 292 503 352 510
-C324 572 320 641 338 710
-C396 658 452 616 500 564
-C548 616 604 658 662 710
-C680 641 676 572 648 510
-C708 503 772 510 831 531
-C804 471 757 421 700 383
-C764 358 830 347 894 350
-C846 309 789 285 733 274
-C779 226 824 188 872 154
-C780 153 710 163 655 182
-C590 205 530 250 500 300
-C478 365 470 420 473 486
-C457 598 402 741 277 920
-C368 878 447 792 500 688
-C553 792 632 878 723 920
-C598 741 543 598 527 486
-C530 420 522 365 500 300 Z"
-fill="rgba(255,255,255,0.30)"/>
-</g>
-
-<!-- clear swallow base -->
-<path
-d="M500 300
-C470 250 410 205 345 182
-C290 163 220 153 128 154
-C176 188 221 226 267 274
-C211 285 154 309 106 350
-C170 347 236 358 300 383
-C243 421 196 471 169 531
-C228 510 292 503 352 510
-C324 572 320 641 338 710
-C396 658 452 616 500 564
-C548 616 604 658 662 710
-C680 641 676 572 648 510
-C708 503 772 510 831 531
-C804 471 757 421 700 383
-C764 358 830 347 894 350
-C846 309 789 285 733 274
-C779 226 824 188 872 154
-C780 153 710 163 655 182
-C590 205 530 250 500 300
-C478 365 470 420 473 486
-C457 598 402 741 277 920
-C368 878 447 792 500 688
-C553 792 632 878 723 920
-C598 741 543 598 527 486
-C530 420 522 365 500 300 Z"
-fill="rgba(255,255,255,0.17)"
-stroke="rgba(255,255,255,0.42)"
-stroke-width="2.3"/>
-
-<!-- branch -->
-<path d="M514 319 C555 313 595 306 634 292 C669 280 703 262 736 238"
-fill="none"
-stroke="rgba(255,255,255,0.44)"
-stroke-width="6"
-stroke-linecap="round"/>
-
-<ellipse cx="603" cy="286" rx="14" ry="28" transform="rotate(-32 603 286)"
-fill="rgba(255,255,255,0.34)" stroke="rgba(255,255,255,0.34)" stroke-width="1"/>
-<ellipse cx="640" cy="272" rx="13" ry="26" transform="rotate(8 640 272)"
-fill="rgba(255,255,255,0.34)" stroke="rgba(255,255,255,0.34)" stroke-width="1"/>
-<ellipse cx="680" cy="255" rx="14" ry="29" transform="rotate(-32 680 255)"
-fill="rgba(255,255,255,0.34)" stroke="rgba(255,255,255,0.34)" stroke-width="1"/>
-<ellipse cx="715" cy="236" rx="13" ry="26" transform="rotate(12 715 236)"
-fill="rgba(255,255,255,0.34)" stroke="rgba(255,255,255,0.34)" stroke-width="1"/>
-
-<!-- tiles go here -->
-<g id="tiles" clip-path="url(#swallowClip)"></g>
-</svg>
-
-<div class="hint">The swallow will be revealed tile by tile</div>
-</div>
-</div>
-</div>
-
-<script>
-const svgNS = "http://www.w3.org/2000/svg";
-const tilesGroup = document.getElementById("tiles");
-
-function addTile(x, y, size, opacity) {
-const r = document.createElementNS(svgNS, "rect");
-r.setAttribute("x", x);
-r.setAttribute("y", y);
-r.setAttribute("width", size);
-r.setAttribute("height", size);
-r.setAttribute("rx", size * 0.24);
-r.setAttribute("ry", size * 0.24);
-r.setAttribute("fill", `rgba(255,255,255,${opacity})`);
-r.setAttribute("stroke", "rgba(255,255,255,0.08)");
-r.setAttribute("stroke-width", "0.45");
-tilesGroup.appendChild(r);
-}
-
-const cols = 150;
-const rows = 150;
-const startX = 115;
-const startY = 115;
-const area = 770;
-const gap = 1.1;
-const size = (area - gap * (cols - 1)) / cols;
-
-for (let row = 0; row < rows; row++) {
-for (let col = 0; col < cols; col++) {
-const x = startX + col * (size + gap);
-const y = startY + row * (size + gap);
-const opacity = 0.18 + ((row + col) % 6) * 0.02;
-addTile(x, y, size, opacity);
-}
-}
-</script>
 </body>
 </html>
