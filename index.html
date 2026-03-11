@@ -39,12 +39,67 @@ overflow:hidden;
 position:relative;
 }
 
+/* ΘΟΛΟ ΧΕΛΙΔΟΝΙ */
+
+.swallow-blur{
+position:absolute;
+width:70%;
+height:46%;
+background:#181818;
+filter:blur(22px);
+opacity:0.9;
+clip-path:polygon(
+0% 52%,
+12% 40%,
+26% 18%,
+42% 6%,
+58% 10%,
+72% 26%,
+84% 18%,
+100% 4%,
+92% 28%,
+78% 44%,
+64% 54%,
+76% 68%,
+92% 94%,
+66% 78%,
+50% 68%,
+34% 74%,
+18% 90%,
+28% 64%,
+16% 58%
+);
+z-index:1;
+}
+
+/* ΘΟΛΟ ΚΛΑΔΙ ΕΛΙΑΣ */
+
+.olive-blur{
+position:absolute;
+width:26%;
+height:6%;
+background:#161616;
+filter:blur(14px);
+opacity:0.85;
+left:57%;
+top:58%;
+transform:rotate(-18deg);
+border-radius:999px;
+z-index:1;
+}
+
+/* GRID */
+
 .grid{
 width:min(78vw,760px);
 display:grid;
 grid-template-columns:repeat(40,1fr);
 gap:1px;
+position:relative;
+z-index:2;
 }
+
+/* TILE */
 
 .tile{
 width:100%;
@@ -70,7 +125,8 @@ background:#2c2c2c;
 <p>Claim your tile. Leave your mark and be part of digital history.</p>
 
 <div class="artboard">
-
+<div class="swallow-blur"></div>
+<div class="olive-blur"></div>
 <div class="grid">
 
 <script>
