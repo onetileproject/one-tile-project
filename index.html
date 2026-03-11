@@ -6,82 +6,420 @@
 <title>One Tile Project</title>
 
 <style>
-body{
-margin:0;
-background:#0b0b0b;
-color:#ffffff;
-font-family:Arial, Helvetica, sans-serif;
-text-align:center;
+* {
+box-sizing: border-box;
 }
 
-h1{
-margin:28px 0 10px 0;
-font-size:36px;
-letter-spacing:0.4px;
+html, body {
+margin: 0;
+width: 100%;
+height: 100%;
+overflow: hidden;
+background: #060606;
+font-family: Arial, Helvetica, sans-serif;
+color: #fff;
 }
 
-p{
-margin:0 0 26px 0;
-color:#bdbdbd;
-font-size:16px;
+body {
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
-.artboard{
-margin:32px auto 56px auto;
-width:min(92vw,1100px);
-aspect-ratio:1 / 1;
-position:relative;
-border-radius:24px;
-overflow:hidden;
-border:1px solid #1d1d1d;
+.page {
+width: 100vw;
+height: 100vh;
+height: 100svh;
+display: flex;
+flex-direction: column;
+gap: 10px;
+padding: 12px;
+overflow: hidden;
 background:
-radial-gradient(circle at center, #171717 0%, #101010 58%, #080808 100%);
-box-shadow:0 0 50px rgba(0,0,0,0.45);
+radial-gradient(circle at center, #111 0%, #0a0a0a 56%, #050505 100%);
 }
 
-.grid{
-position:absolute;
-inset:0;
-z-index:2;
-display:grid;
-grid-template-columns:repeat(40, 1fr);
-gap:1px;
-width:min(78vw,760px);
-height:min(78vw,760px);
-margin:auto;
-top:0; right:0; bottom:0; left:0;
+.top {
+flex: 0 0 auto;
+text-align: center;
+padding-top: 2px;
 }
 
-.tile{
-width:100%;
-aspect-ratio:1 / 1;
-background:#1b1b1b;
-border-radius:8px;
-cursor:pointer;
-transition:background 0.2s ease, transform 0.15s ease;
-opacity:0.9;
+.top h1 {
+margin: 0 0 6px 0;
+font-size: clamp(28px, 4vw, 44px);
+line-height: 1.05;
+letter-spacing: 0.3px;
+color: #f4f4f4;
 }
 
-.tile:hover{
-background:#2b2b2b;
-transform:scale(1.02);
+.top p {
+margin: 0;
+font-size: clamp(13px, 1.5vw, 17px);
+color: #bdbdbd;
+}
+
+.board-wrap {
+flex: 1 1 auto;
+min-height: 0;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+}
+
+.artboard {
+position: relative;
+width: min(96vw, 1100px);
+aspect-ratio: 1 / 1;
+max-height: calc(100vh - 90px);
+max-height: calc(100svh - 90px);
+border-radius: 24px;
+overflow: hidden;
+border: 1px solid #1b1b1b;
+background:
+radial-gradient(circle at 50% 46%, rgba(255,255,255,0.04), transparent 30%),
+radial-gradient(circle at center, #141414 0%, #0e0e0e 55%, #080808 100%);
+box-shadow:
+0 0 0 1px rgba(255,255,255,0.02) inset,
+0 0 60px rgba(0,0,0,0.5);
+}
+
+.artboard::before {
+content: "";
+position: absolute;
+inset: 0;
+pointer-events: none;
+background:
+radial-gradient(circle at 50% 50%, rgba(255,255,255,0.03), transparent 34%),
+radial-gradient(circle at 50% 50%, rgba(255,255,255,0.016), transparent 52%);
+}
+
+canvas {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+display: block;
+}
+
+.meta {
+position: absolute;
+left: 50%;
+bottom: 10px;
+transform: translateX(-50%);
+font-size: 11px;
+color: rgba(255,255,255,0.28);
+letter-spacing: 0.4px;
+pointer-events: none;
+z-index: 2;
+user-select: none;
+white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+.page {
+padding: 10px;
+gap: 8px;
+}
+
+.artboard {
+width: 96vw;
+border-radius: 18px;
+max-height: calc(100vh - 78px);
+max-height: calc(100svh - 78px);
+}
+
+.meta {
+font-size: 10px;
+bottom: 8px;
+}
 }
 </style>
 </head>
 <body>
-
+<div class="page">
+<div class="top">
 <h1>One Tile Project</h1>
 <p>Claim your tile. Leave your mark. Be part of digital history.</p>
+</div>
 
+<div class="board-wrap">
 <div class="artboard">
-<div class="grid">
-<script>
-for(let i=0;i<1600;i++){
-document.write('<div class="tile"></div>');
-}
-</script>
+<canvas id="board" width="1000" height="1000"></canvas>
+<div class="meta">50,000 tiles inside the swallow</div>
+</div>
 </div>
 </div>
 
+<script>
+const canvas = document.getElementById("board");
+const ctx = canvas.getContext("2d");
+
+const SIZE = 1000;
+const TILE_COUNT = 50000;
+
+function roundedRect(ctx, x, y, w, h, r) {
+const rr = Math.min(r, w / 2, h / 2);
+ctx.beginPath();
+ctx.moveTo(x + rr, y);
+ctx.lineTo(x + w - rr, y);
+ctx.quadraticCurveTo(x + w, y, x + w, y + rr);
+ctx.lineTo(x + w, y + h - rr);
+ctx.quadraticCurveTo(x + w, y + h, x + w - rr, y + h);
+ctx.lineTo(x + rr, y + h);
+ctx.quadraticCurveTo(x, y + h, x, y + h - rr);
+ctx.lineTo(x, y + rr);
+ctx.quadraticCurveTo(x, y, x + rr, y);
+ctx.closePath();
+}
+
+function drawSwallowPath(c) {
+c.beginPath();
+c.moveTo(500, 320);
+
+c.bezierCurveTo(455, 250, 360, 188, 245, 164);
+c.bezierCurveTo(212, 157, 168, 154, 118, 157);
+c.bezierCurveTo(153, 177, 188, 206, 222, 245);
+c.bezierCurveTo(170, 257, 130, 281, 106, 317);
+c.bezierCurveTo(153, 314, 201, 324, 252, 346);
+c.bezierCurveTo(201, 383, 171, 424, 159, 467);
+c.bezierCurveTo(209, 453, 258, 452, 308, 465);
+c.bezierCurveTo(279, 512, 266, 560, 271, 615);
+c.bezierCurveTo(324, 586, 382, 571, 442, 570);
+c.bezierCurveTo(408, 651, 339, 770, 212, 930);
+c.bezierCurveTo(316, 891, 415, 814, 500, 700);
+c.bezierCurveTo(585, 814, 684, 891, 788, 930);
+c.bezierCurveTo(661, 770, 592, 651, 558, 570);
+c.bezierCurveTo(618, 571, 676, 586, 729, 615);
+c.bezierCurveTo(734, 560, 721, 512, 692, 465);
+c.bezierCurveTo(742, 452, 791, 453, 841, 467);
+c.bezierCurveTo(829, 424, 799, 383, 748, 346);
+c.bezierCurveTo(799, 324, 847, 314, 894, 317);
+c.bezierCurveTo(870, 281, 830, 257, 778, 245);
+c.bezierCurveTo(812, 206, 847, 177, 882, 157);
+c.bezierCurveTo(832, 154, 788, 157, 755, 164);
+c.bezierCurveTo(640, 188, 545, 250, 500, 320);
+c.closePath();
+}
+
+function drawBranchStroke(c) {
+c.beginPath();
+c.moveTo(505, 335);
+c.bezierCurveTo(548, 332, 590, 325, 628, 315);
+c.bezierCurveTo(664, 306, 697, 292, 732, 274);
+}
+
+function drawLeaf(c, x, y, rx, ry, rot) {
+c.save();
+c.translate(x, y);
+c.rotate(rot);
+c.beginPath();
+c.ellipse(0, 0, rx, ry, 0, 0, Math.PI * 2);
+c.fill();
+c.restore();
+}
+
+function isInsideSwallow(x, y) {
+return ctx.isPointInPath(swallowPath, x, y);
+}
+
+function distancePointToSegment(px, py, x1, y1, x2, y2) {
+const dx = x2 - x1;
+const dy = y2 - y1;
+const lenSq = dx * dx + dy * dy;
+let t = ((px - x1) * dx + (py - y1) * dy) / lenSq;
+t = Math.max(0, Math.min(1, t));
+const cx = x1 + t * dx;
+const cy = y1 + t * dy;
+const ddx = px - cx;
+const ddy = py - cy;
+return Math.sqrt(ddx * ddx + ddy * ddy);
+}
+
+function isInsideBranchApprox(x, y) {
+const d1 = distancePointToSegment(x, y, 505, 335, 628, 315);
+const d2 = distancePointToSegment(x, y, 628, 315, 732, 274);
+
+const onStem = d1 <= 10 || d2 <= 10;
+
+function inEllipse(px, py, cx, cy, rx, ry, rot) {
+const cos = Math.cos(-rot);
+const sin = Math.sin(-rot);
+const dx = px - cx;
+const dy = py - cy;
+const ex = dx * cos - dy * sin;
+const ey = dx * sin + dy * cos;
+return (ex * ex) / (rx * rx) + (ey * ey) / (ry * ry) <= 1;
+}
+
+const inLeaves =
+inEllipse(x, y, 596, 303, 13, 25, -0.45) ||
+inEllipse(x, y, 632, 292, 12, 23, 0.20) ||
+inEllipse(x, y, 668, 279, 13, 26, -0.48) ||
+inEllipse(x, y, 700, 264, 12, 24, 0.25);
+
+return onStem || inLeaves;
+}
+
+function isInsideCombinedShape(x, y) {
+return isInsideSwallow(x, y) || isInsideBranchApprox(x, y);
+}
+
+function mulberry32(seed) {
+return function() {
+let t = seed += 0x6D2B79F5;
+t = Math.imul(t ^ (t >>> 15), t | 1);
+t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+};
+}
+
+const swallowPath = new Path2D();
+drawSwallowPath(swallowPath);
+
+function generateTilePoints() {
+const points = [];
+const rand = mulberry32(123456);
+
+const cols = 420;
+const rows = 420;
+const stepX = SIZE / cols;
+const stepY = SIZE / rows;
+
+for (let row = 0; row < rows; row++) {
+for (let col = 0; col < cols; col++) {
+const jx = (rand() - 0.5) * stepX * 0.35;
+const jy = (rand() - 0.5) * stepY * 0.35;
+const x = col * stepX + stepX * 0.5 + jx;
+const y = row * stepY + stepY * 0.5 + jy;
+
+if (x < 8 || x > SIZE - 8 || y < 8 || y > SIZE - 8) continue;
+
+if (isInsideCombinedShape(x, y)) {
+points.push({ x, y });
+}
+}
+}
+
+points.sort((a, b) => {
+const da = Math.abs(a.y - 500) + Math.abs(a.x - 500) * 0.35;
+const db = Math.abs(b.y - 500) + Math.abs(b.x - 500) * 0.35;
+return da - db;
+});
+
+if (points.length < TILE_COUNT) {
+console.error("Δεν βρέθηκαν αρκετά σημεία για 50.000 tiles.");
+}
+
+return points.slice(0, TILE_COUNT);
+}
+
+function drawBackground() {
+const g = ctx.createRadialGradient(500, 470, 60, 500, 500, 620);
+g.addColorStop(0, "rgba(255,255,255,0.035)");
+g.addColorStop(0.45, "rgba(255,255,255,0.012)");
+g.addColorStop(1, "rgba(255,255,255,0)");
+ctx.fillStyle = g;
+ctx.fillRect(0, 0, SIZE, SIZE);
+}
+
+function drawSwallowShadow() {
+ctx.save();
+ctx.shadowColor = "rgba(255,255,255,0.12)";
+ctx.shadowBlur = 34;
+ctx.fillStyle = "rgba(255,255,255,0.05)";
+drawSwallowPath(ctx);
+ctx.fill();
+
+ctx.lineWidth = 11;
+ctx.lineCap = "round";
+ctx.strokeStyle = "rgba(255,255,255,0.06)";
+drawBranchStroke(ctx);
+ctx.stroke();
+
+ctx.fillStyle = "rgba(255,255,255,0.055)";
+drawLeaf(ctx, 596, 303, 14, 27, -0.45);
+drawLeaf(ctx, 632, 292, 13, 24, 0.20);
+drawLeaf(ctx, 668, 279, 14, 27, -0.48);
+drawLeaf(ctx, 700, 264, 13, 24, 0.25);
+ctx.restore();
+}
+
+function drawShapeOutline() {
+ctx.save();
+ctx.strokeStyle = "rgba(255,255,255,0.08)";
+ctx.lineWidth = 1.4;
+drawSwallowPath(ctx);
+ctx.stroke();
+
+ctx.lineWidth = 5;
+ctx.lineCap = "round";
+ctx.strokeStyle = "rgba(255,255,255,0.08)";
+drawBranchStroke(ctx);
+ctx.stroke();
+ctx.restore();
+}
+
+function drawTiles(points) {
+ctx.save();
+
+ctx.beginPath();
+drawSwallowPath(ctx);
+ctx.closePath();
+
+drawBranchStroke(ctx);
+ctx.lineWidth = 16;
+ctx.lineCap = "round";
+ctx.stroke();
+
+ctx.fillStyle = "#fff";
+drawLeaf(ctx, 596, 303, 16, 30, -0.45);
+drawLeaf(ctx, 632, 292, 15, 28, 0.20);
+drawLeaf(ctx, 668, 279, 16, 31, -0.48);
+drawLeaf(ctx, 700, 264, 15, 29, 0.25);
+
+ctx.clip();
+
+const tileSize = 2.7;
+const radius = 0.78;
+
+for (let i = 0; i < points.length; i++) {
+const p = points[i];
+
+const alphaBase = 0.10 + ((i % 7) * 0.008);
+const strokeAlpha = 0.030 + ((i % 5) * 0.004);
+
+ctx.fillStyle = `rgba(238,238,238,${alphaBase.toFixed(3)})`;
+ctx.strokeStyle = `rgba(255,255,255,${strokeAlpha.toFixed(3)})`;
+ctx.lineWidth = 0.35;
+
+roundedRect(
+ctx,
+p.x - tileSize / 2,
+p.y - tileSize / 2,
+tileSize,
+tileSize,
+radius
+);
+ctx.fill();
+ctx.stroke();
+}
+
+ctx.restore();
+}
+
+function render() {
+ctx.clearRect(0, 0, SIZE, SIZE);
+drawBackground();
+drawSwallowShadow();
+
+const points = generateTilePoints();
+drawTiles(points);
+drawShapeOutline();
+}
+
+render();
+</script>
 </body>
 </html>
