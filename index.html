@@ -125,7 +125,7 @@
 
       margin: 0 auto;
 
-      padding: 18px 24px 14px;
+      padding: 18px 24px 10px;
 
       display: flex;
 
@@ -133,7 +133,7 @@
 
       align-items: center;
 
-      gap: 8px;
+      gap: 6px;
 
     }
 
@@ -178,48 +178,26 @@
     }
 
 
-    .hero {
+    /* TOP RIGHT PANEL - έξω από το hero */
 
-      position: static;
+    .top-controls {
 
-      width: min(1120px, 94vw);
+      position: fixed;
 
-      flex: 1 1 auto;
+      top: 22px;
 
-      min-height: 0;
+      right: 24px;
 
       display: flex;
 
-      flex-direction: column;
-
       align-items: center;
 
-      justify-content: flex-start;
+      gap: 10px;
 
-      padding-top: 20px;
+      z-index: 9999;
 
     }
 
-
-    /* TOP RIGHT PANEL */
-
-   .top-controls {
-
-  position: absolute;
-
-  top: 208px;
-
-  right: 20px;
-
-  display: flex;
-
-  align-items: center;
-
-  gap: 10px;
-
-  z-index: 9999;
-
-}
 
     .progress-group {
 
@@ -229,7 +207,7 @@
 
       gap: 10px;
 
-      background: rgba(255,255,255,0.88);
+      background: rgba(255,255,255,0.92);
 
       border: 1px solid rgba(0,0,0,0.12);
 
@@ -329,7 +307,28 @@
     }
 
 
-    /* FRAME */
+    .hero {
+
+      position: relative;
+
+      width: min(1120px, 94vw);
+
+      flex: 1 1 auto;
+
+      min-height: 0;
+
+      display: flex;
+
+      flex-direction: column;
+
+      align-items: center;
+
+      justify-content: flex-start;
+
+      padding-top: 6px;
+
+    }
+
 
     .board-wrap {
 
@@ -345,7 +344,7 @@
 
       justify-content: center;
 
-      margin-top: 0px;
+      margin-top: 0;
 
     }
 
@@ -397,8 +396,6 @@
 
     }
 
-
-    /* extra blur/soft white veil for public mode */
 
     .board::before {
 
@@ -471,11 +468,9 @@
     }
 
 
-    /* BOTTOM AREA */
-
     .bottom-controls {
 
-      margin-top: 10px;
+      margin-top: 8px;
 
       display: grid;
 
@@ -492,7 +487,7 @@
 
       display: flex;
 
-      gap: 10px;
+      gap: 8px;
 
       justify-content: center;
 
@@ -503,7 +498,7 @@
 
     .action-btn {
 
-      padding: 7px 15px;
+      padding: 7px 12px;
 
       font-size: 12px;
 
@@ -529,7 +524,7 @@
 
       display: flex;
 
-      gap: 12px;
+      gap: 10px;
 
       justify-content: center;
 
@@ -592,9 +587,9 @@
 
       color: var(--muted);
 
-      font-size: 13px;
+      font-size: 12px;
 
-      padding-bottom: 2px;
+      padding-bottom: 0;
 
     }
 
@@ -609,8 +604,6 @@
 
     }
 
-
-    /* ADMIN MODE */
 
     body.admin-mode .board img {
 
@@ -638,13 +631,6 @@
 
 
     @media (max-width: 1100px) {
-
-      .top-controls {
-
-        right: 60px;
-
-      }
-
 
       .board-wrap {
 
@@ -684,12 +670,14 @@
 
         width: 95vw;
 
-        padding-top: 66px;
+        padding-top: 10px;
 
       }
 
 
       .top-controls {
+
+        top: 12px;
 
         right: 10px;
 
@@ -739,36 +727,36 @@
 
       .action-btn {
 
-        min-width: 98px;
+        min-width: 90px;
 
-        font-size: 12px;
+        font-size: 11px;
 
-        padding: 8px 12px;
+        padding: 7px 10px;
 
       }
 
 
       .social {
 
-        width: 34px;
+        width: 30px;
 
-        height: 34px;
+        height: 30px;
 
       }
 
 
       .social svg {
 
-        width: 16px;
+        width: 13px;
 
-        height: 16px;
+        height: 13px;
 
       }
 
 
       .footer {
 
-        font-size: 12px;
+        font-size: 11px;
 
       }
 
@@ -777,6 +765,7 @@
   </style>
 
 </head>
+
 
 <body>
 
@@ -794,27 +783,27 @@
       </div>
 
 
-      <div class="hero">
+      <div class="top-controls">
 
-        <div class="top-controls">
+        <div class="progress-group">
 
-          <div class="progress-group">
+          <div class="progress-number">0%</div>
 
-            <div class="progress-number">0%</div>
+          <div class="progress-track">
 
-            <div class="progress-track">
-
-              <div class="progress-fill"></div>
-
-            </div>
+            <div class="progress-fill"></div>
 
           </div>
 
-
-          <button class="buy-btn">Buy Tiles</button>
-
         </div>
 
+
+        <button class="buy-btn">Buy Tiles</button>
+
+      </div>
+
+
+      <div class="hero">
 
         <div class="board-wrap">
 
