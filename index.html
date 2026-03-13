@@ -24,15 +24,15 @@
 
       --bg: #f7f4ee;
 
-      --text: #333;
+      --text: #3a3a3a;
 
-      --muted: #666;
+      --muted: #6e6e6e;
 
-      --button-bg: rgba(255, 255, 255, 0.96);
+      --panel-bg: rgba(255, 255, 255, 0.82);
 
-      --button-border: rgba(0, 0, 0, 0.16);
+      --panel-border: rgba(0, 0, 0, 0.08);
 
-      --frame-border: rgba(255, 255, 255, 0.90);
+      --frame-border: rgba(255, 255, 255, 0.9);
 
       --art-ratio: 1 / 1;
 
@@ -102,9 +102,9 @@
 
       background-image:
 
-        radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1.4px),
+        radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1.4px),
 
-        radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1.4px);
+        radial-gradient(circle, rgba(0, 0, 0, 0.03) 1px, transparent 1.4px);
 
       background-size: 26px 26px, 42px 42px;
 
@@ -113,31 +113,29 @@
     }
 
 
-    .content {
+    .shell {
 
       position: relative;
 
       z-index: 2;
 
-      width: 100%;
+      width: min(1420px, 96vw);
 
       height: 100%;
 
-      max-width: 1440px;
-
       margin: 0 auto;
 
-      padding: 16px 24px 14px;
+      padding: 18px 20px 16px;
 
       display: grid;
 
       grid-template-rows: auto auto 1fr;
 
-      justify-items: center;
+      gap: 8px;
 
       align-items: start;
 
-      gap: 8px;
+      justify-items: center;
 
     }
 
@@ -150,7 +148,7 @@
 
       text-align: center;
 
-      font-size: clamp(44px, 6vw, 86px);
+      font-size: clamp(46px, 6vw, 88px);
 
       font-family: "Brush Script MT", "Segoe Script", cursive;
 
@@ -173,43 +171,41 @@
 
       text-align: center;
 
-      font-size: clamp(17px, 1.8vw, 22px);
+      font-size: clamp(18px, 1.7vw, 23px);
 
-      color: #3d3d3d;
+      color: #444;
 
       max-width: 900px;
 
     }
 
 
-    .hero {
+    .main {
 
-      width: min(1280px, 96vw);
-
-      height: 100%;
+      width: 100%;
 
       min-height: 0;
 
       display: grid;
 
-      grid-template-columns: minmax(0, 1fr) 250px;
+      grid-template-columns: minmax(0, 1fr) 220px;
+
+      gap: 18px;
 
       align-items: center;
 
       justify-content: center;
 
-      gap: 28px;
-
-      padding-top: 4px;
+      padding-top: 2px;
 
     }
 
 
-    .art-column {
+    .art-area {
 
       min-width: 0;
 
-      height: 100%;
+      min-height: 0;
 
       display: flex;
 
@@ -220,15 +216,13 @@
     }
 
 
-    /* Το frame ακολουθεί την αναλογία της εικόνας */
-
     .board-wrap {
 
-      width: min(68vh, 68vw, 820px);
+      width: min(66vh, 66vw, 760px);
 
       aspect-ratio: var(--art-ratio);
 
-      max-height: 72vh;
+      max-height: 70vh;
 
       position: relative;
 
@@ -261,20 +255,18 @@
 
       border: 4px solid var(--frame-border);
 
-      background: rgba(255,255,255,0.12);
+      background: rgba(255, 255, 255, 0.12);
 
       box-shadow:
 
-        0 12px 28px rgba(0,0,0,0.12),
+        0 14px 32px rgba(0, 0, 0, 0.12),
 
-        0 0 0 1px rgba(0,0,0,0.08);
+        0 0 0 1px rgba(0, 0, 0, 0.06);
 
       isolation: isolate;
 
     }
 
-
-    /* Η εικόνα φαίνεται ΟΛΟΚΛΗΡΗ */
 
     .board img {
 
@@ -295,8 +287,6 @@
     }
 
 
-    /* blur veil μόνο για public */
-
     .board::before {
 
       content: "";
@@ -311,9 +301,9 @@
 
       box-shadow:
 
-        inset 0 0 110px rgba(255,255,255,0.72),
+        inset 0 0 100px rgba(255, 255, 255, 0.64),
 
-        inset 0 0 180px rgba(255,255,255,0.30);
+        inset 0 0 170px rgba(255, 255, 255, 0.22);
 
     }
 
@@ -332,9 +322,9 @@
 
       background:
 
-        linear-gradient(to bottom, rgba(255,255,255,0.14), rgba(255,255,255,0.08)),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.06)),
 
-        rgba(255,255,255,0.18);
+        rgba(255, 255, 255, 0.12);
 
       backdrop-filter: blur(10px);
 
@@ -353,7 +343,7 @@
 
       display: none;
 
-      background: rgba(27,27,27,0.88);
+      background: rgba(27, 27, 27, 0.88);
 
       color: white;
 
@@ -364,244 +354,6 @@
       padding: 8px 12px;
 
       border-radius: 999px;
-
-    }
-
-
-    .side-panel {
-
-      align-self: center;
-
-      display: flex;
-
-      flex-direction: column;
-
-      justify-content: center;
-
-      gap: 14px;
-
-      min-width: 0;
-
-    }
-
-
-    .progress-group {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 10px;
-
-      background: rgba(255,255,255,0.92);
-
-      border: 1px solid rgba(0,0,0,0.12);
-
-      border-radius: 999px;
-
-      padding: 7px 12px;
-
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-
-    }
-
-
-    .progress-number {
-
-      font-size: 18px;
-
-      font-weight: 600;
-
-      color: #444;
-
-      line-height: 1;
-
-      min-width: 34px;
-
-      text-align: right;
-
-    }
-
-
-    .progress-track {
-
-      flex: 1;
-
-      min-width: 120px;
-
-      height: 10px;
-
-      border: 1px solid rgba(0,0,0,0.42);
-
-      border-radius: 999px;
-
-      background: #fff;
-
-      overflow: hidden;
-
-    }
-
-
-    .progress-fill {
-
-      width: 0%;
-
-      height: 100%;
-
-      background: #4a4a4a;
-
-      border-radius: 999px;
-
-    }
-
-
-    .buy-btn,
-
-    .action-btn {
-
-      width: 100%;
-
-      border: 1px solid var(--button-border);
-
-      background: var(--button-bg);
-
-      color: #3a3a3a;
-
-      border-radius: 999px;
-
-      cursor: pointer;
-
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      gap: 8px;
-
-      white-space: nowrap;
-
-    }
-
-
-    .buy-btn {
-
-      padding: 11px 20px;
-
-      font-size: 15px;
-
-      font-weight: 600;
-
-    }
-
-
-    .action-btn {
-
-      padding: 10px 14px;
-
-      font-size: 13px;
-
-    }
-
-
-    .action-icon {
-
-      width: 13px;
-
-      height: 13px;
-
-      flex: 0 0 auto;
-
-      display: inline-block;
-
-    }
-
-
-    .socials {
-
-      display: flex;
-
-      gap: 10px;
-
-      justify-content: flex-start;
-
-      flex-wrap: wrap;
-
-      padding-top: 2px;
-
-    }
-
-
-    .social {
-
-      width: 34px;
-
-      height: 34px;
-
-      border-radius: 50%;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      color: white;
-
-      box-shadow: 0 4px 10px rgba(0,0,0,0.10);
-
-      overflow: hidden;
-
-      flex: 0 0 auto;
-
-    }
-
-
-    .social svg {
-
-      width: 15px;
-
-      height: 15px;
-
-      display: block;
-
-    }
-
-
-    .instagram {
-
-      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-
-    }
-
-
-    .x { background: #0f1720; }
-
-    .tiktok { background: #111; }
-
-    .facebook { background: #1877f2; }
-
-
-    .footer {
-
-      color: var(--muted);
-
-      font-size: 12px;
-
-      line-height: 1.45;
-
-      padding-top: 2px;
-
-    }
-
-
-    .footer a {
-
-      color: inherit;
-
-      text-decoration: none;
 
     }
 
@@ -622,9 +374,271 @@
     }
 
 
-    @media (max-width: 1000px) {
+    .side-panel {
 
-      .hero {
+      align-self: center;
+
+      width: 100%;
+
+      background: var(--panel-bg);
+
+      border: 1px solid var(--panel-border);
+
+      border-radius: 18px;
+
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+
+      backdrop-filter: blur(6px);
+
+      padding: 16px 14px 14px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 14px;
+
+    }
+
+
+    .progress-block {
+
+      display: grid;
+
+      gap: 10px;
+
+    }
+
+
+    .progress-number {
+
+      text-align: center;
+
+      font-size: 18px;
+
+      font-weight: 600;
+
+      color: #4a4a4a;
+
+      line-height: 1;
+
+    }
+
+
+    .progress-track {
+
+      width: 100%;
+
+      height: 12px;
+
+      border: 1px solid rgba(0, 0, 0, 0.22);
+
+      border-radius: 999px;
+
+      background: rgba(255, 255, 255, 0.95);
+
+      overflow: hidden;
+
+    }
+
+
+    .progress-fill {
+
+      width: 0%;
+
+      height: 100%;
+
+      background: #7a7a7a;
+
+      border-radius: 999px;
+
+    }
+
+
+    .buy-btn,
+
+    .action-btn {
+
+      width: 100%;
+
+      border: 1px solid rgba(0, 0, 0, 0.10);
+
+      background: rgba(255, 248, 239, 0.95);
+
+      color: #454545;
+
+      border-radius: 14px;
+
+      cursor: pointer;
+
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 8px;
+
+      text-decoration: none;
+
+      white-space: nowrap;
+
+    }
+
+
+    .buy-btn {
+
+      min-height: 56px;
+
+      font-size: 17px;
+
+      font-weight: 500;
+
+    }
+
+
+    .action-btn {
+
+      min-height: 52px;
+
+      font-size: 16px;
+
+      font-weight: 400;
+
+      background: rgba(255, 255, 255, 0.94);
+
+    }
+
+
+    .action-icon {
+
+      width: 18px;
+
+      height: 18px;
+
+      flex: 0 0 auto;
+
+      display: inline-block;
+
+    }
+
+
+    .socials {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 10px;
+
+      padding-top: 2px;
+
+    }
+
+
+    .social {
+
+      width: 38px;
+
+      height: 38px;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      color: white;
+
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.10);
+
+      overflow: hidden;
+
+      text-decoration: none;
+
+      flex: 0 0 auto;
+
+    }
+
+
+    .social svg {
+
+      width: 18px;
+
+      height: 18px;
+
+      display: block;
+
+    }
+
+
+    .instagram {
+
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+
+    }
+
+
+    .x {
+
+      background: #0f1720;
+
+    }
+
+
+    .tiktok {
+
+      background: #111;
+
+    }
+
+
+    .facebook {
+
+      background: #1877f2;
+
+    }
+
+
+    .footer {
+
+      border-top: 1px solid rgba(0, 0, 0, 0.10);
+
+      padding-top: 12px;
+
+      display: grid;
+
+      gap: 8px;
+
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.45;
+
+    }
+
+
+    .footer a {
+
+      color: inherit;
+
+      text-decoration: none;
+
+    }
+
+
+    @media (max-width: 1050px) {
+
+      .main {
 
         grid-template-columns: 1fr;
 
@@ -637,9 +651,9 @@
 
       .board-wrap {
 
-        width: min(82vw, 72vh);
+        width: min(76vw, 70vh, 720px);
 
-        max-height: 60vh;
+        max-height: 58vh;
 
       }
 
@@ -650,26 +664,12 @@
 
       }
 
-
-      .socials {
-
-        justify-content: center;
-
-      }
-
-
-      .footer {
-
-        text-align: center;
-
-      }
-
     }
 
 
     @media (max-width: 700px) {
 
-      .content {
+      .shell {
 
         padding: 12px 10px 10px;
 
@@ -694,41 +694,52 @@
 
       .board-wrap {
 
-        width: min(88vw, 58vh);
+        width: min(90vw, 52vh);
 
       }
 
 
-      .progress-number {
+      .side-panel {
+
+        padding: 14px 12px 12px;
+
+        gap: 12px;
+
+      }
+
+
+      .buy-btn {
+
+        min-height: 50px;
 
         font-size: 15px;
 
       }
 
 
-      .buy-btn,
-
       .action-btn {
 
-        font-size: 12px;
+        min-height: 46px;
+
+        font-size: 14px;
 
       }
 
 
       .social {
 
-        width: 30px;
+        width: 34px;
 
-        height: 30px;
+        height: 34px;
 
       }
 
 
       .social svg {
 
-        width: 13px;
+        width: 16px;
 
-        height: 13px;
+        height: 16px;
 
       }
 
@@ -750,21 +761,21 @@
 
   <div class="page">
 
-    <div class="content">
+    <div class="shell">
 
       <h1 class="title">One Tile Project</h1>
 
 
-      <div class="tagline">
+      <p class="tagline">
 
         Claim your tile. Leave your mark. Be part of digital history.
 
-      </div>
+      </p>
 
 
-      <div class="hero">
+      <div class="main">
 
-        <div class="art-column">
+        <div class="art-area">
 
           <div class="board-wrap">
 
@@ -783,7 +794,7 @@
 
         <aside class="side-panel">
 
-          <div class="progress-group">
+          <div class="progress-block">
 
             <div class="progress-number">0%</div>
 
@@ -796,10 +807,10 @@
           </div>
 
 
-          <button class="buy-btn">Buy Tiles</button>
+          <button class="buy-btn" type="button">Buy Tiles</button>
 
 
-          <button class="action-btn">
+          <button class="action-btn" type="button">
 
             <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 
@@ -820,12 +831,12 @@
           </button>
 
 
-          <button class="action-btn">Find My Tile</button>
+          <button class="action-btn" type="button">Find My Tile</button>
 
 
           <div class="socials">
 
-            <div class="social instagram" aria-label="Instagram">
+            <a class="social instagram" href="#" aria-label="Instagram">
 
               <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 
@@ -837,10 +848,10 @@
 
               </svg>
 
-            </div>
+            </a>
 
 
-            <div class="social x" aria-label="X">
+            <a class="social x" href="#" aria-label="X">
 
               <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 
@@ -850,10 +861,10 @@
 
               </svg>
 
-            </div>
+            </a>
 
 
-            <div class="social tiktok" aria-label="TikTok">
+            <a class="social tiktok" href="#" aria-label="TikTok">
 
               <svg viewBox="0 0 24 24" fill="white" aria-hidden="true">
 
@@ -861,10 +872,10 @@
 
               </svg>
 
-            </div>
+            </a>
 
 
-            <div class="social facebook" aria-label="Facebook">
+            <a class="social facebook" href="#" aria-label="Facebook">
 
               <svg viewBox="0 0 24 24" fill="white" aria-hidden="true">
 
@@ -872,22 +883,18 @@
 
               </svg>
 
-            </div>
+            </a>
 
           </div>
 
 
           <div class="footer">
 
-            <a href="#">Terms &amp; Conditions</a>
+            <div><a href="#">Terms &amp; Conditions</a></div>
 
-            •
+            <div><a href="#">Privacy Policy</a></div>
 
-            <a href="#">Privacy Policy</a>
-
-            •
-
-            <span>© 2024 One Tile Project</span>
+            <div>© 2024 One Tile Project</div>
 
           </div>
 
