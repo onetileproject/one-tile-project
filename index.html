@@ -32,7 +32,7 @@
 
       --button-border: rgba(0, 0, 0, 0.16);
 
-      --frame-border: rgba(255, 255, 255, 0.9);
+      --frame-border: rgba(255, 255, 255, 0.88);
 
     }
 
@@ -121,11 +121,11 @@
 
       height: 100%;
 
-      max-width: 1400px;
+      max-width: 1440px;
 
       margin: 0 auto;
 
-      padding: 18px 24px 10px;
+      padding: 16px 24px 14px;
 
       display: flex;
 
@@ -133,7 +133,7 @@
 
       align-items: center;
 
-      gap: 6px;
+      gap: 8px;
 
     }
 
@@ -178,175 +178,57 @@
     }
 
 
-    /* TOP RIGHT PANEL - έξω από το hero */
-
-    .top-controls {
-
-      position: fixed;
-
-      top: 22px;
-
-      right: 24px;
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 10px;
-
-      z-index: 9999;
-
-    }
-
-
-    .progress-group {
-
-      display: flex;
-
-      align-items: center;
-
-      gap: 10px;
-
-      background: rgba(255,255,255,0.92);
-
-      border: 1px solid rgba(0,0,0,0.12);
-
-      border-radius: 999px;
-
-      padding: 6px 12px;
-
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
-
-    }
-
-
-    .progress-number {
-
-      font-size: 18px;
-
-      font-weight: 600;
-
-      color: #444;
-
-      line-height: 1;
-
-      min-width: 34px;
-
-      text-align: right;
-
-    }
-
-
-    .progress-track {
-
-      width: 180px;
-
-      height: 10px;
-
-      border: 1px solid rgba(0,0,0,0.42);
-
-      border-radius: 999px;
-
-      background: #fff;
-
-      overflow: hidden;
-
-    }
-
-
-    .progress-fill {
-
-      width: 0%;
-
-      height: 100%;
-
-      background: #4a4a4a;
-
-      border-radius: 999px;
-
-    }
-
-
-    .buy-btn,
-
-    .action-btn {
-
-      border: 1px solid var(--button-border);
-
-      background: var(--button-bg);
-
-      color: #3a3a3a;
-
-      border-radius: 999px;
-
-      cursor: pointer;
-
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-
-      display: inline-flex;
-
-      align-items: center;
-
-      justify-content: center;
-
-      gap: 8px;
-
-      white-space: nowrap;
-
-    }
-
-
-    .buy-btn {
-
-      padding: 11px 20px;
-
-      font-size: 15px;
-
-      font-weight: 600;
-
-    }
-
-
     .hero {
 
-      position: relative;
-
-      width: min(1120px, 94vw);
+      width: min(1280px, 96vw);
 
       flex: 1 1 auto;
 
       min-height: 0;
 
-      display: flex;
+      display: grid;
 
-      flex-direction: column;
+      grid-template-columns: minmax(0, 1fr) 250px;
 
       align-items: center;
 
-      justify-content: flex-start;
+      justify-content: center;
 
-      padding-top: 6px;
+      gap: 26px;
+
+      padding-top: 4px;
 
     }
 
 
-   .board-wrap {
+    .art-column {
 
-  width: min(70vw, 980px);
+      min-width: 0;
 
-  aspect-ratio: var(--art-ratio, 1 / 1);
+      display: flex;
 
-  position: relative;
+      align-items: center;
 
-  display: flex;
+      justify-content: center;
 
-  align-items: center;
+    }
 
-  justify-content: center;
 
-  margin-top: 0;
+    .board-wrap {
 
-}
+      width: min(66vh, 66vw, 760px);
+
+      aspect-ratio: 1 / 1;
+
+      position: relative;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+    }
 
 
     .board {
@@ -357,13 +239,19 @@
 
       position: relative;
 
-      border-radius: 22px;
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      border-radius: 24px;
 
       overflow: hidden;
 
       border: 4px solid var(--frame-border);
 
-      background: rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.12);
 
       box-shadow:
 
@@ -376,48 +264,48 @@
     }
 
 
-  .board img {
+    .board img {
 
-  width: 100%;
+      width: 100%;
 
-  height: 100%;
+      height: 100%;
 
-  object-fit: contain;
+      object-fit: contain;
 
-  object-position: center;
+      object-position: center;
 
-  display: block;
+      display: block;
 
-  filter: none;
+      filter: none;
 
-  transform: none;
+      transform: none;
 
-  transform-origin: center center;
+      transform-origin: center center;
 
-}
-
-
+    }
 
 
-   .board::before {
+    /* public veil */
 
-  content: "";
+    .board::before {
 
-  position: absolute;
+      content: "";
 
-  inset: 0;
+      position: absolute;
 
-  z-index: 2;
+      inset: 0;
 
-  pointer-events: none;
+      z-index: 2;
 
-  box-shadow:
+      pointer-events: none;
 
-    inset 0 0 110px rgba(255,255,255,0.72),
+      box-shadow:
 
-    inset 0 0 180px rgba(255,255,255,0.30);
+        inset 0 0 110px rgba(255,255,255,0.72),
 
-}
+        inset 0 0 180px rgba(255,255,255,0.30);
+
+    }
 
 
     .board::after {
@@ -470,41 +358,140 @@
     }
 
 
-    .bottom-controls {
+    .side-panel {
 
-      margin-top: 8px;
+      align-self: stretch;
 
-      display: grid;
+      display: flex;
 
-      justify-items: center;
+      flex-direction: column;
 
-      gap: 6px;
+      justify-content: center;
 
-      z-index: 20;
+      gap: 14px;
+
+      min-width: 0;
 
     }
 
 
-    .actions {
+    .progress-group {
 
       display: flex;
 
-      gap: 8px;
+      align-items: center;
+
+      gap: 10px;
+
+      background: rgba(255,255,255,0.92);
+
+      border: 1px solid rgba(0,0,0,0.12);
+
+      border-radius: 999px;
+
+      padding: 7px 12px;
+
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+
+    }
+
+
+    .progress-number {
+
+      font-size: 18px;
+
+      font-weight: 600;
+
+      color: #444;
+
+      line-height: 1;
+
+      min-width: 34px;
+
+      text-align: right;
+
+    }
+
+
+    .progress-track {
+
+      flex: 1;
+
+      min-width: 120px;
+
+      height: 10px;
+
+      border: 1px solid rgba(0,0,0,0.42);
+
+      border-radius: 999px;
+
+      background: #fff;
+
+      overflow: hidden;
+
+    }
+
+
+    .progress-fill {
+
+      width: 0%;
+
+      height: 100%;
+
+      background: #4a4a4a;
+
+      border-radius: 999px;
+
+    }
+
+
+    .buy-btn,
+
+    .action-btn {
+
+      width: 100%;
+
+      border: 1px solid var(--button-border);
+
+      background: var(--button-bg);
+
+      color: #3a3a3a;
+
+      border-radius: 999px;
+
+      cursor: pointer;
+
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+
+      display: inline-flex;
+
+      align-items: center;
 
       justify-content: center;
 
-      flex-wrap: wrap;
+      gap: 8px;
+
+      white-space: nowrap;
+
+    }
+
+
+    .buy-btn {
+
+      padding: 11px 20px;
+
+      font-size: 15px;
+
+      font-weight: 600;
 
     }
 
 
     .action-btn {
 
-      padding: 7px 12px;
+      padding: 10px 14px;
 
-      font-size: 12px;
-
-      min-width: 94px;
+      font-size: 13px;
 
     }
 
@@ -528,18 +515,20 @@
 
       gap: 10px;
 
-      justify-content: center;
+      justify-content: flex-start;
 
       flex-wrap: wrap;
+
+      padding-top: 2px;
 
     }
 
 
     .social {
 
-      width: 32px;
+      width: 34px;
 
-      height: 32px;
+      height: 34px;
 
       border-radius: 50%;
 
@@ -555,14 +544,16 @@
 
       overflow: hidden;
 
+      flex: 0 0 auto;
+
     }
 
 
     .social svg {
 
-      width: 14px;
+      width: 15px;
 
-      height: 14px;
+      height: 15px;
 
       display: block;
 
@@ -585,13 +576,13 @@
 
     .footer {
 
-      text-align: center;
-
       color: var(--muted);
 
       font-size: 12px;
 
-      padding-bottom: 0;
+      line-height: 1.45;
+
+      padding-top: 2px;
 
     }
 
@@ -602,22 +593,7 @@
 
       text-decoration: none;
 
-      margin: 0 8px;
-
     }
-
-
-   body.admin-mode .board img {
-
-  filter: none;
-
-  object-fit: contain;
-
-  object-position: center;
-
-  transform: none;
-
-}
 
 
     body.admin-mode .board::before,
@@ -636,11 +612,45 @@
     }
 
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1000px) {
+
+      .hero {
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+
+        justify-items: center;
+
+      }
+
 
       .board-wrap {
 
-        width: min(74vw, 840px);
+        width: min(72vw, 72vh, 680px);
+
+      }
+
+
+      .side-panel {
+
+        width: min(420px, 92vw);
+
+        align-self: center;
+
+      }
+
+
+      .socials {
+
+        justify-content: center;
+
+      }
+
+
+      .footer {
+
+        text-align: center;
 
       }
 
@@ -651,7 +661,7 @@
 
       .content {
 
-        padding: 14px 10px 10px;
+        padding: 12px 10px 10px;
 
       }
 
@@ -672,29 +682,9 @@
       }
 
 
-      .hero {
+      .board-wrap {
 
-        width: 95vw;
-
-        padding-top: 10px;
-
-      }
-
-
-      .top-controls {
-
-        top: 12px;
-
-        right: 10px;
-
-        gap: 8px;
-
-      }
-
-
-      .progress-group {
-
-        padding: 5px 8px;
+        width: min(88vw, 60vh);
 
       }
 
@@ -706,38 +696,11 @@
       }
 
 
-      .progress-track {
-
-        width: 120px;
-
-      }
-
-
-      .buy-btn {
-
-        font-size: 14px;
-
-        padding: 9px 14px;
-
-      }
-
-
-      .board-wrap {
-
-        width: 92vw;
-
-        aspect-ratio: 1.54 / 0.84;
-
-      }
-
+      .buy-btn,
 
       .action-btn {
 
-        min-width: 90px;
-
-        font-size: 11px;
-
-        padding: 7px 10px;
+        font-size: 12px;
 
       }
 
@@ -789,69 +752,65 @@
       </div>
 
 
-      <div class="top-controls">
-
-        <div class="progress-group">
-
-          <div class="progress-number">0%</div>
-
-          <div class="progress-track">
-
-            <div class="progress-fill"></div>
-
-          </div>
-
-        </div>
-
-
-        <button class="buy-btn">Buy Tiles</button>
-
-      </div>
-
-
       <div class="hero">
 
-        <div class="board-wrap">
+        <div class="art-column">
 
-          <div class="board">
+          <div class="board-wrap">
 
-            <div class="admin-badge">ADMIN MODE</div>
+            <div class="board">
 
-            <img src="swallow-artwork.png" alt="Swallow artwork preview">
+              <div class="admin-badge">ADMIN MODE</div>
+
+              <img src="swallow-artwork.png" alt="Swallow artwork preview">
+
+            </div>
 
           </div>
 
         </div>
 
 
-        <div class="bottom-controls">
+        <aside class="side-panel">
 
-          <div class="actions">
+          <div class="progress-group">
 
-            <button class="action-btn">
+            <div class="progress-number">0%</div>
 
-              <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <div class="progress-track">
 
-                <circle cx="18" cy="5" r="3"></circle>
+              <div class="progress-fill"></div>
 
-                <circle cx="6" cy="12" r="3"></circle>
-
-                <circle cx="18" cy="19" r="3"></circle>
-
-                <path d="M8.6 13.5 15.4 17.5"></path>
-
-                <path d="M15.4 6.5 8.6 10.5"></path>
-
-              </svg>
-
-              Share
-
-            </button>
-
-
-            <button class="action-btn">Find My Tile</button>
+            </div>
 
           </div>
+
+
+          <button class="buy-btn">Buy Tiles</button>
+
+
+          <button class="action-btn">
+
+            <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+              <circle cx="18" cy="5" r="3"></circle>
+
+              <circle cx="6" cy="12" r="3"></circle>
+
+              <circle cx="18" cy="19" r="3"></circle>
+
+              <path d="M8.6 13.5 15.4 17.5"></path>
+
+              <path d="M15.4 6.5 8.6 10.5"></path>
+
+            </svg>
+
+            Share
+
+          </button>
+
+
+          <button class="action-btn">Find My Tile</button>
 
 
           <div class="socials">
@@ -922,7 +881,7 @@
 
           </div>
 
-        </div>
+        </aside>
 
       </div>
 
@@ -931,55 +890,20 @@
   </div>
 
 
-  
+  <script>
 
-<script>
+    const params = new URLSearchParams(window.location.search);
 
-  const params = new URLSearchParams(window.location.search);
-
-  const isAdmin = params.get("admin") === "true";
+    const isAdmin = params.get("admin") === "true";
 
 
-  if (isAdmin) {
+    if (isAdmin) {
 
-    document.body.classList.add("admin-mode");
-
-  }
-
-
-  const artwork = document.querySelector(".board img");
-
-  const root = document.documentElement;
-
-
-  function setArtworkRatio() {
-
-    if (!artwork || !artwork.naturalWidth || !artwork.naturalHeight) return;
-
-    const ratio = artwork.naturalWidth / artwork.naturalHeight;
-
-    root.style.setProperty("--art-ratio", ratio);
-
-  }
-
-
-  if (artwork) {
-
-    if (artwork.complete) {
-
-      setArtworkRatio();
-
-    } else {
-
-      artwork.addEventListener("load", setArtworkRatio);
+      document.body.classList.add("admin-mode");
 
     }
 
-  }
-
-</script>
-
-
+  </script>
 
 </body>
 
