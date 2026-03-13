@@ -32,7 +32,9 @@
 
       --button-border: rgba(0, 0, 0, 0.16);
 
-      --frame-border: rgba(255, 255, 255, 0.88);
+      --frame-border: rgba(255, 255, 255, 0.90);
+
+      --art-ratio: 1 / 1;
 
     }
 
@@ -127,11 +129,13 @@
 
       padding: 16px 24px 14px;
 
-      display: flex;
+      display: grid;
 
-      flex-direction: column;
+      grid-template-rows: auto auto 1fr;
 
-      align-items: center;
+      justify-items: center;
+
+      align-items: start;
 
       gap: 8px;
 
@@ -182,7 +186,7 @@
 
       width: min(1280px, 96vw);
 
-      flex: 1 1 auto;
+      height: 100%;
 
       min-height: 0;
 
@@ -194,7 +198,7 @@
 
       justify-content: center;
 
-      gap: 26px;
+      gap: 28px;
 
       padding-top: 4px;
 
@@ -205,6 +209,8 @@
 
       min-width: 0;
 
+      height: 100%;
+
       display: flex;
 
       align-items: center;
@@ -214,11 +220,15 @@
     }
 
 
+    /* Το frame ακολουθεί την αναλογία της εικόνας */
+
     .board-wrap {
 
-      width: min(66vh, 66vw, 760px);
+      width: min(68vh, 68vw, 820px);
 
-      aspect-ratio: 1 / 1;
+      aspect-ratio: var(--art-ratio);
+
+      max-height: 72vh;
 
       position: relative;
 
@@ -264,6 +274,8 @@
     }
 
 
+    /* Η εικόνα φαίνεται ΟΛΟΚΛΗΡΗ */
+
     .board img {
 
       width: 100%;
@@ -280,12 +292,10 @@
 
       transform: none;
 
-      transform-origin: center center;
-
     }
 
 
-    /* public veil */
+    /* blur veil μόνο για public */
 
     .board::before {
 
@@ -360,7 +370,7 @@
 
     .side-panel {
 
-      align-self: stretch;
+      align-self: center;
 
       display: flex;
 
@@ -627,7 +637,9 @@
 
       .board-wrap {
 
-        width: min(72vw, 72vh, 680px);
+        width: min(82vw, 72vh);
+
+        max-height: 60vh;
 
       }
 
@@ -635,8 +647,6 @@
       .side-panel {
 
         width: min(420px, 92vw);
-
-        align-self: center;
 
       }
 
@@ -684,7 +694,7 @@
 
       .board-wrap {
 
-        width: min(88vw, 60vh);
+        width: min(88vw, 58vh);
 
       }
 
@@ -762,7 +772,7 @@
 
               <div class="admin-badge">ADMIN MODE</div>
 
-              <img src="swallow-artwork.png" alt="Swallow artwork preview">
+              <img id="artwork" src="swallow-artwork.png" alt="Swallow artwork preview">
 
             </div>
 
@@ -896,10 +906,32 @@
 
     const isAdmin = params.get("admin") === "true";
 
+    if (isAdmin) document.body.classList.add("admin-mode");
 
-    if (isAdmin) {
 
-      document.body.classList.add("admin-mode");
+    const artwork = document.getElementById("artwork");
+
+    const root = document.documentElement;
+
+
+    function setArtworkRatio() {
+
+      if (!artwork || !artwork.naturalWidth || !artwork.naturalHeight) return;
+
+      const ratio = artwork.naturalWidth / artwork.naturalHeight;
+
+      root.style.setProperty("--art-ratio", ratio);
+
+    }
+
+
+    if (artwork.complete) {
+
+      setArtworkRatio();
+
+    } else {
+
+      artwork.addEventListener("load", setArtworkRatio);
 
     }
 
