@@ -246,25 +246,25 @@
     }
 
 
-    .board img {
+   .board img {
 
-      width: 100%;
+  width: 100%;
 
-      height: 100%;
+  height: 100%;
 
-      object-fit: cover;
+  object-fit: cover;
 
-      object-position: center;
+  object-position: 46% center;
 
-      display: block;
+  display: block;
 
-      transform: scale(1.02);
+  transform: scale(1.08);
 
-      transform-origin: center center;
+  transform-origin: center center;
 
-      filter: blur(14px) saturate(0.5) brightness(1.04);
+  filter: blur(14px) saturate(0.5) brightness(1.04);
 
-    }
+}
 
 
     .board::before {
@@ -340,11 +340,13 @@
 
     body.admin-mode .board img {
 
-      filter: none;
+  object-position: 46% center;
 
-      transform: scale(1.02);
+  filter: none;
 
-    }
+  transform: scale(1.08);
+
+}
 
 
     body.admin-mode .board::before,
