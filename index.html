@@ -4,816 +4,438 @@
 
 <head>
 
-  <meta charset="UTF-8" />
+<meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>One Tile Project</title>
+<title>One Tile Project</title>
 
 
-  <style>
+<style>
 
-    * { box-sizing: border-box; }
 
+*{
 
-    :root{
+box-sizing:border-box;
 
-      --bg:#f7f4ee;
+margin:0;
 
-      --text:#2f2f2f;
+padding:0;
 
-      --muted:#666;
+}
 
-      --line:rgba(0,0,0,.14);
 
-      --white-line:rgba(255,255,255,.88);
+body{
 
-      --btn-bg:rgba(255,255,255,.96);
 
-      --shadow:0 10px 24px rgba(0,0,0,.12);
+font-family:Arial, Helvetica, sans-serif;
 
-    }
+height:100vh;
 
+overflow:hidden;
 
-    html,body{
 
-      margin:0;
+background-image:url("page-background.png");
 
-      width:100%;
+background-size:cover;
 
-      height:100%;
+background-position:center;
 
-      overflow:hidden;
 
-      background:var(--bg);
+display:flex;
 
-      font-family:Arial, Helvetica, sans-serif;
+flex-direction:column;
 
-      color:var(--text);
+align-items:center;
 
-    }
 
+color:#333;
 
-    body{
 
-      position:relative;
+}
 
-    }
 
+.title{
 
-    .page{
 
-      width:100vw;
+margin-top:40px;
 
-      height:100vh;
 
-      height:100svh;
+font-size:64px;
 
-      overflow:hidden;
 
-      position:relative;
+font-family:"Brush Script MT", cursive;
 
-      background:var(--bg);
 
-    }
+background:linear-gradient(90deg,#1f67cb,#7b39b8,#d16f31,#d74444);
 
+-webkit-background-clip:text;
 
-    /* ελαφριά υφή χαρτιού */
+color:transparent;
 
-    .page::before{
 
-      content:"";
+}
 
-      position:absolute;
 
-      inset:0;
+.subtitle{
 
-      pointer-events:none;
 
-      opacity:.08;
+margin-top:10px;
 
-      background-image:
+font-size:18px;
 
-        radial-gradient(circle, rgba(0,0,0,.05) 1px, transparent 1.4px),
 
-        radial-gradient(circle, rgba(0,0,0,.03) 1px, transparent 1.4px);
+}
 
-      background-size:26px 26px, 42px 42px;
 
-      background-position:0 0, 12px 14px;
+.progress-number{
 
-    }
 
+margin-top:10px;
 
-    .content{
 
-      position:relative;
+}
 
-      z-index:3;
 
-      width:100%;
+.progress{
 
-      height:100%;
 
-      max-width:1280px;
+width:300px;
 
-      margin:0 auto;
+height:10px;
 
-      padding:18px 18px 10px;
 
-      display:grid;
+background:#ddd;
 
-      grid-template-rows:
 
-        auto
+border-radius:10px;
 
-        auto
 
-        auto
+overflow:hidden;
 
-        auto
 
-        auto
+margin-top:8px;
 
-        1fr
 
-        auto
+}
 
-        auto
 
-        auto;
+.progress-bar{
 
-      justify-items:center;
 
-      align-items:start;
+width:0%;
 
-      gap:8px;
+height:100%;
 
-    }
 
+background:#6fa4ff;
 
-    .title{
 
-      margin:0;
+}
 
-      line-height:1;
 
-      text-align:center;
+.buy{
 
-      font-size:clamp(44px, 6vw, 86px);
 
-      font-family:"Brush Script MT","Segoe Script",cursive;
+margin-top:12px;
 
-      font-weight:500;
 
-      background:linear-gradient(90deg,#2068cb 0%,#7c39b8 42%,#d27030 74%,#d84545 100%);
+padding:10px 22px;
 
-      -webkit-background-clip:text;
 
-      background-clip:text;
+border-radius:30px;
 
-      color:transparent;
 
-    }
+border:1px solid #ccc;
 
 
-    .tagline{
+background:white;
 
-      margin:0;
 
-      max-width:920px;
+cursor:pointer;
 
-      text-align:center;
 
-      font-size:clamp(17px, 1.8vw, 22px);
+}
 
-      color:#3d3d3d;
 
-    }
+.board{
 
 
-    .progress-value{
+margin-top:20px;
 
-      margin-top:2px;
 
-      font-size:16px;
+width:620px;
 
-      color:#4b4b4b;
+height:360px;
 
-      line-height:1;
 
-    }
+border-radius:18px;
 
 
-    .progress{
+border:3px solid rgba(255,255,255,0.9);
 
-      width:min(340px,76vw);
 
-      height:12px;
+overflow:hidden;
 
-      border-radius:999px;
 
-      background:#d9d9d9;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
 
-      overflow:hidden;
 
-      box-shadow:inset 0 1px 2px rgba(0,0,0,.08);
+position:relative;
 
-    }
 
+}
 
-    .progress-bar{
 
-      width:0%;
+.board img{
 
-      height:100%;
 
-      border-radius:999px;
+width:100%;
 
-      background:linear-gradient(90deg,#7ea7f2 0%,#5b80d8 100%);
+height:100%;
 
-    }
 
+object-fit:cover;
 
-    .buy-btn,
 
-    .action-btn{
+filter:blur(28px);
 
-      border:1px solid rgba(0,0,0,.18);
 
-      background:var(--btn-bg);
+}
 
-      color:#3a3a3a;
 
-      border-radius:999px;
+.admin-badge{
 
-      cursor:pointer;
 
-      box-shadow:0 4px 10px rgba(0,0,0,.08);
+position:absolute;
 
-    }
 
+top:10px;
 
-    .buy-btn{
+right:10px;
 
-      margin-top:2px;
 
-      padding:12px 24px;
+background:black;
 
-      font-size:16px;
+color:white;
 
-    }
 
+font-size:12px;
 
-    .board-area{
 
-      position:relative;
+padding:6px 10px;
 
-      width:100%;
 
-      height:100%;
+border-radius:20px;
 
-      min-height:0;
 
-      display:flex;
+display:none;
 
-      align-items:center;
 
-      justify-content:center;
+}
 
-      overflow:visible;
 
-    }
+.actions{
 
 
-    /* artistic πιτσιλιές γύρω από το board */
+margin-top:16px;
 
-    .splatter{
 
-      position:absolute;
+display:flex;
 
-      inset:0;
 
-      pointer-events:none;
+gap:10px;
 
-      z-index:1;
 
-    }
+}
 
 
-    .splatter::before,
+.button{
 
-    .splatter::after{
 
-      content:"";
+padding:10px 20px;
 
-      position:absolute;
 
-      top:50%;
+border-radius:30px;
 
-      transform:translateY(-50%);
 
-      width:min(430px,34vw);
+border:1px solid #ccc;
 
-      height:min(430px,34vw);
 
-      background-repeat:no-repeat;
+background:white;
 
-      background-size:contain;
 
-      opacity:1;
+cursor:pointer;
 
-    }
 
+}
 
-    .splatter::before{
 
-      left:max(2vw,12px);
+.socials{
 
-      background-image:
 
-        radial-gradient(circle at 56% 44%, rgba(60,133,255,.98) 0 8%, transparent 9%),
+margin-top:18px;
 
-        radial-gradient(circle at 46% 58%, rgba(255,173,44,.96) 0 8%, transparent 9%),
 
-        radial-gradient(circle at 59% 66%, rgba(145,88,255,.94) 0 7%, transparent 8%),
+display:flex;
 
-        radial-gradient(circle at 69% 74%, rgba(255,113,69,.86) 0 4%, transparent 5%),
 
-        radial-gradient(circle at 37% 35%, rgba(255,101,140,.66) 0 2.4%, transparent 3.4%),
+gap:14px;
 
-        radial-gradient(circle at 62% 34%, rgba(120,160,255,.64) 0 2.2%, transparent 3.2%),
 
-        radial-gradient(circle at 43% 70%, rgba(255,255,255,.70) 0 2.5%, transparent 3.5%),
+}
 
-        radial-gradient(circle at 52% 57%, rgba(55,132,255,.24) 0 30%, transparent 31%),
 
-        radial-gradient(circle at 44% 68%, rgba(255,191,81,.22) 0 27%, transparent 28%),
+.circle{
 
-        radial-gradient(circle at 63% 64%, rgba(138,89,255,.18) 0 18%, transparent 19%);
 
-    }
+width:42px;
 
+height:42px;
 
-    .splatter::after{
 
-      right:max(2vw,12px);
+border-radius:50%;
 
-      background-image:
 
-        radial-gradient(circle at 44% 44%, rgba(255,109,38,.98) 0 8%, transparent 9%),
+display:flex;
 
-        radial-gradient(circle at 55% 57%, rgba(59,193,255,.96) 0 8%, transparent 9%),
+align-items:center;
 
-        radial-gradient(circle at 41% 67%, rgba(255,210,82,.94) 0 7%, transparent 8%),
+justify-content:center;
 
-        radial-gradient(circle at 31% 76%, rgba(135,92,255,.84) 0 4%, transparent 5%),
 
-        radial-gradient(circle at 67% 36%, rgba(255,150,89,.66) 0 2.4%, transparent 3.4%),
+color:white;
 
-        radial-gradient(circle at 39% 33%, rgba(113,205,255,.64) 0 2.2%, transparent 3.2%),
 
-        radial-gradient(circle at 59% 69%, rgba(255,255,255,.70) 0 2.5%, transparent 3.5%),
+font-weight:bold;
 
-        radial-gradient(circle at 47% 56%, rgba(255,128,66,.24) 0 30%, transparent 31%),
 
-        radial-gradient(circle at 57% 68%, rgba(67,194,255,.22) 0 27%, transparent 28%),
+}
 
-        radial-gradient(circle at 36% 63%, rgba(255,208,80,.18) 0 18%, transparent 19%);
 
-    }
+.instagram{background:linear-gradient(45deg,#ff5f6d,#ffc371,#833ab4)}
 
+.x{background:black}
 
-    .board-wrap{
+.tiktok{background:black}
 
-      position:relative;
+.facebook{background:#1877f2}
 
-      z-index:2;
 
-      width:min(66vw, 740px);
+.footer{
 
-      max-width:740px;
 
-      aspect-ratio:1.62 / 0.92;
+margin-top:20px;
 
-      display:flex;
 
-      align-items:center;
+font-size:14px;
 
-      justify-content:center;
 
-    }
+color:#666;
 
 
-    .board{
+}
 
-      position:relative;
 
-      width:100%;
-
-      height:100%;
-
-      border-radius:18px;
-
-      overflow:hidden;
-
-      border:3px solid var(--white-line);
-
-      background:linear-gradient(180deg,rgba(101,130,184,.10),rgba(82,108,158,.08));
-
-      box-shadow:var(--shadow), 0 0 0 1px rgba(0,0,0,.08);
-
-      display:flex;
-
-      align-items:center;
-
-      justify-content:center;
-
-    }
-
-
-    .board img{
-
-      width:100%;
-
-      height:100%;
-
-      display:block;
-
-      object-fit:cover;
-
-      object-position:center;
-
-      filter:blur(30px) saturate(.68) brightness(.92);
-
-      transform:scale(1.02);
-
-      transform-origin:center center;
-
-    }
-
-
-    .board::after{
-
-      content:"";
-
-      position:absolute;
-
-      inset:0;
-
-      pointer-events:none;
-
-      background:
-
-        linear-gradient(to bottom, rgba(255,255,255,.05), rgba(255,255,255,.02)),
-
-        rgba(62,88,140,.04);
-
-    }
-
-
-    .admin-badge{
-
-      position:absolute;
-
-      top:10px;
-
-      right:10px;
-
-      z-index:4;
-
-      display:none;
-
-      padding:7px 10px;
-
-      border-radius:999px;
-
-      background:rgba(20,20,20,.84);
-
-      color:white;
-
-      font-size:12px;
-
-      letter-spacing:.3px;
-
-    }
-
-
-    .actions{
-
-      display:flex;
-
-      gap:12px;
-
-      flex-wrap:wrap;
-
-      justify-content:center;
-
-      margin-top:2px;
-
-    }
-
-
-    .action-btn{
-
-      padding:12px 22px;
-
-      font-size:16px;
-
-    }
-
-
-    .socials{
-
-      display:flex;
-
-      gap:14px;
-
-      justify-content:center;
-
-      flex-wrap:wrap;
-
-      margin-top:2px;
-
-    }
-
-
-    .social{
-
-      width:48px;
-
-      height:48px;
-
-      border-radius:50%;
-
-      display:grid;
-
-      place-items:center;
-
-      font-weight:bold;
-
-      font-size:20px;
-
-      color:white;
-
-      box-shadow:0 4px 10px rgba(0,0,0,.10);
-
-    }
-
-
-    .instagram{ background:linear-gradient(135deg,#ff5f6d,#ffc371,#833ab4); }
-
-    .x{ background:#111; }
-
-    .tiktok{ background:#111; }
-
-    .facebook{ background:#1877f2; }
-
-
-    .footer{
-
-      text-align:center;
-
-      color:var(--muted);
-
-      font-size:14px;
-
-      padding-bottom:2px;
-
-    }
-
-
-    .footer a{
-
-      color:inherit;
-
-      text-decoration:none;
-
-      margin:0 8px;
-
-    }
-
-
-    body.admin-mode .board img{
-
-      filter:none;
-
-      transform:scale(1.02);
-
-    }
-
-
-    body.admin-mode .admin-badge{
-
-      display:inline-block;
-
-    }
-
-
-    @media (max-width: 900px){
-
-      .board-wrap{
-
-        width:min(82vw, 720px);
-
-      }
-
-
-      .splatter::before,
-
-      .splatter::after{
-
-        width:min(280px,26vw);
-
-        height:min(280px,26vw);
-
-      }
-
-    }
-
-
-    @media (max-width: 700px){
-
-      .content{
-
-        padding:14px 10px 10px;
-
-        gap:7px;
-
-      }
-
-
-      .title{
-
-        font-size:clamp(36px,10vw,56px);
-
-      }
-
-
-      .tagline{
-
-        font-size:15px;
-
-        line-height:1.35;
-
-      }
-
-
-      .buy-btn,
-
-      .action-btn{
-
-        font-size:14px;
-
-        padding:10px 16px;
-
-      }
-
-
-      .board-wrap{
-
-        width:90vw;
-
-      }
-
-
-      .splatter::before,
-
-      .splatter::after{
-
-        width:22vw;
-
-        height:22vw;
-
-      }
-
-
-      .social{
-
-        width:44px;
-
-        height:44px;
-
-        font-size:18px;
-
-      }
-
-
-      .footer{
-
-        font-size:13px;
-
-      }
-
-    }
-
-  </style>
+</style>
 
 </head>
 
+
 <body>
 
-  <div class="page">
 
-    <div class="content">
-
-      <h1 class="title">One Tile Project</h1>
+<h1 class="title">One Tile Project</h1>
 
 
-      <div class="tagline">
+<div class="subtitle">
 
-        Claim your tile. Leave your mark. Be part of digital history.
+Claim your tile. Leave your mark. Be part of digital history.
 
-      </div>
-
-
-      <div class="progress-value">0%</div>
+</div>
 
 
-      <div class="progress">
-
-        <div class="progress-bar"></div>
-
-      </div>
+<div class="progress-number">0%</div>
 
 
-      <button class="buy-btn">Buy Tiles</button>
+<div class="progress">
+
+<div class="progress-bar"></div>
+
+</div>
 
 
-      <div class="board-area">
-
-        <div class="splatter"></div>
+<button class="buy">Buy Tiles</button>
 
 
-        <div class="board-wrap">
-
-          <div class="board">
-
-            <div class="admin-badge">ADMIN MODE</div>
-
-            <img src="swallow-artwork.png" alt="Swallow artwork preview" />
-
-          </div>
-
-        </div>
-
-      </div>
+<div class="board">
 
 
-      <div class="actions">
-
-        <button class="action-btn">Share</button>
-
-        <button class="action-btn">Find My Tile</button>
-
-      </div>
+<div class="admin-badge">ADMIN MODE</div>
 
 
-      <div class="socials">
-
-        <div class="social instagram">◎</div>
-
-        <div class="social x">X</div>
-
-        <div class="social tiktok">♪</div>
-
-        <div class="social facebook">f</div>
-
-      </div>
+<img src="swallow-artwork.png">
 
 
-      <div class="footer">
-
-        <a href="#">Terms &amp; Conditions</a>
-
-        •
-
-        <a href="#">Privacy Policy</a>
-
-        •
-
-        <span>© 2024 One Tile Project</span>
-
-      </div>
-
-    </div>
-
-  </div>
+</div>
 
 
-  <script>
+<div class="actions">
 
-    const params = new URLSearchParams(window.location.search);
 
-    const isAdmin = params.get("admin") === "true";
+<button class="button">Share</button>
 
-    if (isAdmin) {
 
-      document.body.classList.add("admin-mode");
+<button class="button">Find My Tile</button>
 
-    }
 
-  </script>
+</div>
+
+
+<div class="socials">
+
+
+<div class="circle instagram">◎</div>
+
+<div class="circle x">X</div>
+
+<div class="circle tiktok">♪</div>
+
+<div class="circle facebook">f</div>
+
+
+</div>
+
+
+<div class="footer">
+
+
+Terms & Conditions • Privacy Policy • © 2024 One Tile Project
+
+
+</div>
+
+
+<script>
+
+
+const params=new URLSearchParams(window.location.search)
+
+
+if(params.get("admin")==="true"){
+
+
+document.querySelector(".board img").style.filter="none"
+
+
+document.querySelector(".admin-badge").style.display="block"
+
+
+}
+
+
+</script>
+
 
 </body>
 
