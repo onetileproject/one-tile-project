@@ -20,6 +20,23 @@
     }
 
 
+    :root {
+
+      --page-bg: #f7f4ee;
+
+      --text: #2f2f2f;
+
+      --muted: #666;
+
+      --line: rgba(0, 0, 0, 0.12);
+
+      --white-line: rgba(255, 255, 255, 0.88);
+
+      --btn-bg: rgba(255, 255, 255, 0.96);
+
+    }
+
+
     html, body {
 
       margin: 0;
@@ -30,11 +47,11 @@
 
       overflow: hidden;
 
+      background: var(--page-bg);
+
       font-family: Arial, Helvetica, sans-serif;
 
-      background: #f7f4ee;
-
-      color: #222;
+      color: var(--text);
 
     }
 
@@ -58,12 +75,12 @@
 
       position: relative;
 
-      background: #f7f4ee;
+      background: var(--page-bg);
 
     }
 
 
-    /* χαρτί / texture */
+    /* ελαφρύ paper texture */
 
     .page::before {
 
@@ -75,17 +92,17 @@
 
       pointer-events: none;
 
-      opacity: 0.14;
+      opacity: 0.12;
 
       background-image:
 
-        radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1.5px),
+        radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1.4px),
 
-        radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1.5px);
+        radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1.4px);
 
-      background-size: 28px 28px, 44px 44px;
+      background-size: 26px 26px, 42px 42px;
 
-      background-position: 0 0, 12px 16px;
+      background-position: 0 0, 11px 13px;
 
     }
 
@@ -104,13 +121,35 @@
 
       margin: 0 auto;
 
-      display: flex;
+      padding: 18px 18px 12px;
 
-      flex-direction: column;
+      display: grid;
 
-      align-items: center;
+      grid-template-rows:
 
-      padding: 18px 18px 10px;
+        auto   /* title */
+
+        auto   /* tagline */
+
+        auto   /* progress value */
+
+        auto   /* progress bar */
+
+        auto   /* buy button */
+
+        1fr    /* board area */
+
+        auto   /* actions */
+
+        auto   /* socials */
+
+        auto;  /* footer */
+
+      justify-items: center;
+
+      align-items: start;
+
+      gap: 8px;
 
     }
 
@@ -119,7 +158,7 @@
 
       margin: 0;
 
-      font-size: clamp(44px, 6vw, 86px);
+      font-size: clamp(42px, 6vw, 82px);
 
       line-height: 1;
 
@@ -127,7 +166,7 @@
 
       font-weight: 500;
 
-      background: linear-gradient(90deg, #1f67cb 0%, #7a39b7 42%, #d16f31 72%, #d74444 100%);
+      background: linear-gradient(90deg, #1f67cb 0%, #7b39b8 42%, #d06d31 72%, #d74444 100%);
 
       -webkit-background-clip: text;
 
@@ -142,15 +181,15 @@
 
     .tagline {
 
-      margin: 10px 0 12px;
-
-      font-size: clamp(17px, 1.8vw, 22px);
-
-      color: #3c3c3c;
+      margin: 0;
 
       text-align: center;
 
-      max-width: 920px;
+      font-size: clamp(16px, 1.7vw, 22px);
+
+      color: #3f3f3f;
+
+      max-width: 900px;
 
     }
 
@@ -159,9 +198,11 @@
 
       font-size: 16px;
 
-      color: #4a4a4a;
+      color: #4c4c4c;
 
-      margin-bottom: 8px;
+      line-height: 1;
+
+      margin-top: 4px;
 
     }
 
@@ -174,7 +215,7 @@
 
       border-radius: 999px;
 
-      background: #d8d8d8;
+      background: #d9d9d9;
 
       overflow: hidden;
 
@@ -189,45 +230,50 @@
 
       height: 100%;
 
-      background: linear-gradient(90deg, #7ea7f2 0%, #5b80d8 100%);
+      background: linear-gradient(90deg, #7ea7f2 0%, #5c81d8 100%);
 
       border-radius: 999px;
+
+    }
+
+
+    .buy-btn,
+
+    .action-btn {
+
+      border: 1px solid rgba(0,0,0,0.18);
+
+      background: var(--btn-bg);
+
+      color: #3a3a3a;
+
+      border-radius: 999px;
+
+      cursor: pointer;
+
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 
     }
 
 
     .buy-btn {
 
-      margin-top: 14px;
-
-      border: 1px solid rgba(0,0,0,0.20);
-
-      background: rgba(255,255,255,0.96);
-
-      color: #333;
-
       padding: 12px 24px;
-
-      border-radius: 999px;
 
       font-size: 16px;
 
-      cursor: pointer;
-
-      box-shadow: 0 4px 10px rgba(0,0,0,0.10);
+      margin-top: 2px;
 
     }
 
 
     .board-area {
 
-      margin-top: 14px;
+      width: 100%;
 
-      flex: 1 1 auto;
+      height: 100%;
 
       min-height: 0;
-
-      width: 100%;
 
       display: flex;
 
@@ -240,15 +286,15 @@
     }
 
 
-    /* ΠΙΤΣΙΛΙΕΣ ΓΥΡΩ ΑΠΟ ΤΟ BOARD - ΚΑΘΑΡΕΣ, ΟΧΙ BLUR */
+    /* Καθαρές πιτσιλιές ΜΟΝΟ γύρω από το board */
 
     .splash-cloud {
 
       position: absolute;
 
-      width: min(92vw, 1120px);
+      width: min(1000px, 92vw);
 
-      aspect-ratio: 1.45 / 0.95;
+      height: min(620px, 60vh);
 
       pointer-events: none;
 
@@ -256,62 +302,74 @@
 
       background:
 
-        radial-gradient(circle at 14% 48%, rgba(63,133,255,0.95) 0 3%, transparent 8%),
+        /* left cluster */
 
-        radial-gradient(circle at 18% 57%, rgba(255,169,45,0.95) 0 3.6%, transparent 8%),
+        radial-gradient(circle at 20% 54%, rgba(55,132,255,0.98) 0 2.8%, transparent 3.2%),
 
-        radial-gradient(circle at 24% 68%, rgba(145,88,255,0.88) 0 3.2%, transparent 8%),
+        radial-gradient(circle at 18% 60%, rgba(255,173,44,0.95) 0 3.0%, transparent 3.6%),
 
-        radial-gradient(circle at 28% 78%, rgba(255,110,70,0.72) 0 2.2%, transparent 7%),
+        radial-gradient(circle at 22% 66%, rgba(145,88,255,0.92) 0 2.7%, transparent 3.3%),
 
+        radial-gradient(circle at 26% 72%, rgba(255,109,62,0.85) 0 2.0%, transparent 2.7%),
 
-        radial-gradient(circle at 80% 50%, rgba(255,109,38,0.96) 0 3.2%, transparent 8%),
+        radial-gradient(circle at 29% 50%, rgba(75,173,255,0.42) 0 8%, transparent 12%),
 
-        radial-gradient(circle at 84% 60%, rgba(63,197,255,0.95) 0 3.6%, transparent 8%),
-
-        radial-gradient(circle at 75% 70%, rgba(255,211,82,0.92) 0 3.1%, transparent 8%),
-
-        radial-gradient(circle at 70% 80%, rgba(131,102,255,0.70) 0 2.3%, transparent 7%),
+        radial-gradient(circle at 23% 70%, rgba(255,188,74,0.38) 0 7%, transparent 11%),
 
 
-        radial-gradient(circle at 21% 62%, rgba(255,255,255,0.65) 0 1.1%, transparent 3%),
+        /* right cluster */
 
-        radial-gradient(circle at 76% 64%, rgba(255,255,255,0.65) 0 1.1%, transparent 3%),
+        radial-gradient(circle at 80% 53%, rgba(255,109,39,0.98) 0 2.9%, transparent 3.4%),
+
+        radial-gradient(circle at 82% 60%, rgba(55,197,255,0.96) 0 3.0%, transparent 3.6%),
+
+        radial-gradient(circle at 77% 68%, rgba(255,211,82,0.94) 0 2.8%, transparent 3.4%),
+
+        radial-gradient(circle at 73% 74%, rgba(136,93,255,0.84) 0 2.0%, transparent 2.6%),
+
+        radial-gradient(circle at 76% 54%, rgba(255,134,66,0.42) 0 8%, transparent 12%),
+
+        radial-gradient(circle at 79% 69%, rgba(58,191,255,0.38) 0 7%, transparent 11%),
 
 
-        radial-gradient(circle at 12% 60%, rgba(0,0,0,0.16) 0 0.4%, transparent 1.2%),
+        /* μικρές πιτσιλιές */
 
-        radial-gradient(circle at 85% 63%, rgba(0,0,0,0.16) 0 0.4%, transparent 1.2%),
+        radial-gradient(circle at 16% 44%, rgba(255,99,140,0.70) 0 0.8%, transparent 1.4%),
 
+        radial-gradient(circle at 28% 38%, rgba(118,141,255,0.62) 0 0.7%, transparent 1.3%),
 
-        radial-gradient(circle at 16% 52%, rgba(89,162,255,0.50) 0 8%, transparent 15%),
+        radial-gradient(circle at 84% 42%, rgba(255,146,88,0.74) 0 0.8%, transparent 1.4%),
 
-        radial-gradient(circle at 23% 70%, rgba(255,178,70,0.48) 0 8%, transparent 15%),
+        radial-gradient(circle at 74% 36%, rgba(104,202,255,0.64) 0 0.7%, transparent 1.3%),
 
-        radial-gradient(circle at 78% 55%, rgba(255,118,52,0.50) 0 8%, transparent 15%),
+        radial-gradient(circle at 12% 56%, rgba(0,0,0,0.14) 0 0.35%, transparent 0.9%),
 
-        radial-gradient(circle at 75% 72%, rgba(58,191,255,0.48) 0 8%, transparent 15%);
+        radial-gradient(circle at 88% 58%, rgba(0,0,0,0.14) 0 0.35%, transparent 0.9%),
 
-      opacity: 1;
+        radial-gradient(circle at 24% 63%, rgba(255,255,255,0.72) 0 0.95%, transparent 1.8%),
+
+        radial-gradient(circle at 77% 64%, rgba(255,255,255,0.72) 0 0.95%, transparent 1.8%);
+
+      background-repeat: no-repeat;
 
     }
 
 
     .board-wrap {
 
-      width: min(64vmin, 560px);
+      position: relative;
 
-      height: min(64vmin, 560px);
+      z-index: 2;
+
+      width: min(58vmin, 540px);
+
+      height: min(58vmin, 540px);
 
       display: flex;
 
       align-items: center;
 
       justify-content: center;
-
-      position: relative;
-
-      z-index: 2;
 
     }
 
@@ -328,7 +386,7 @@
 
       position: relative;
 
-      border: 3px solid rgba(255,255,255,0.88);
+      border: 3px solid var(--white-line);
 
       box-shadow:
 
@@ -336,7 +394,7 @@
 
         0 0 0 1px rgba(0,0,0,0.08);
 
-      background: linear-gradient(180deg, rgba(103,131,184,0.12), rgba(82,108,158,0.08));
+      background: linear-gradient(180deg, rgba(104,132,184,0.10), rgba(82,108,158,0.08));
 
       display: flex;
 
@@ -357,7 +415,7 @@
 
       display: block;
 
-      filter: blur(34px) saturate(0.66) brightness(0.92);
+      filter: blur(30px) saturate(0.68) brightness(0.92);
 
       transform: scale(0.94);
 
@@ -414,8 +472,6 @@
 
     .actions {
 
-      margin-top: 14px;
-
       display: flex;
 
       gap: 12px;
@@ -424,33 +480,21 @@
 
       justify-content: center;
 
+      margin-top: 2px;
+
     }
 
 
     .action-btn {
 
-      border: 1px solid rgba(0,0,0,0.18);
-
-      background: rgba(255,255,255,0.96);
-
-      color: #3a3a3a;
-
       padding: 12px 22px;
 
-      border-radius: 999px;
-
       font-size: 16px;
-
-      cursor: pointer;
-
-      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 
     }
 
 
     .socials {
-
-      margin-top: 14px;
 
       display: flex;
 
@@ -459,6 +503,8 @@
       justify-content: center;
 
       flex-wrap: wrap;
+
+      margin-top: 2px;
 
     }
 
@@ -497,13 +543,11 @@
 
     .footer {
 
-      margin-top: 12px;
-
       text-align: center;
 
       color: #6f6f6f;
 
-      font-size: 15px;
+      font-size: 14px;
 
       padding-bottom: 2px;
 
@@ -541,7 +585,9 @@
 
       .content {
 
-        padding: 16px 10px 10px;
+        padding: 14px 10px 10px;
+
+        gap: 7px;
 
       }
 
@@ -575,9 +621,9 @@
 
       .board-wrap {
 
-        width: min(76vmin, 88vw);
+        width: min(72vmin, 84vw);
 
-        height: min(76vmin, 88vw);
+        height: min(72vmin, 84vw);
 
       }
 
@@ -585,6 +631,8 @@
       .splash-cloud {
 
         width: 100vw;
+
+        height: 56vh;
 
       }
 
