@@ -30,11 +30,9 @@
 
       --line: rgba(0, 0, 0, 0.18);
 
-      --soft-line: rgba(255, 255, 255, 0.88);
+      --soft-line: rgba(255, 255, 255, 0.9);
 
       --button-bg: rgba(255, 255, 255, 0.96);
-
-      --shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
 
     }
 
@@ -131,7 +129,7 @@
 
       margin: 0 auto;
 
-      padding: 18px 24px 10px;
+      padding: 18px 24px 12px;
 
       display: grid;
 
@@ -188,7 +186,7 @@
 
     .top-controls {
 
-      width: min(980px, 92vw);
+      width: min(1080px, 92vw);
 
       display: flex;
 
@@ -199,6 +197,10 @@
       gap: 12px;
 
       margin-top: 2px;
+
+      position: relative;
+
+      z-index: 3;
 
     }
 
@@ -211,7 +213,7 @@
 
       gap: 10px;
 
-      background: rgba(255, 255, 255, 0.72);
+      background: rgba(255,255,255,0.72);
 
       padding: 4px 10px;
 
@@ -247,7 +249,7 @@
 
       border-radius: 999px;
 
-      border: 1px solid rgba(0,0,0,0.32);
+      border: 1px solid rgba(0,0,0,0.35);
 
       background: #ffffff;
 
@@ -262,7 +264,7 @@
 
       height: 100%;
 
-      background: #4c4c4c;
+      background: #4b4b4b;
 
       border-radius: 999px;
 
@@ -294,6 +296,10 @@
 
       font-size: 16px;
 
+      position: relative;
+
+      z-index: 3;
+
     }
 
 
@@ -311,7 +317,9 @@
 
       justify-content: center;
 
-      margin-top: -4px;
+      margin-top: 0;
+
+      position: relative;
 
     }
 
@@ -320,9 +328,9 @@
 
       position: relative;
 
-      width: min(72vw, 1000px);
+      width: min(66vw, 920px);
 
-      aspect-ratio: 1.62 / 0.82;
+      aspect-ratio: 1.62 / 0.80;
 
       display: flex;
 
@@ -441,7 +449,11 @@
 
       flex-wrap: wrap;
 
-      margin-top: -2px;
+      margin-top: 2px;
+
+      position: relative;
+
+      z-index: 3;
 
     }
 
@@ -468,6 +480,10 @@
       flex-wrap: wrap;
 
       margin-top: 2px;
+
+      position: relative;
+
+      z-index: 3;
 
     }
 
@@ -497,32 +513,13 @@
     }
 
 
-    .instagram {
+    .instagram { background: linear-gradient(135deg, #ff5f6d, #ffc371, #833ab4); }
 
-      background: linear-gradient(135deg, #ff5f6d, #ffc371, #833ab4);
+    .x { background: #0f1720; }
 
-    }
+    .tiktok { background: #111111; }
 
-
-    .x {
-
-      background: #0f1720;
-
-    }
-
-
-    .tiktok {
-
-      background: #101010;
-
-    }
-
-
-    .facebook {
-
-      background: #1877f2;
-
-    }
+    .facebook { background: #1877f2; }
 
 
     .footer {
@@ -534,6 +531,10 @@
       font-size: 14px;
 
       padding-bottom: 2px;
+
+      position: relative;
+
+      z-index: 3;
 
     }
 
@@ -569,14 +570,14 @@
 
       .board-wrap {
 
-        width: min(82vw, 920px);
+        width: min(78vw, 880px);
 
       }
 
 
       .top-controls {
 
-        width: min(920px, 92vw);
+        width: min(920px, 94vw);
 
       }
 
@@ -623,13 +624,6 @@
       }
 
 
-      .progress-group {
-
-        padding: 4px 8px;
-
-      }
-
-
       .progress-number {
 
         font-size: 16px;
@@ -655,9 +649,9 @@
 
       .board-wrap {
 
-        width: 92vw;
+        width: 90vw;
 
-        aspect-ratio: 1.54 / 0.90;
+        aspect-ratio: 1.54 / 0.84;
 
       }
 
