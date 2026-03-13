@@ -4,438 +4,806 @@
 
 <head>
 
-<meta charset="UTF-8">
+  <meta charset="UTF-8" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>One Tile Project</title>
+  <title>One Tile Project</title>
 
 
-<style>
+  <style>
 
+    * {
 
-*{
+      box-sizing: border-box;
 
-box-sizing:border-box;
+    }
 
-margin:0;
 
-padding:0;
+    :root {
 
-}
+      --bg: #f7f4ee;
 
+      --text: #333333;
 
-body{
+      --muted: #666666;
 
+      --line: rgba(0, 0, 0, 0.18);
 
-font-family:Arial, Helvetica, sans-serif;
+      --soft-line: rgba(255, 255, 255, 0.88);
 
-height:100vh;
+      --button-bg: rgba(255, 255, 255, 0.96);
 
-overflow:hidden;
+      --shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
 
+    }
 
-background-image:url("page-background.png");
 
-background-size:cover;
+    html,
 
-background-position:center;
+    body {
 
+      margin: 0;
 
-display:flex;
+      width: 100%;
 
-flex-direction:column;
+      height: 100%;
 
-align-items:center;
+      overflow: hidden;
 
+      font-family: Arial, Helvetica, sans-serif;
 
-color:#333;
+      background: var(--bg);
 
+      color: var(--text);
 
-}
+    }
 
 
-.title{
+    body {
 
+      position: relative;
 
-margin-top:40px;
+    }
 
 
-font-size:64px;
+    .page {
 
+      width: 100vw;
 
-font-family:"Brush Script MT", cursive;
+      height: 100vh;
 
+      height: 100svh;
 
-background:linear-gradient(90deg,#1f67cb,#7b39b8,#d16f31,#d74444);
+      overflow: hidden;
 
--webkit-background-clip:text;
+      position: relative;
 
-color:transparent;
+      background-color: var(--bg);
 
+      background-image: url("page-background.png");
 
-}
+      background-size: cover;
 
+      background-position: center;
 
-.subtitle{
+      background-repeat: no-repeat;
 
+    }
 
-margin-top:10px;
 
-font-size:18px;
+    .page::before {
 
+      content: "";
 
-}
+      position: absolute;
 
+      inset: 0;
 
-.progress-number{
+      pointer-events: none;
 
+      opacity: 0.08;
 
-margin-top:10px;
+      background-image:
 
+        radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1.4px),
 
-}
+        radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1.4px);
 
+      background-size: 26px 26px, 42px 42px;
 
-.progress{
+      background-position: 0 0, 12px 14px;
 
+    }
 
-width:300px;
 
-height:10px;
+    .content {
 
+      position: relative;
 
-background:#ddd;
+      z-index: 2;
 
+      width: 100%;
 
-border-radius:10px;
+      height: 100%;
 
+      max-width: 1400px;
 
-overflow:hidden;
+      margin: 0 auto;
 
+      padding: 18px 24px 10px;
 
-margin-top:8px;
+      display: grid;
 
+      grid-template-rows: auto auto auto 1fr auto auto auto;
 
-}
+      justify-items: center;
 
+      align-items: start;
 
-.progress-bar{
+      gap: 10px;
 
+    }
 
-width:0%;
 
-height:100%;
+    .title {
 
+      margin: 0;
 
-background:#6fa4ff;
+      line-height: 1;
 
+      text-align: center;
 
-}
+      font-size: clamp(44px, 6vw, 86px);
 
+      font-family: "Brush Script MT", "Segoe Script", cursive;
 
-.buy{
+      font-weight: 500;
 
+      background: linear-gradient(90deg, #2168cb 0%, #7b39b8 42%, #d06f30 74%, #d84444 100%);
 
-margin-top:12px;
+      -webkit-background-clip: text;
 
+      background-clip: text;
 
-padding:10px 22px;
+      color: transparent;
 
+    }
 
-border-radius:30px;
 
+    .tagline {
 
-border:1px solid #ccc;
+      margin: 0;
 
+      text-align: center;
 
-background:white;
+      font-size: clamp(17px, 1.8vw, 22px);
 
+      color: #3d3d3d;
 
-cursor:pointer;
+      max-width: 900px;
 
+    }
 
-}
 
+    .top-controls {
 
-.board{
+      width: min(980px, 92vw);
 
+      display: flex;
 
-margin-top:20px;
+      justify-content: flex-end;
 
+      align-items: center;
 
-width:620px;
+      gap: 12px;
 
-height:360px;
+      margin-top: 2px;
 
+    }
 
-border-radius:18px;
 
+    .progress-group {
 
-border:3px solid rgba(255,255,255,0.9);
+      display: flex;
 
+      align-items: center;
 
-overflow:hidden;
+      gap: 10px;
 
+      background: rgba(255, 255, 255, 0.72);
 
-box-shadow:0 10px 25px rgba(0,0,0,0.15);
+      padding: 4px 10px;
 
+      border-radius: 999px;
 
-position:relative;
+      border: 1px solid rgba(0,0,0,0.08);
 
+      backdrop-filter: blur(2px);
 
-}
+    }
 
 
-.board img{
+    .progress-number {
 
+      font-size: 18px;
 
-width:100%;
+      color: #444;
 
-height:100%;
+      line-height: 1;
 
+      min-width: 34px;
 
-object-fit:cover;
+      text-align: right;
 
+    }
 
-filter:blur(28px);
 
+    .progress-track {
 
-}
+      width: 180px;
 
+      height: 10px;
 
-.admin-badge{
+      border-radius: 999px;
 
+      border: 1px solid rgba(0,0,0,0.32);
 
-position:absolute;
+      background: #ffffff;
 
+      overflow: hidden;
 
-top:10px;
+    }
 
-right:10px;
 
+    .progress-fill {
 
-background:black;
+      width: 0%;
 
-color:white;
+      height: 100%;
 
+      background: #4c4c4c;
 
-font-size:12px;
+      border-radius: 999px;
 
+    }
 
-padding:6px 10px;
 
+    .buy-btn,
 
-border-radius:20px;
+    .action-btn {
 
+      border: 1px solid var(--line);
 
-display:none;
+      background: var(--button-bg);
 
+      color: #3a3a3a;
 
-}
+      border-radius: 999px;
 
+      cursor: pointer;
 
-.actions{
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 
+    }
 
-margin-top:16px;
 
+    .buy-btn {
 
-display:flex;
+      padding: 12px 26px;
 
+      font-size: 16px;
 
-gap:10px;
+    }
 
 
-}
+    .board-area {
 
+      width: 100%;
 
-.button{
+      height: 100%;
 
+      min-height: 0;
 
-padding:10px 20px;
+      display: flex;
 
+      align-items: center;
 
-border-radius:30px;
+      justify-content: center;
 
+      margin-top: -4px;
 
-border:1px solid #ccc;
+    }
 
 
-background:white;
+    .board-wrap {
 
+      position: relative;
 
-cursor:pointer;
+      width: min(72vw, 1000px);
 
+      aspect-ratio: 1.62 / 0.82;
 
-}
+      display: flex;
 
+      align-items: center;
 
-.socials{
+      justify-content: center;
 
+    }
 
-margin-top:18px;
 
+    .board {
 
-display:flex;
+      position: relative;
 
+      width: 100%;
 
-gap:14px;
+      height: 100%;
 
+      border-radius: 22px;
 
-}
+      overflow: hidden;
 
+      border: 4px solid var(--soft-line);
 
-.circle{
+      box-shadow:
 
+        0 12px 28px rgba(0,0,0,0.12),
 
-width:42px;
+        0 0 0 1px rgba(0,0,0,0.08);
 
-height:42px;
+      background: rgba(255,255,255,0.08);
 
+      display: flex;
 
-border-radius:50%;
+      align-items: center;
 
+      justify-content: center;
 
-display:flex;
+    }
 
-align-items:center;
 
-justify-content:center;
+    .board img {
 
+      width: 100%;
 
-color:white;
+      height: 100%;
 
+      object-fit: cover;
 
-font-weight:bold;
+      object-position: center;
 
+      display: block;
 
-}
+      filter: blur(28px) saturate(0.72) brightness(0.94);
 
+      transform: scale(0.94);
 
-.instagram{background:linear-gradient(45deg,#ff5f6d,#ffc371,#833ab4)}
+      transform-origin: center center;
 
-.x{background:black}
+    }
 
-.tiktok{background:black}
 
-.facebook{background:#1877f2}
+    .board::after {
 
+      content: "";
 
-.footer{
+      position: absolute;
 
+      inset: 0;
 
-margin-top:20px;
+      pointer-events: none;
 
+      background:
 
-font-size:14px;
+        linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(255,255,255,0.02)),
 
+        rgba(62,88,140,0.03);
 
-color:#666;
+    }
 
 
-}
+    .admin-badge {
 
+      position: absolute;
 
-</style>
+      top: 14px;
+
+      right: 14px;
+
+      display: none;
+
+      z-index: 3;
+
+      background: rgba(27, 27, 27, 0.88);
+
+      color: white;
+
+      font-size: 12px;
+
+      letter-spacing: 0.3px;
+
+      padding: 8px 12px;
+
+      border-radius: 999px;
+
+    }
+
+
+    .actions {
+
+      display: flex;
+
+      gap: 16px;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      margin-top: -2px;
+
+    }
+
+
+    .action-btn {
+
+      padding: 13px 28px;
+
+      font-size: 16px;
+
+      min-width: 140px;
+
+    }
+
+
+    .socials {
+
+      display: flex;
+
+      gap: 18px;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      margin-top: 2px;
+
+    }
+
+
+    .social {
+
+      width: 52px;
+
+      height: 52px;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      color: white;
+
+      font-size: 22px;
+
+      font-weight: bold;
+
+      box-shadow: 0 4px 10px rgba(0,0,0,0.10);
+
+    }
+
+
+    .instagram {
+
+      background: linear-gradient(135deg, #ff5f6d, #ffc371, #833ab4);
+
+    }
+
+
+    .x {
+
+      background: #0f1720;
+
+    }
+
+
+    .tiktok {
+
+      background: #101010;
+
+    }
+
+
+    .facebook {
+
+      background: #1877f2;
+
+    }
+
+
+    .footer {
+
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 14px;
+
+      padding-bottom: 2px;
+
+    }
+
+
+    .footer a {
+
+      color: inherit;
+
+      text-decoration: none;
+
+      margin: 0 8px;
+
+    }
+
+
+    body.admin-mode .board img {
+
+      filter: none;
+
+      transform: scale(0.90);
+
+    }
+
+
+    body.admin-mode .admin-badge {
+
+      display: inline-block;
+
+    }
+
+
+    @media (max-width: 1100px) {
+
+      .board-wrap {
+
+        width: min(82vw, 920px);
+
+      }
+
+
+      .top-controls {
+
+        width: min(920px, 92vw);
+
+      }
+
+    }
+
+
+    @media (max-width: 700px) {
+
+      .content {
+
+        padding: 14px 10px 10px;
+
+        gap: 8px;
+
+      }
+
+
+      .title {
+
+        font-size: clamp(36px, 10vw, 56px);
+
+      }
+
+
+      .tagline {
+
+        font-size: 15px;
+
+        line-height: 1.35;
+
+      }
+
+
+      .top-controls {
+
+        width: 94vw;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 10px;
+
+      }
+
+
+      .progress-group {
+
+        padding: 4px 8px;
+
+      }
+
+
+      .progress-number {
+
+        font-size: 16px;
+
+      }
+
+
+      .progress-track {
+
+        width: 120px;
+
+      }
+
+
+      .buy-btn {
+
+        font-size: 14px;
+
+        padding: 10px 18px;
+
+      }
+
+
+      .board-wrap {
+
+        width: 92vw;
+
+        aspect-ratio: 1.54 / 0.90;
+
+      }
+
+
+      .action-btn {
+
+        min-width: 120px;
+
+        font-size: 14px;
+
+        padding: 11px 18px;
+
+      }
+
+
+      .social {
+
+        width: 46px;
+
+        height: 46px;
+
+        font-size: 19px;
+
+      }
+
+
+      .footer {
+
+        font-size: 13px;
+
+      }
+
+    }
+
+  </style>
 
 </head>
 
-
 <body>
 
+  <div class="page">
 
-<h1 class="title">One Tile Project</h1>
+    <div class="content">
 
-
-<div class="subtitle">
-
-Claim your tile. Leave your mark. Be part of digital history.
-
-</div>
+      <h1 class="title">One Tile Project</h1>
 
 
-<div class="progress-number">0%</div>
+      <div class="tagline">
+
+        Claim your tile. Leave your mark. Be part of digital history.
+
+      </div>
 
 
-<div class="progress">
+      <div class="top-controls">
 
-<div class="progress-bar"></div>
+        <div class="progress-group">
 
-</div>
+          <div class="progress-number">0%</div>
 
+          <div class="progress-track">
 
-<button class="buy">Buy Tiles</button>
+            <div class="progress-fill"></div>
 
+          </div>
 
-<div class="board">
-
-
-<div class="admin-badge">ADMIN MODE</div>
-
-
-<img src="swallow-artwork.png">
+        </div>
 
 
-</div>
+        <button class="buy-btn">Buy Tiles</button>
+
+      </div>
 
 
-<div class="actions">
+      <div class="board-area">
+
+        <div class="board-wrap">
+
+          <div class="board">
+
+            <div class="admin-badge">ADMIN MODE</div>
+
+            <img src="swallow-artwork.png" alt="Swallow artwork preview">
+
+          </div>
+
+        </div>
+
+      </div>
 
 
-<button class="button">Share</button>
+      <div class="actions">
+
+        <button class="action-btn">Share</button>
+
+        <button class="action-btn">Find My Tile</button>
+
+      </div>
 
 
-<button class="button">Find My Tile</button>
+      <div class="socials">
+
+        <div class="social instagram">◎</div>
+
+        <div class="social x">X</div>
+
+        <div class="social tiktok">♪</div>
+
+        <div class="social facebook">f</div>
+
+      </div>
 
 
-</div>
+      <div class="footer">
+
+        <a href="#">Terms &amp; Conditions</a>
+
+        •
+
+        <a href="#">Privacy Policy</a>
+
+        •
+
+        <span>© 2024 One Tile Project</span>
+
+      </div>
+
+    </div>
+
+  </div>
 
 
-<div class="socials">
+  <script>
+
+    const params = new URLSearchParams(window.location.search);
+
+    const isAdmin = params.get("admin") === "true";
 
 
-<div class="circle instagram">◎</div>
+    if (isAdmin) {
 
-<div class="circle x">X</div>
+      document.body.classList.add("admin-mode");
 
-<div class="circle tiktok">♪</div>
+    }
 
-<div class="circle facebook">f</div>
-
-
-</div>
-
-
-<div class="footer">
-
-
-Terms & Conditions • Privacy Policy • © 2024 One Tile Project
-
-
-</div>
-
-
-<script>
-
-
-const params=new URLSearchParams(window.location.search)
-
-
-if(params.get("admin")==="true"){
-
-
-document.querySelector(".board img").style.filter="none"
-
-
-document.querySelector(".admin-badge").style.display="block"
-
-
-}
-
-
-</script>
-
+  </script>
 
 </body>
 
