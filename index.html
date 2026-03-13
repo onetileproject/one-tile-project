@@ -32,9 +32,9 @@
 
       font-family: Arial, Helvetica, sans-serif;
 
-      background: #f7f5f1;
+      background: #f7f4ee;
 
-      color: #1f1f1f;
+      color: #222;
 
     }
 
@@ -58,28 +58,12 @@
 
       position: relative;
 
-      background:
-
-        radial-gradient(circle at 14% 62%, rgba(69, 156, 255, 0.26) 0, rgba(69, 156, 255, 0.00) 12%),
-
-        radial-gradient(circle at 20% 72%, rgba(255, 173, 51, 0.24) 0, rgba(255, 173, 51, 0.00) 11%),
-
-        radial-gradient(circle at 28% 78%, rgba(156, 91, 255, 0.20) 0, rgba(156, 91, 255, 0.00) 10%),
-
-        radial-gradient(circle at 79% 58%, rgba(255, 112, 32, 0.24) 0, rgba(255, 112, 32, 0.00) 12%),
-
-        radial-gradient(circle at 74% 70%, rgba(43, 193, 255, 0.24) 0, rgba(43, 193, 255, 0.00) 11%),
-
-        radial-gradient(circle at 84% 77%, rgba(255, 211, 82, 0.20) 0, rgba(255, 211, 82, 0.00) 10%),
-
-        radial-gradient(circle at 16% 30%, rgba(255, 102, 145, 0.12) 0, rgba(255, 102, 145, 0.00) 8%),
-
-        radial-gradient(circle at 84% 28%, rgba(255, 148, 84, 0.12) 0, rgba(255, 148, 84, 0.00) 8%),
-
-        #f7f5f1;
+      background: #f7f4ee;
 
     }
 
+
+    /* χρωματιστές πιτσιλιές γύρω από το board */
 
     .page::before {
 
@@ -91,34 +75,38 @@
 
       pointer-events: none;
 
-      opacity: 0.42;
+      background:
 
-      background-image:
+        radial-gradient(circle at 22% 55%, rgba(70,139,255,0.75) 0 6%, transparent 18%),
 
-        radial-gradient(circle at 13% 63%, rgba(52,132,255,0.70) 0 2px, transparent 3px),
+        radial-gradient(circle at 18% 68%, rgba(255,174,52,0.70) 0 5%, transparent 16%),
 
-        radial-gradient(circle at 17% 68%, rgba(255,164,44,0.72) 0 3px, transparent 4px),
+        radial-gradient(circle at 26% 73%, rgba(151,92,255,0.65) 0 5%, transparent 16%),
 
-        radial-gradient(circle at 25% 77%, rgba(136,89,255,0.60) 0 2px, transparent 3px),
+        radial-gradient(circle at 76% 57%, rgba(255,114,33,0.72) 0 6%, transparent 18%),
 
-        radial-gradient(circle at 78% 58%, rgba(255,105,28,0.72) 0 3px, transparent 4px),
+        radial-gradient(circle at 80% 67%, rgba(69,205,255,0.72) 0 5%, transparent 17%),
 
-        radial-gradient(circle at 82% 68%, rgba(58,190,255,0.70) 0 2px, transparent 3px),
+        radial-gradient(circle at 72% 75%, rgba(255,215,92,0.68) 0 5%, transparent 15%),
 
-        radial-gradient(circle at 73% 77%, rgba(255,206,84,0.66) 0 3px, transparent 4px),
+        radial-gradient(circle at 29% 59%, rgba(255,255,255,0.35) 0 3%, transparent 10%),
 
-        radial-gradient(circle at 18% 60%, rgba(0,0,0,0.09) 0 1px, transparent 2px),
+        radial-gradient(circle at 69% 62%, rgba(255,255,255,0.30) 0 3%, transparent 10%),
 
-        radial-gradient(circle at 80% 61%, rgba(0,0,0,0.09) 0 1px, transparent 2px),
+        radial-gradient(circle at 17% 43%, rgba(255,99,140,0.45) 0 2.2%, transparent 9%),
 
-        radial-gradient(circle at 22% 75%, rgba(255,255,255,0.60) 0 4px, transparent 5px),
+        radial-gradient(circle at 84% 42%, rgba(255,161,88,0.42) 0 2.2%, transparent 9%),
 
-        radial-gradient(circle at 76% 72%, rgba(255,255,255,0.55) 0 4px, transparent 5px);
+        #f7f4ee;
 
-      background-size: 100% 100%;
+      filter: saturate(1.05);
+
+      opacity: 0.95;
 
     }
 
+
+    /* μικρές πιτσιλιές/σκόνη */
 
     .page::after {
 
@@ -130,17 +118,31 @@
 
       pointer-events: none;
 
-      opacity: 0.12;
+      opacity: 0.32;
 
       background-image:
 
-        radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1.5px),
+        radial-gradient(circle at 18% 59%, rgba(53,129,255,0.95) 0 2px, transparent 3px),
 
-        radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1.5px);
+        radial-gradient(circle at 21% 71%, rgba(255,171,53,0.95) 0 3px, transparent 4px),
 
-      background-size: 28px 28px, 44px 44px;
+        radial-gradient(circle at 25% 78%, rgba(149,89,255,0.85) 0 2px, transparent 3px),
 
-      background-position: 0 0, 12px 16px;
+        radial-gradient(circle at 79% 59%, rgba(255,108,28,0.95) 0 3px, transparent 4px),
+
+        radial-gradient(circle at 82% 68%, rgba(58,189,255,0.90) 0 2px, transparent 3px),
+
+        radial-gradient(circle at 73% 77%, rgba(255,206,84,0.92) 0 3px, transparent 4px),
+
+        radial-gradient(circle at 15% 63%, rgba(0,0,0,0.10) 0 1px, transparent 2px),
+
+        radial-gradient(circle at 80% 64%, rgba(0,0,0,0.10) 0 1px, transparent 2px),
+
+        radial-gradient(circle at 23% 75%, rgba(255,255,255,0.85) 0 4px, transparent 5px),
+
+        radial-gradient(circle at 77% 73%, rgba(255,255,255,0.8) 0 4px, transparent 5px);
+
+      background-size: 100% 100%;
 
     }
 
@@ -155,7 +157,7 @@
 
       height: 100%;
 
-      max-width: 1200px;
+      max-width: 1280px;
 
       margin: 0 auto;
 
@@ -165,7 +167,7 @@
 
       align-items: center;
 
-      padding: 16px 18px 10px;
+      padding: 22px 18px 12px;
 
     }
 
@@ -174,7 +176,7 @@
 
       margin: 0;
 
-      font-size: clamp(38px, 5.8vw, 74px);
+      font-size: clamp(44px, 6vw, 88px);
 
       line-height: 1;
 
@@ -182,7 +184,7 @@
 
       font-weight: 500;
 
-      background: linear-gradient(90deg, #2366c7 0%, #7a36b6 45%, #d66d2f 75%, #d64545 100%);
+      background: linear-gradient(90deg, #1e67cb 0%, #7b39b8 42%, #d06d31 72%, #d64040 100%);
 
       -webkit-background-clip: text;
 
@@ -197,11 +199,11 @@
 
     .tagline {
 
-      margin: 6px 0 10px;
+      margin: 10px 0 14px;
 
-      font-size: clamp(16px, 1.7vw, 24px);
+      font-size: clamp(18px, 1.9vw, 22px);
 
-      color: #383838;
+      color: #3c3c3c;
 
       text-align: center;
 
@@ -212,20 +214,20 @@
 
     .progress-value {
 
-      font-size: 15px;
+      font-size: 16px;
 
-      color: #444;
+      color: #4a4a4a;
 
-      margin-bottom: 6px;
+      margin-bottom: 8px;
 
     }
 
 
     .progress {
 
-      width: min(330px, 78vw);
+      width: min(340px, 76vw);
 
-      height: 10px;
+      height: 12px;
 
       border-radius: 999px;
 
@@ -244,7 +246,7 @@
 
       height: 100%;
 
-      background: linear-gradient(90deg, #7fa6f0 0%, #577fda 100%);
+      background: linear-gradient(90deg, #7ea7f2 0%, #5b80d8 100%);
 
       border-radius: 999px;
 
@@ -253,36 +255,36 @@
 
     .buy-btn {
 
-      margin-top: 12px;
+      margin-top: 16px;
 
-      border: 1px solid rgba(0,0,0,0.18);
+      border: 1px solid rgba(0,0,0,0.20);
 
-      background: rgba(255,255,255,0.95);
+      background: rgba(255,255,255,0.94);
 
       color: #333;
 
-      padding: 12px 24px;
+      padding: 14px 28px;
 
       border-radius: 999px;
 
-      font-size: 17px;
+      font-size: 18px;
 
       cursor: pointer;
 
-      box-shadow: 0 3px 8px rgba(0,0,0,0.10);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.10);
 
     }
 
 
     .board-wrap {
 
-      margin-top: 14px;
+      margin-top: 18px;
+
+      width: min(62vw, 740px);
 
       flex: 1 1 auto;
 
       min-height: 0;
-
-      width: min(68vw, 560px);
 
       display: flex;
 
@@ -299,11 +301,11 @@
 
       width: 100%;
 
-      aspect-ratio: 1 / 1;
+      aspect-ratio: 1.55 / 0.85;
 
-      max-height: 44vh;
+      max-height: 43vh;
 
-      max-height: 44svh;
+      max-height: 43svh;
 
       border-radius: 18px;
 
@@ -311,15 +313,15 @@
 
       position: relative;
 
-      border: 3px solid rgba(255,255,255,0.86);
+      border: 3px solid rgba(255,255,255,0.85);
 
       box-shadow:
 
-        0 10px 30px rgba(0,0,0,0.12),
+        0 10px 28px rgba(0,0,0,0.12),
 
         0 0 0 1px rgba(0,0,0,0.08);
 
-      background: rgba(160, 176, 208, 0.10);
+      background: linear-gradient(180deg, rgba(108,138,192,0.14), rgba(89,116,170,0.10));
 
       display: flex;
 
@@ -340,9 +342,9 @@
 
       display: block;
 
-      filter: blur(38px) saturate(0.62) brightness(0.90);
+      filter: blur(34px) saturate(0.68) brightness(0.92);
 
-      transform: scale(0.90);
+      transform: scale(0.92);
 
       transform-origin: center center;
 
@@ -361,9 +363,9 @@
 
       background:
 
-        linear-gradient(to bottom, rgba(255,255,255,0.04), rgba(255,255,255,0.02)),
+        linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(255,255,255,0.02)),
 
-        rgba(68, 93, 145, 0.04);
+        rgba(62, 88, 140, 0.04);
 
     }
 
@@ -397,11 +399,11 @@
 
     .actions {
 
-      margin-top: 14px;
+      margin-top: 18px;
 
       display: flex;
 
-      gap: 12px;
+      gap: 14px;
 
       flex-wrap: wrap;
 
@@ -412,32 +414,32 @@
 
     .action-btn {
 
-      border: 1px solid rgba(0,0,0,0.16);
+      border: 1px solid rgba(0,0,0,0.18);
 
-      background: rgba(255,255,255,0.94);
+      background: rgba(255,255,255,0.95);
 
       color: #3a3a3a;
 
-      padding: 12px 22px;
+      padding: 14px 26px;
 
       border-radius: 999px;
 
-      font-size: 16px;
+      font-size: 17px;
 
       cursor: pointer;
 
-      box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 
     }
 
 
     .socials {
 
-      margin-top: 14px;
+      margin-top: 18px;
 
       display: flex;
 
-      gap: 14px;
+      gap: 16px;
 
       justify-content: center;
 
@@ -448,9 +450,9 @@
 
     .social {
 
-      width: 48px;
+      width: 52px;
 
-      height: 48px;
+      height: 52px;
 
       border-radius: 50%;
 
@@ -460,7 +462,7 @@
 
       font-weight: bold;
 
-      font-size: 20px;
+      font-size: 22px;
 
       color: white;
 
@@ -480,7 +482,7 @@
 
     .footer {
 
-      margin-top: 12px;
+      margin-top: 16px;
 
       text-align: center;
 
@@ -508,7 +510,7 @@
 
       filter: none;
 
-      transform: scale(0.90);
+      transform: scale(0.92);
 
     }
 
@@ -520,18 +522,29 @@
     }
 
 
+    @media (max-width: 900px) {
+
+      .board-wrap {
+
+        width: min(78vw, 720px);
+
+      }
+
+    }
+
+
     @media (max-width: 700px) {
 
       .content {
 
-        padding: 14px 10px 10px;
+        padding: 16px 10px 10px;
 
       }
 
 
       .title {
 
-        font-size: clamp(34px, 10vw, 54px);
+        font-size: clamp(36px, 10vw, 56px);
 
       }
 
@@ -558,27 +571,27 @@
 
       .board-wrap {
 
-        width: 86vw;
+        width: 90vw;
 
       }
 
 
       .board {
 
-        max-height: 40vh;
+        max-height: 36vh;
 
-        max-height: 40svh;
+        max-height: 36svh;
 
       }
 
 
       .social {
 
-        width: 44px;
+        width: 46px;
 
-        height: 44px;
+        height: 46px;
 
-        font-size: 18px;
+        font-size: 19px;
 
       }
 
@@ -683,7 +696,6 @@
     const params = new URLSearchParams(window.location.search);
 
     const isAdmin = params.get("admin") === "true";
-
 
     if (isAdmin) {
 
