@@ -268,23 +268,28 @@
     }
 
 
-    .board img {
+   .board img {
 
-      width: 100%;
+  width: 100%;
 
-      height: 100%;
+  height: 100%;
 
-      object-fit: contain;
+  object-fit: contain;
 
-      object-position: center;
+  object-position: center center;
 
-      display: block;
+  display: block;
 
-      filter: none;
+  filter: none;
 
-      transform: none;
+  transform: scale(1.08);
 
-    }
+  transform-origin: center center;
+
+}
+
+
+
 
 
     .board::before {
@@ -365,6 +370,17 @@
       display: none;
 
     }
+    
+
+body.admin-mode .board img {
+
+  transform: scale(1.08);
+
+  object-position: center center;
+
+}
+
+
 
 
     body.admin-mode .admin-badge {
