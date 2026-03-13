@@ -330,23 +330,23 @@
     }
 
 
-    .board-wrap {
+   .board-wrap {
 
-      width: min(62vw, 860px);
+  width: min(70vw, 980px);
 
-      aspect-ratio: 1.62 / 0.92;
+  aspect-ratio: var(--art-ratio, 1 / 1);
 
-      position: relative;
+  position: relative;
 
-      display: flex;
+  display: flex;
 
-      align-items: center;
+  align-items: center;
 
-      justify-content: center;
+  justify-content: center;
 
-      margin-top: 0;
+  margin-top: 0;
 
-    }
+}
 
 
     .board {
@@ -376,7 +376,7 @@
     }
 
 
-   .board img {
+  .board img {
 
   width: 100%;
 
@@ -388,9 +388,9 @@
 
   display: block;
 
-  filter: blur(44px) saturate(0.36) brightness(1.02);
+  filter: none;
 
-  transform: scale(1.05);
+  transform: none;
 
   transform-origin: center center;
 
@@ -613,11 +613,11 @@
 
   object-fit: contain;
 
-  object-position: center 54%;
+  object-position: center;
 
-  transform: scale(1.14);
+  transform: none;
 
-    }
+}
 
 
     body.admin-mode .board::before,
@@ -931,20 +931,55 @@
   </div>
 
 
-  <script>
+  
 
-    const params = new URLSearchParams(window.location.search);
+<script>
 
-    const isAdmin = params.get("admin") === "true";
+  const params = new URLSearchParams(window.location.search);
+
+  const isAdmin = params.get("admin") === "true";
 
 
-    if (isAdmin) {
+  if (isAdmin) {
 
-      document.body.classList.add("admin-mode");
+    document.body.classList.add("admin-mode");
+
+  }
+
+
+  const artwork = document.querySelector(".board img");
+
+  const root = document.documentElement;
+
+
+  function setArtworkRatio() {
+
+    if (!artwork || !artwork.naturalWidth || !artwork.naturalHeight) return;
+
+    const ratio = artwork.naturalWidth / artwork.naturalHeight;
+
+    root.style.setProperty("--art-ratio", ratio);
+
+  }
+
+
+  if (artwork) {
+
+    if (artwork.complete) {
+
+      setArtworkRatio();
+
+    } else {
+
+      artwork.addEventListener("load", setArtworkRatio);
 
     }
 
-  </script>
+  }
+
+</script>
+
+
 
 </body>
 
