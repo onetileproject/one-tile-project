@@ -4,417 +4,874 @@
 
 <head>
 
-<meta charset="UTF-8">
+  <meta charset="UTF-8" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>One Tile Project</title>
+  <title>One Tile Project</title>
 
 
-<style>
+  <style>
 
-*{box-sizing:border-box}
+    * { box-sizing: border-box; }
 
 
-html,body{
+    :root {
 
-  margin:0;
+      --bg: #f6f2eb;
 
-  height:100%;
+      --text: #4b4b4b;
 
-  font-family:Arial,Helvetica,sans-serif;
+      --muted: #7b7b7b;
 
-  background:#f5f1ea;
+      --panel-bg: rgba(255,255,255,0.82);
 
-  overflow:hidden;
+      --panel-border: rgba(0,0,0,0.08);
 
-}
+      --frame-border: rgba(255,255,255,0.92);
 
+    }
 
-.page{
 
-  width:100vw;
+    html, body {
 
-  height:100vh;
+      margin: 0;
 
-  display:flex;
+      width: 100%;
 
-  align-items:center;
+      height: 100%;
 
-  justify-content:center;
+      overflow: hidden;
 
-  background:url("page-background.png") center/cover no-repeat;
+      font-family: Arial, Helvetica, sans-serif;
 
-}
+      background: var(--bg);
 
+      color: var(--text);
 
-.container{
+    }
 
-  width:min(1400px,94vw);
 
-  height:92vh;
+    body {
 
-  display:flex;
+      position: relative;
 
-  flex-direction:column;
+    }
 
-  align-items:center;
 
-  justify-content:flex-start;
+    .page {
 
-}
+      width: 100vw;
 
+      height: 100vh;
 
-.title{
+      position: relative;
 
-  font-size:64px;
+      overflow: hidden;
 
-  font-family:"Brush Script MT",cursive;
+      background: url("page-background.png") center center / cover no-repeat;
 
-  margin:10px 0 0;
+    }
 
-  background:linear-gradient(90deg,#2c7ddf,#9c48c9,#d76831,#d84a4a);
 
-  -webkit-background-clip:text;
+    .page::before {
 
-  color:transparent;
+      content: "";
 
-}
+      position: absolute;
 
+      inset: 0;
 
-.tagline{
+      pointer-events: none;
 
-  margin:6px 0 14px;
+      opacity: 0.08;
 
-  color:#555;
+      background-image:
 
-  font-size:20px;
+        radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1.4px),
 
-}
+        radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1.4px);
 
+      background-size: 26px 26px, 42px 42px;
 
-.main{
+      background-position: 0 0, 12px 14px;
 
-  width:100%;
+    }
 
-  display:grid;
 
-  grid-template-columns: 1fr 230px;
+    .shell {
 
-  gap:28px;
+      position: relative;
 
-  align-items:center;
+      z-index: 2;
 
-  justify-content:center;
+      width: min(1420px, 95vw);
 
-}
+      height: 100%;
 
+      margin: 0 auto;
 
-.board-wrap{
+      padding: 22px 18px 18px;
 
-  display:flex;
+      display: grid;
 
-  justify-content:center;
+      grid-template-rows: auto auto 1fr;
 
-}
+      justify-items: center;
 
+      align-items: start;
 
-.board{
+      gap: 10px;
 
-  width:min(640px,65vh);
+    }
 
-  aspect-ratio:1/1;
 
-  border-radius:26px;
+    .title {
 
-  overflow:hidden;
+      margin: 0;
 
-  border:4px solid rgba(255,255,255,0.9);
+      line-height: 1;
 
-  position:relative;
+      text-align: center;
 
-  box-shadow:0 14px 30px rgba(0,0,0,0.12);
+      font-size: clamp(52px, 6vw, 90px);
 
-}
+      font-family: "Brush Script MT", "Segoe Script", cursive;
 
+      font-weight: 500;
 
-.board img{
+      background: linear-gradient(90deg, #2b7ad8 0%, #7f45c3 42%, #d37835 74%, #d94b4b 100%);
 
-  width:100%;
+      -webkit-background-clip: text;
 
-  height:100%;
+      background-clip: text;
 
-  object-fit:contain;
+      color: transparent;
 
-  object-position:center;
+    }
 
-  display:block;
 
-}
+    .tagline {
 
+      margin: 0;
 
-/* blur layer for public */
+      text-align: center;
 
-.board::after{
+      font-size: clamp(18px, 1.55vw, 24px);
 
-  content:"";
+      color: #555;
 
-  position:absolute;
+      max-width: 920px;
 
-  inset:0;
+    }
 
-  backdrop-filter:blur(18px);
 
-  background:rgba(255,255,255,0.18);
+    .main {
 
-}
+      width: 100%;
 
+      height: 100%;
 
-body.admin .board::after{
+      min-height: 0;
 
-  display:none;
+      display: grid;
 
-}
+      grid-template-columns: minmax(0, 860px) 230px;
 
+      gap: 18px;
 
-.panel{
+      justify-content: center;
 
-  background:rgba(255,255,255,0.86);
+      align-items: center;
 
-  backdrop-filter:blur(6px);
+    }
 
-  border-radius:18px;
 
-  padding:16px;
+    .art-area {
 
-  display:flex;
+      min-width: 0;
 
-  flex-direction:column;
+      min-height: 0;
 
-  gap:14px;
+      display: flex;
 
-  box-shadow:0 10px 20px rgba(0,0,0,0.08);
+      align-items: center;
 
-}
+      justify-content: flex-end;
 
+    }
 
-.progress{
 
-  text-align:center;
+    .board-wrap {
 
-}
+      width: min(70vh, 44vw, 760px);
 
+      aspect-ratio: 1 / 1;
 
-.bar{
+      position: relative;
 
-  height:12px;
+      display: flex;
 
-  border-radius:20px;
+      align-items: center;
 
-  border:1px solid rgba(0,0,0,0.2);
+      justify-content: center;
 
-  overflow:hidden;
+    }
 
-}
 
+    .board {
 
-.fill{
+      width: 100%;
 
-  height:100%;
+      height: 100%;
 
-  width:0%;
+      position: relative;
 
-  background:#888;
+      border-radius: 26px;
 
-}
+      overflow: hidden;
 
+      border: 4px solid var(--frame-border);
 
-button{
+      background: rgba(255,255,255,0.12);
 
-  border:none;
+      box-shadow:
 
-  border-radius:14px;
+        0 14px 30px rgba(0,0,0,0.12),
 
-  padding:12px;
+        0 0 0 1px rgba(0,0,0,0.06);
 
-  background:#f2e8da;
+      isolation: isolate;
 
-  font-size:16px;
+    }
 
-  cursor:pointer;
 
-}
+    .board img {
 
+      width: 100%;
 
-.share{
+      height: 100%;
 
-  background:white;
+      object-fit: cover;
 
-}
+      object-position: center;
 
+      display: block;
 
-.socials{
+      transform: scale(1.02);
 
-  display:flex;
+      transform-origin: center center;
 
-  justify-content:center;
+      filter: blur(14px) saturate(0.5) brightness(1.04);
 
-  gap:10px;
+    }
 
-}
 
+    .board::before {
 
-.social{
+      content: "";
 
-  width:36px;
+      position: absolute;
 
-  height:36px;
+      inset: 0;
 
-  border-radius:50%;
+      z-index: 2;
 
-  display:flex;
+      pointer-events: none;
 
-  align-items:center;
+      box-shadow:
 
-  justify-content:center;
+        inset 0 0 125px rgba(255,255,255,0.74),
 
-  color:white;
+        inset 0 0 210px rgba(255,255,255,0.28);
 
-  font-size:14px;
+    }
 
-}
 
+    .board::after {
 
-.instagram{background:linear-gradient(45deg,#fdf497,#fd5949,#d6249f,#285AEB)}
+      content: "";
 
-.x{background:#000}
+      position: absolute;
 
-.tiktok{background:#111}
+      inset: 0;
 
-.facebook{background:#1877f2}
+      z-index: 2;
 
+      pointer-events: none;
 
-.footer{
+      background:
 
-  text-align:center;
+        linear-gradient(to bottom, rgba(255,255,255,0.16), rgba(255,255,255,0.08)),
 
-  font-size:12px;
+        rgba(255,255,255,0.15);
 
-  color:#666;
+      backdrop-filter: blur(16px);
 
-  margin-top:4px;
+    }
 
-}
 
+    .admin-badge {
 
-@media(max-width:1000px){
+      position: absolute;
 
-  .main{
+      top: 14px;
 
-    grid-template-columns:1fr;
+      right: 14px;
 
-  }
+      z-index: 4;
 
-}
+      display: none;
 
-</style>
+      background: rgba(27,27,27,0.88);
+
+      color: white;
+
+      font-size: 12px;
+
+      letter-spacing: 0.3px;
+
+      padding: 8px 12px;
+
+      border-radius: 999px;
+
+    }
+
+
+    body.admin-mode .board img {
+
+      filter: none;
+
+      transform: scale(1.02);
+
+    }
+
+
+    body.admin-mode .board::before,
+
+    body.admin-mode .board::after {
+
+      display: none;
+
+    }
+
+
+    body.admin-mode .admin-badge {
+
+      display: inline-block;
+
+    }
+
+
+    .side-panel {
+
+      width: 100%;
+
+      max-width: 230px;
+
+      background: var(--panel-bg);
+
+      border: 1px solid var(--panel-border);
+
+      border-radius: 18px;
+
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+
+      backdrop-filter: blur(6px);
+
+      padding: 16px 14px 14px;
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 14px;
+
+    }
+
+
+    .progress-block {
+
+      display: grid;
+
+      gap: 10px;
+
+    }
+
+
+    .progress-number {
+
+      text-align: center;
+
+      font-size: 18px;
+
+      font-weight: 600;
+
+      color: #4a4a4a;
+
+      line-height: 1;
+
+    }
+
+
+    .progress-track {
+
+      width: 100%;
+
+      height: 12px;
+
+      border: 1px solid rgba(0,0,0,0.18);
+
+      border-radius: 999px;
+
+      background: rgba(255,255,255,0.96);
+
+      overflow: hidden;
+
+    }
+
+
+    .progress-fill {
+
+      width: 0%;
+
+      height: 100%;
+
+      background: #9b9b9b;
+
+      border-radius: 999px;
+
+    }
+
+
+    .buy-btn,
+
+    .action-btn {
+
+      width: 100%;
+
+      min-height: 54px;
+
+      border-radius: 14px;
+
+      border: 1px solid rgba(0,0,0,0.08);
+
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+
+      cursor: pointer;
+
+      display: inline-flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 10px;
+
+      font-size: 16px;
+
+      color: #4a4a4a;
+
+      text-decoration: none;
+
+    }
+
+
+    .buy-btn {
+
+      background: rgba(245, 231, 210, 0.95);
+
+    }
+
+
+    .action-btn {
+
+      background: rgba(255,255,255,0.94);
+
+    }
+
+
+    .action-icon {
+
+      width: 19px;
+
+      height: 19px;
+
+      flex: 0 0 auto;
+
+      display: inline-block;
+
+    }
+
+
+    .socials {
+
+      display: flex;
+
+      justify-content: center;
+
+      gap: 10px;
+
+      padding-top: 2px;
+
+    }
+
+
+    .social {
+
+      width: 38px;
+
+      height: 38px;
+
+      border-radius: 50%;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      color: white;
+
+      overflow: hidden;
+
+      box-shadow: 0 4px 10px rgba(0,0,0,0.10);
+
+      text-decoration: none;
+
+      flex: 0 0 auto;
+
+    }
+
+
+    .social svg {
+
+      width: 18px;
+
+      height: 18px;
+
+      display: block;
+
+    }
+
+
+    .instagram {
+
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+
+    }
+
+
+    .x { background: #0f1720; }
+
+    .tiktok { background: #111; }
+
+    .facebook { background: #1877f2; }
+
+
+    .footer {
+
+      border-top: 1px solid rgba(0,0,0,0.09);
+
+      padding-top: 12px;
+
+      display: grid;
+
+      gap: 8px;
+
+      text-align: center;
+
+      color: var(--muted);
+
+      font-size: 12px;
+
+      line-height: 1.4;
+
+    }
+
+
+    .footer a {
+
+      color: inherit;
+
+      text-decoration: none;
+
+    }
+
+
+    @media (max-width: 1100px) {
+
+      .main {
+
+        grid-template-columns: 1fr;
+
+        gap: 18px;
+
+        justify-items: center;
+
+      }
+
+
+      .art-area {
+
+        justify-content: center;
+
+      }
+
+
+      .board-wrap {
+
+        width: min(78vw, 62vh);
+
+      }
+
+
+      .side-panel {
+
+        max-width: 420px;
+
+        width: min(92vw, 420px);
+
+      }
+
+    }
+
+
+    @media (max-width: 700px) {
+
+      .shell {
+
+        padding: 14px 10px 10px;
+
+      }
+
+
+      .title {
+
+        font-size: clamp(38px, 10vw, 58px);
+
+      }
+
+
+      .tagline {
+
+        font-size: 15px;
+
+        line-height: 1.35;
+
+      }
+
+
+      .board-wrap {
+
+        width: min(90vw, 48vh);
+
+      }
+
+
+      .buy-btn,
+
+      .action-btn {
+
+        min-height: 48px;
+
+        font-size: 14px;
+
+      }
+
+
+      .social {
+
+        width: 34px;
+
+        height: 34px;
+
+      }
+
+
+      .social svg {
+
+        width: 16px;
+
+        height: 16px;
+
+      }
+
+
+      .footer {
+
+        font-size: 11px;
+
+      }
+
+    }
+
+  </style>
 
 </head>
 
 
 <body>
 
+  <div class="page">
 
-<div class="page">
+    <div class="shell">
 
-
-<div class="container">
-
-
-<h1 class="title">One Tile Project</h1>
-
-<div class="tagline">Claim your tile. Leave your mark. Be part of digital history.</div>
+      <h1 class="title">One Tile Project</h1>
 
 
-<div class="main">
+      <p class="tagline">
+
+        Claim your tile. Leave your mark. Be part of digital history.
+
+      </p>
 
 
-<div class="board-wrap">
+      <div class="main">
 
-<div class="board">
+        <div class="art-area">
 
-<img src="swallow-artwork.png" alt="">
+          <div class="board-wrap">
 
-</div>
+            <div class="board">
 
-</div>
+              <div class="admin-badge">ADMIN MODE</div>
 
+              <img src="swallow-artwork.png" alt="Swallow artwork preview">
 
-<div class="panel">
+            </div>
 
+          </div>
 
-<div class="progress">
-
-<div>0%</div>
-
-<div class="bar"><div class="fill"></div></div>
-
-</div>
+        </div>
 
 
-<button>Buy Tiles</button>
+        <aside class="side-panel">
 
-<button class="share">Share</button>
+          <div class="progress-block">
 
-<button class="share">Find My Tile</button>
+            <div class="progress-number">0%</div>
 
+            <div class="progress-track">
 
-<div class="socials">
+              <div class="progress-fill"></div>
 
-<div class="social instagram">I</div>
+            </div>
 
-<div class="social x">X</div>
-
-<div class="social tiktok">T</div>
-
-<div class="social facebook">f</div>
-
-</div>
+          </div>
 
 
-<div class="footer">
-
-<div>Terms & Conditions</div>
-
-<div>Privacy Policy</div>
-
-<div>© 2024 One Tile Project</div>
-
-</div>
+          <button class="buy-btn" type="button">Buy Tiles</button>
 
 
-</div>
+          <button class="action-btn" type="button">
+
+            <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+              <circle cx="18" cy="5" r="3"></circle>
+
+              <circle cx="6" cy="12" r="3"></circle>
+
+              <circle cx="18" cy="19" r="3"></circle>
+
+              <path d="M8.6 13.5 15.4 17.5"></path>
+
+              <path d="M15.4 6.5 8.6 10.5"></path>
+
+            </svg>
+
+            Share
+
+          </button>
 
 
-</div>
+          <button class="action-btn" type="button">Find My Tile</button>
 
 
-</div>
+          <div class="socials">
+
+            <a class="social instagram" href="#" aria-label="Instagram">
+
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
+
+                <circle cx="12" cy="12" r="4"></circle>
+
+                <circle cx="17.5" cy="6.5" r="1"></circle>
+
+              </svg>
+
+            </a>
 
 
-</div>
+            <a class="social x" href="#" aria-label="X">
+
+              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                <path d="M4 4 20 20"></path>
+
+                <path d="M20 4 4 20"></path>
+
+              </svg>
+
+            </a>
 
 
-<script>
+            <a class="social tiktok" href="#" aria-label="TikTok">
 
-if(new URLSearchParams(location.search).get("admin")==="true"){
+              <svg viewBox="0 0 24 24" fill="white" aria-hidden="true">
 
- document.body.classList.add("admin")
+                <path d="M14.5 3c.3 1.7 1.4 3.2 3 4.1 1 .5 2 .8 3.1.8V11c-1.4 0-2.8-.4-4.1-1.1v5.8a5.5 5.5 0 1 1-5.5-5.5c.3 0 .6 0 .9.1v3c-.3-.1-.6-.2-.9-.2a2.5 2.5 0 1 0 2.5 2.5V3h1z"></path>
 
-}
+              </svg>
 
-</script>
+            </a>
 
+
+            <a class="social facebook" href="#" aria-label="Facebook">
+
+              <svg viewBox="0 0 24 24" fill="white" aria-hidden="true">
+
+                <path d="M14 8h3V4h-3c-3 0-5 2-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.7.3-1 1-1z"></path>
+
+              </svg>
+
+            </a>
+
+          </div>
+
+
+          <div class="footer">
+
+            <div><a href="#">Terms &amp; Conditions</a></div>
+
+            <div><a href="#">Privacy Policy</a></div>
+
+            <div>© 2024 One Tile Project</div>
+
+          </div>
+
+        </aside>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("admin") === "true") {
+
+      document.body.classList.add("admin-mode");
+
+    }
+
+  </script>
 
 </body>
 
