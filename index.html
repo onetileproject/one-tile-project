@@ -376,7 +376,7 @@
     }
 
 
-    board img {
+   .board img {
 
   width: 100%;
 
@@ -388,9 +388,9 @@
 
   display: block;
 
-  filter: none;
+  filter: blur(44px) saturate(0.36) brightness(1.02);
 
-  transform: scale(1.08);
+  transform: scale(1.05);
 
   transform-origin: center center;
 
@@ -607,11 +607,15 @@
     }
 
 
-    body.admin-mode .board img {
+   body.admin-mode .board img {
 
-      filter: none;
+  filter: none;
 
-      transform: scale(1.08);
+  object-fit: contain;
+
+  object-position: center 54%;
+
+  transform: scale(1.14);
 
     }
 
