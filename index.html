@@ -199,7 +199,7 @@
 
       position: absolute;
 
-      top: 675px;
+      top: 690px;
 
       left: 50%;
 
@@ -232,7 +232,7 @@
 
       position: absolute;
 
-      top: 691px;
+      top: 706px;
 
       left: 50%;
 
@@ -313,7 +313,7 @@
 
       position: absolute;
 
-      top: 770px;
+      top: 790px;
 
       left: 50%;
 
@@ -531,13 +531,70 @@
 
     .social.instagram {
 
+      position: relative;
+
       background:
 
         radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 
-      font-size: 20px;
+    }
 
-      font-weight: 900;
+
+    .ig-icon {
+
+      position: relative;
+
+      width: 22px;
+
+      height: 22px;
+
+      border: 2.4px solid #ffffff;
+
+      border-radius: 6px;
+
+      display: inline-block;
+
+    }
+
+
+    .ig-icon::before {
+
+      content: "";
+
+      position: absolute;
+
+      width: 8px;
+
+      height: 8px;
+
+      border: 2.2px solid #ffffff;
+
+      border-radius: 50%;
+
+      top: 4px;
+
+      left: 4px;
+
+    }
+
+
+    .ig-icon::after {
+
+      content: "";
+
+      position: absolute;
+
+      width: 3px;
+
+      height: 3px;
+
+      background: #ffffff;
+
+      border-radius: 50%;
+
+      top: 3px;
+
+      right: 3px;
 
     }
 
@@ -638,7 +695,7 @@
 
           <div class="social tiktok">♪</div>
 
-          <div class="social instagram">◎</div>
+          <div class="social instagram"><span class="ig-icon"></span></div>
 
         </div>
 
@@ -776,10 +833,10 @@
       const [c1, c2, c3] = colorFromSeed(seed);
 
 
-      drawRoundedRect(x, y, w, h, 2.5, "#f8f8f8", "rgba(0,0,0,0.12)", 0.4);
+      drawRoundedRect(x, y, w, h, 2.2, "#f8f8f8", "rgba(0,0,0,0.10)", 0.35);
 
 
-      const pad = Math.max(1, w * 0.06);
+      const pad = Math.max(1, w * 0.05);
 
       const ix = x + pad;
 
@@ -799,20 +856,20 @@
       grad.addColorStop(1, c3);
 
 
-      drawRoundedRect(ix, iy, iw, ih, 1.8, grad, "rgba(255,255,255,0.35)", 0.25);
+      drawRoundedRect(ix, iy, iw, ih, 1.4, grad, "rgba(255,255,255,0.28)", 0.2);
 
 
-      ctx.strokeStyle = "rgba(255,255,255,0.55)";
+      ctx.strokeStyle = "rgba(255,255,255,0.45)";
 
-      ctx.lineWidth = 0.45;
+      ctx.lineWidth = 0.28;
 
       ctx.beginPath();
 
-      ctx.moveTo(ix + iw * 0.1, iy + ih * 0.82);
+      ctx.moveTo(ix + iw * 0.08, iy + ih * 0.84);
 
-      ctx.lineTo(ix + iw * 0.45, iy + ih * 0.42);
+      ctx.lineTo(ix + iw * 0.42, iy + ih * 0.44);
 
-      ctx.lineTo(ix + iw * 0.68, iy + ih * 0.62);
+      ctx.lineTo(ix + iw * 0.66, iy + ih * 0.64);
 
       ctx.lineTo(ix + iw * 0.92, iy + ih * 0.26);
 
@@ -821,9 +878,9 @@
 
       ctx.beginPath();
 
-      ctx.arc(ix + iw * 0.26, iy + ih * 0.28, Math.max(0.8, iw * 0.08), 0, Math.PI * 2);
+      ctx.arc(ix + iw * 0.24, iy + ih * 0.26, Math.max(0.7, iw * 0.07), 0, Math.PI * 2);
 
-      ctx.fillStyle = "rgba(255,255,255,0.85)";
+      ctx.fillStyle = "rgba(255,255,255,0.75)";
 
       ctx.fill();
 
@@ -835,57 +892,42 @@
       const cells = [];
 
 
-      for (let c = 0; c < COLS; c++) {
+      for (let r = 0; r < ROWS; r++) {
 
-        if (c < 62 || c > 181) cells.push([c, 0]);
+        for (let c = 0; c < COLS; c++) {
 
-        if (c < 55 || c > 189) cells.push([c, 1]);
+          const topBand = r < 18;
 
-      }
+          const bottomBand = r >= ROWS - 24;
 
+          const leftBand = c < 18;
 
-      for (let r = 2; r < 62; r++) {
-
-        const leftWidth = Math.max(6, 56 - r);
-
-        const rightWidth = Math.max(6, 56 - r);
+          const rightBand = c >= COLS - 18;
 
 
-        for (let c = 0; c < leftWidth; c++) {
+          const topTaper = r < 76 && (c < 90 - r || c >= COLS - (90 - r));
 
-          if ((c + r) % 2 === 0 || c < 5) cells.push([c, r]);
+          const bottomDepth = ROWS - 1 - r;
 
-        }
-
-
-        for (let c = COLS - rightWidth; c < COLS; c++) {
-
-          if ((c + r) % 2 === 1 || c > COLS - 6) cells.push([c, r]);
-
-        }
-
-      }
+          const bottomTaper = bottomDepth < 84 && (c < 110 - bottomDepth || c >= COLS - (110 - bottomDepth));
 
 
-      for (let r = ROWS - 58; r < ROWS; r++) {
+          const fillCell =
 
-        const depth = ROWS - r;
+            topBand ||
 
-        const leftWidth = Math.max(10, 68 - depth);
+            bottomBand ||
 
-        const rightWidth = Math.max(10, 68 - depth);
+            leftBand ||
+
+            rightBand ||
+
+            topTaper ||
+
+            bottomTaper;
 
 
-        for (let c = 0; c < leftWidth; c++) {
-
-          if ((c + r) % 2 === 0 || c < 4) cells.push([c, r]);
-
-        }
-
-
-        for (let c = COLS - rightWidth; c < COLS; c++) {
-
-          if ((c + r) % 2 === 1 || c > COLS - 5) cells.push([c, r]);
+          if (fillCell) cells.push([c, r]);
 
         }
 
@@ -912,9 +954,9 @@
       const ch = height / ROWS;
 
 
-      ctx.strokeStyle = "rgba(84,84,84,0.33)";
+      ctx.strokeStyle = "rgba(84,84,84,0.30)";
 
-      ctx.lineWidth = 0.55;
+      ctx.lineWidth = 0.5;
 
 
       for (let i = 0; i <= COLS; i++) {
@@ -956,7 +998,7 @@
 
         const y = r * ch;
 
-        drawFakeImageTile(x + 0.3, y + 0.3, cw - 0.6, ch - 0.6, idx + c + r);
+        drawFakeImageTile(x + 0.2, y + 0.2, cw - 0.4, ch - 0.4, idx + c + r);
 
       });
 
