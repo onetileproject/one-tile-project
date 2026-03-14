@@ -8,7 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>One Tile Project</title>
+  <title>The Tile Project</title>
 
 
   <style>
@@ -22,17 +22,23 @@
 
     :root {
 
-      --bg: #f6f2eb;
+      --bg: #f4f0ea;
 
-      --text: #4d4d4d;
+      --text: #1f1f1f;
 
-      --muted: #7a7a7a;
+      --yellow: #f4c21d;
 
-      --frame-border: rgba(255, 255, 255, 0.92);
+      --blue: #3f8cff;
 
-      --panel-bg: rgba(255, 255, 255, 0.82);
+      --blue2: #5ba7ff;
 
-      --panel-border: rgba(0, 0, 0, 0.08);
+      --dark: #141414;
+
+      --white: #ffffff;
+
+      --panel: rgba(255,255,255,0.88);
+
+      --tile-line: rgba(0,0,0,0.18);
 
     }
 
@@ -73,12 +79,28 @@
 
       position: relative;
 
-      background: url("page-background.png") center center / cover no-repeat;
+      background:
+
+        radial-gradient(circle at 10% 20%, rgba(28,150,255,0.22), transparent 18%),
+
+        radial-gradient(circle at 90% 18%, rgba(255,208,0,0.22), transparent 18%),
+
+        radial-gradient(circle at 8% 78%, rgba(255,70,170,0.20), transparent 18%),
+
+        radial-gradient(circle at 92% 82%, rgba(30,160,255,0.22), transparent 18%),
+
+        radial-gradient(circle at 72% 65%, rgba(255,190,0,0.12), transparent 14%),
+
+        linear-gradient(180deg, #f8f5f0 0%, #f1ece5 100%);
 
     }
 
 
-    .page::before {
+    /* street-art splashes */
+
+    .page::before,
+
+    .page::after {
 
       content: "";
 
@@ -88,17 +110,53 @@
 
       pointer-events: none;
 
-      opacity: 0.08;
+    }
+
+
+    .page::before {
+
+      background:
+
+        radial-gradient(circle at 7% 15%, rgba(255,190,0,0.95) 0 4%, transparent 4.2%),
+
+        radial-gradient(circle at 14% 12%, rgba(255,190,0,0.5) 0 1.4%, transparent 1.6%),
+
+        radial-gradient(circle at 94% 14%, rgba(30,160,255,0.95) 0 3%, transparent 3.2%),
+
+        radial-gradient(circle at 86% 10%, rgba(255,70,170,0.9) 0 2%, transparent 2.2%),
+
+        radial-gradient(circle at 5% 82%, rgba(255,70,170,0.95) 0 3%, transparent 3.2%),
+
+        radial-gradient(circle at 11% 88%, rgba(30,160,255,0.95) 0 3.4%, transparent 3.6%),
+
+        radial-gradient(circle at 92% 86%, rgba(255,190,0,0.95) 0 3%, transparent 3.2%),
+
+        radial-gradient(circle at 97% 81%, rgba(255,70,170,0.9) 0 2.2%, transparent 2.4%),
+
+        radial-gradient(circle at 2% 54%, rgba(0,0,0,0.92) 0 2%, transparent 2.2%),
+
+        radial-gradient(circle at 98% 55%, rgba(0,0,0,0.92) 0 2%, transparent 2.2%);
+
+      filter: blur(0.2px);
+
+      opacity: 0.95;
+
+    }
+
+
+    .page::after {
 
       background-image:
 
-        radial-gradient(circle, rgba(0,0,0,0.05) 1px, transparent 1.4px),
+        radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1.4px),
 
-        radial-gradient(circle, rgba(0,0,0,0.03) 1px, transparent 1.4px);
+        radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1.4px);
 
-      background-size: 26px 26px, 42px 42px;
+      background-size: 32px 32px, 52px 52px;
 
-      background-position: 0 0, 12px 14px;
+      background-position: 0 0, 16px 18px;
+
+      opacity: 0.12;
 
     }
 
@@ -109,23 +167,23 @@
 
       z-index: 2;
 
-      width: min(1380px, 95vw);
+      width: min(1500px, 96vw);
 
       height: 100%;
 
       margin: 0 auto;
 
-      padding: 18px 18px 16px;
+      padding: 14px 18px 10px;
 
       display: grid;
 
-      grid-template-rows: auto auto 1fr;
+      grid-template-rows: auto auto auto auto auto 1fr;
 
       justify-items: center;
 
       align-items: start;
 
-      gap: 8px;
+      gap: 10px;
 
     }
 
@@ -134,23 +192,46 @@
 
       margin: 0;
 
-      line-height: 1;
+      font-size: clamp(54px, 5.8vw, 100px);
 
-      text-align: center;
+      line-height: 0.95;
 
-      font-size: clamp(48px, 6vw, 88px);
+      font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
 
-      font-family: "Brush Script MT", "Segoe Script", cursive;
+      font-weight: 900;
 
-      font-weight: 500;
+      letter-spacing: -1px;
 
-      background: linear-gradient(90deg, #2a78d6 0%, #7f45c3 42%, #d27735 74%, #d94b4b 100%);
+      transform: skew(-7deg);
 
-      -webkit-background-clip: text;
+      color: #111;
 
-      background-clip: text;
+      text-shadow: 0 2px 0 rgba(255,255,255,0.35);
 
-      color: transparent;
+      position: relative;
+
+    }
+
+
+    .title::before {
+
+      content: "";
+
+      position: absolute;
+
+      left: 6%;
+
+      right: 8%;
+
+      top: 45%;
+
+      height: 18%;
+
+      background: rgba(244,194,29,0.88);
+
+      z-index: -1;
+
+      transform: rotate(-2deg);
 
     }
 
@@ -161,64 +242,76 @@
 
       text-align: center;
 
-      font-size: clamp(18px, 1.55vw, 23px);
+      font-size: clamp(17px, 1.6vw, 23px);
 
-      color: #555;
+      color: #2d2d2d;
 
-      max-width: 920px;
+      letter-spacing: 0.1px;
 
     }
 
 
-    .main {
+    .hero-buy {
 
-      width: 100%;
+      border: none;
 
-      height: 100%;
+      border-radius: 999px;
 
-      min-height: 0;
+      min-width: 360px;
 
-      display: grid;
+      height: 78px;
 
-      grid-template-columns: 760px 220px;
+      padding: 0 38px;
 
-      gap: 18px;
+      background: linear-gradient(135deg, var(--blue), var(--blue2));
+
+      color: white;
+
+      font-size: 28px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      box-shadow: 0 10px 22px rgba(52,122,255,0.28);
+
+      display: inline-flex;
+
+      align-items: center;
 
       justify-content: center;
 
-      align-items: center;
+      gap: 18px;
 
     }
 
 
-    .art-area {
+    .hero-buy .arrow {
 
-      min-width: 0;
+      font-size: 32px;
 
-      min-height: 0;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: flex-end;
+      line-height: 1;
 
     }
 
 
     .board-wrap {
 
-      width: min(66vh, 43vw, 760px);
+      width: min(1380px, 92vw);
 
-      aspect-ratio: 1 / 1;
+      flex: 1 1 auto;
 
-      position: relative;
+      display: grid;
 
-      display: flex;
+      grid-template-rows: auto auto auto auto;
 
-      align-items: center;
+      justify-items: center;
 
-      justify-content: center;
+      align-items: start;
+
+      gap: 10px;
+
+      min-height: 0;
 
     }
 
@@ -227,49 +320,32 @@
 
       width: 100%;
 
-      height: 100%;
+      height: min(43vh, 420px);
 
-      position: relative;
+      min-height: 340px;
 
-      border-radius: 26px;
+      border-radius: 10px;
 
-      overflow: hidden;
-
-      border: 4px solid var(--frame-border);
-
-      background: rgba(255, 255, 255, 0.12);
+      border: 4px solid rgba(255,255,255,0.72);
 
       box-shadow:
 
-        0 14px 30px rgba(0,0,0,0.12),
+        0 0 0 2px rgba(0,0,0,0.65),
 
-        0 0 0 1px rgba(0,0,0,0.06);
+        0 14px 24px rgba(0,0,0,0.14);
 
-      isolation: isolate;
+      overflow: hidden;
 
-    }
+      position: relative;
 
+      background:
 
-    /* ΤΟ ΕΡΓΟ ΩΣ BACKGROUND - ΟΧΙ img */
+        linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.55)),
 
-    .board-art {
-
-      position: absolute;
-
-      inset: 0;
-
-      background-image: url("swallow-artwork.png");
-
-      background-repeat: no-repeat;
-
-      background-size: 118%;
-
-      background-position: 42% center;
+        rgba(255,255,255,0.48);
 
     }
 
-
-    /* public blur / veil */
 
     .board::before {
 
@@ -277,190 +353,171 @@
 
       position: absolute;
 
-      inset: 0;
+      inset: -18px;
 
-      z-index: 2;
-
-      pointer-events: none;
-
-      box-shadow:
-
-        inset 0 0 140px rgba(255,255,255,0.78),
-
-        inset 0 0 220px rgba(255,255,255,0.34);
-
-    }
-
-
-    .board::after {
-
-      content: "";
-
-      position: absolute;
-
-      inset: 0;
-
-      z-index: 2;
-
-      pointer-events: none;
+      z-index: -1;
 
       background:
 
-        linear-gradient(to bottom, rgba(255,255,255,0.18), rgba(255,255,255,0.10)),
+        radial-gradient(circle at 3% 20%, rgba(0,0,0,0.96) 0 7%, transparent 7.5%),
 
-        rgba(255,255,255,0.18);
+        radial-gradient(circle at 97% 17%, rgba(30,160,255,0.92) 0 7%, transparent 7.5%),
 
-      backdrop-filter: blur(18px);
+        radial-gradient(circle at 7% 86%, rgba(255,70,170,0.92) 0 7%, transparent 7.5%),
+
+        radial-gradient(circle at 95% 82%, rgba(255,190,0,0.92) 0 7%, transparent 7.5%),
+
+        radial-gradient(circle at 12% 50%, rgba(30,160,255,0.72) 0 4%, transparent 4.3%),
+
+        radial-gradient(circle at 90% 54%, rgba(255,70,170,0.72) 0 4%, transparent 4.3%),
+
+        radial-gradient(circle at 50% 100%, rgba(0,0,0,0.82) 0 10%, transparent 10.5%);
+
+      filter: blur(7px);
+
+      opacity: 0.9;
 
     }
 
 
-    .admin-badge {
+    .grid {
 
       position: absolute;
 
-      top: 14px;
-
-      right: 14px;
-
-      z-index: 4;
-
-      display: none;
-
-      background: rgba(27,27,27,0.88);
-
-      color: white;
-
-      font-size: 12px;
-
-      letter-spacing: 0.3px;
-
-      padding: 8px 12px;
-
-      border-radius: 999px;
-
-    }
-
-
-    body.admin-mode .board::before,
-
-    body.admin-mode .board::after {
-
-      display: none;
-
-    }
-
-
-    body.admin-mode .admin-badge {
-
-      display: inline-block;
-
-    }
-
-
-    body.admin-mode .board .board-art {
-
-      background-size: 118%;
-
-      background-position: 42% center;
-
-    }
-
-
-    .side-panel {
-
-      width: 100%;
-
-      max-width: 220px;
-
-      background: var(--panel-bg);
-
-      border: 1px solid var(--panel-border);
-
-      border-radius: 18px;
-
-      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-
-      backdrop-filter: blur(6px);
-
-      padding: 16px 14px 14px;
-
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 14px;
-
-    }
-
-
-    .progress-block {
+      inset: 0;
 
       display: grid;
 
-      gap: 10px;
+      grid-template-columns: repeat(250, 1fr);
+
+      grid-template-rows: repeat(240, 1fr);
+
+      background: rgba(255,255,255,0.38);
 
     }
 
 
-    .progress-number {
+    .tile {
 
-      text-align: center;
+      border-right: 1px solid var(--tile-line);
 
-      font-size: 18px;
+      border-bottom: 1px solid var(--tile-line);
 
-      font-weight: 600;
-
-      color: #4a4a4a;
-
-      line-height: 1;
-
-    }
-
-
-    .progress-track {
-
-      width: 100%;
-
-      height: 12px;
-
-      border: 1px solid rgba(0,0,0,0.18);
-
-      border-radius: 999px;
-
-      background: rgba(255,255,255,0.96);
+      background: rgba(255,255,255,0.26);
 
       overflow: hidden;
 
     }
 
 
-    .progress-fill {
+    .tile.filled {
 
-      width: 0%;
+      background-size: cover;
+
+      background-position: center;
+
+      background-repeat: no-repeat;
+
+    }
+
+
+    .sold-strip {
+
+      width: min(720px, 70%);
+
+      background: rgba(0,0,0,0.82);
+
+      color: white;
+
+      border-radius: 999px;
+
+      padding: 10px 20px 14px;
+
+      box-shadow: 0 8px 16px rgba(0,0,0,0.14);
+
+    }
+
+
+    .sold-strip .sold-text {
+
+      text-align: center;
+
+      font-size: 20px;
+
+      font-weight: 800;
+
+      letter-spacing: 0.3px;
+
+      margin-bottom: 8px;
+
+    }
+
+
+    .sold-strip .sold-text .num {
+
+      color: var(--yellow);
+
+    }
+
+
+    .bar {
+
+      width: 100%;
+
+      height: 10px;
+
+      border-radius: 999px;
+
+      background: rgba(255,255,255,0.18);
+
+      overflow: hidden;
+
+    }
+
+
+    .bar > span {
+
+      display: block;
+
+      width: 21%;
 
       height: 100%;
 
-      background: #9a9a9a;
+      background: linear-gradient(90deg, #f0bf11, #ffd64d);
 
       border-radius: 999px;
 
     }
 
 
-    .buy-btn,
+    .actions {
+
+      display: flex;
+
+      gap: 18px;
+
+      flex-wrap: wrap;
+
+      justify-content: center;
+
+      align-items: center;
+
+    }
+
 
     .action-btn {
 
-      width: 100%;
+      min-width: 230px;
 
-      min-height: 52px;
+      height: 68px;
 
-      border-radius: 14px;
+      border: none;
 
-      border: 1px solid rgba(0,0,0,0.08);
+      border-radius: 999px;
 
-      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      font-size: 22px;
+
+      font-weight: 800;
 
       cursor: pointer;
 
@@ -470,35 +527,109 @@
 
       justify-content: center;
 
-      gap: 10px;
+      gap: 12px;
 
-      font-size: 16px;
-
-      color: #4a4a4a;
-
-      text-decoration: none;
-
-      background: rgba(255,255,255,0.94);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.14);
 
     }
 
 
-    .buy-btn {
+    .action-btn.buy {
 
-      background: rgba(245,231,210,0.95);
+      background: var(--yellow);
+
+      color: #161616;
 
     }
 
 
-    .action-icon {
+    .action-btn.dark {
 
-      width: 18px;
+      background: rgba(20,20,20,0.96);
 
-      height: 18px;
+      color: #fff;
 
-      flex: 0 0 auto;
+    }
 
-      display: inline-block;
+
+    .bottom {
+
+      width: min(1380px, 92vw);
+
+      display: grid;
+
+      grid-template-columns: 1.1fr 1.6fr 0.7fr;
+
+      align-items: center;
+
+      gap: 22px;
+
+      margin-top: 2px;
+
+    }
+
+
+    .question {
+
+      font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+
+      font-size: clamp(34px, 2.6vw, 52px);
+
+      line-height: 0.95;
+
+      transform: skew(-6deg);
+
+      color: #111;
+
+      text-transform: uppercase;
+
+    }
+
+
+    .question .underline {
+
+      display: block;
+
+      width: 56%;
+
+      height: 8px;
+
+      margin-top: 8px;
+
+      background: var(--yellow);
+
+      border-radius: 999px;
+
+    }
+
+
+    .message {
+
+      font-size: clamp(18px, 1.55vw, 28px);
+
+      line-height: 1.28;
+
+      color: #191919;
+
+    }
+
+
+    .message strong {
+
+      font-weight: 900;
+
+    }
+
+
+    .message .script {
+
+      font-family: "Brush Script MT", "Segoe Script", cursive;
+
+      font-size: 1.25em;
+
+      font-weight: 700;
+
+      letter-spacing: 0.3px;
 
     }
 
@@ -509,20 +640,20 @@
 
       justify-content: center;
 
-      gap: 10px;
+      align-items: center;
 
-      padding-top: 2px;
+      gap: 18px;
 
     }
 
 
     .social {
 
-      width: 38px;
+      width: 72px;
 
-      height: 38px;
+      height: 72px;
 
-      border-radius: 50%;
+      border-radius: 18px;
 
       display: flex;
 
@@ -532,174 +663,130 @@
 
       color: white;
 
-      overflow: hidden;
+      font-size: 30px;
 
-      box-shadow: 0 4px 10px rgba(0,0,0,0.10);
+      font-weight: bold;
 
-      text-decoration: none;
-
-      flex: 0 0 auto;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.16);
 
     }
 
 
-    .social svg {
+    .social.tiktok {
 
-      width: 18px;
-
-      height: 18px;
-
-      display: block;
+      background: #141414;
 
     }
 
 
-    .instagram {
+    .social.instagram {
 
-      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-
-    }
-
-
-    .x { background: #0f1720; }
-
-    .tiktok { background: #111; }
-
-    .facebook { background: #1877f2; }
-
-
-    .footer {
-
-      border-top: 1px solid rgba(0,0,0,0.09);
-
-      padding-top: 12px;
-
-      display: grid;
-
-      gap: 8px;
-
-      text-align: center;
-
-      color: var(--muted);
-
-      font-size: 12px;
-
-      line-height: 1.4;
+      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 6%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 
     }
 
 
-    .footer a {
+    @media (max-width: 1200px) {
 
-      color: inherit;
+      .board {
 
-      text-decoration: none;
+        height: min(40vh, 380px);
 
-    }
+      }
 
 
-    @media (max-width: 1100px) {
-
-      .main {
+      .bottom {
 
         grid-template-columns: 1fr;
 
-        gap: 18px;
-
-        justify-items: center;
+        text-align: center;
 
       }
 
 
-      .art-area {
+      .question .underline {
 
-        justify-content: center;
+        margin-left: auto;
 
-      }
-
-
-      .board-wrap {
-
-        width: min(78vw, 62vh);
-
-      }
-
-
-      .side-panel {
-
-        max-width: 420px;
-
-        width: min(92vw, 420px);
+        margin-right: auto;
 
       }
 
     }
 
 
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
+
+      html, body {
+
+        overflow: auto;
+
+      }
+
+
+      .page {
+
+        min-height: 100vh;
+
+        height: auto;
+
+      }
+
 
       .shell {
 
-        padding: 14px 10px 10px;
+        height: auto;
+
+        padding-bottom: 22px;
 
       }
 
 
-      .title {
+      .hero-buy {
 
-        font-size: clamp(38px, 10vw, 58px);
+        min-width: 280px;
 
-      }
+        height: 64px;
 
-
-      .tagline {
-
-        font-size: 15px;
-
-        line-height: 1.35;
+        font-size: 24px;
 
       }
 
 
-      .board-wrap {
+      .board {
 
-        width: min(90vw, 48vh);
+        height: 320px;
+
+        min-height: 320px;
 
       }
 
 
-      .buy-btn,
+      .sold-strip {
+
+        width: 90%;
+
+      }
+
 
       .action-btn {
 
-        min-height: 48px;
+        min-width: 200px;
 
-        font-size: 14px;
+        height: 60px;
+
+        font-size: 20px;
 
       }
 
 
       .social {
 
-        width: 34px;
+        width: 60px;
 
-        height: 34px;
+        height: 60px;
 
-      }
-
-
-      .social svg {
-
-        width: 16px;
-
-        height: 16px;
-
-      }
-
-
-      .footer {
-
-        font-size: 11px;
+        font-size: 24px;
 
       }
 
@@ -709,149 +796,87 @@
 
 </head>
 
-
 <body>
 
   <div class="page">
 
     <div class="shell">
 
-      <h1 class="title">One Tile Project</h1>
+      <h1 class="title">The Tile Project</h1>
 
 
-      <p class="tagline">
-
-        Claim your tile. Leave your mark. Be part of digital history.
-
-      </p>
+      <p class="tagline">Claim your tile. Leave your mark. Be part of digital history.</p>
 
 
-      <div class="main">
+      <button class="hero-buy">
 
-        <div class="art-area">
+        <span>Buy a Tile</span>
 
-          <div class="board-wrap">
+        <span class="arrow">▶</span>
 
-            <div class="board">
+      </button>
 
-              <div class="board-art"></div>
 
-              <div class="admin-badge">ADMIN MODE</div>
+      <div class="board-wrap">
 
-            </div>
+        <div class="board">
 
-          </div>
+          <div class="grid" id="grid"></div>
 
         </div>
 
 
-        <aside class="side-panel">
+        <div class="sold-strip">
 
-          <div class="progress-block">
+          <div class="sold-text">TILES SOLD: <span class="num">12,342</span> / 60,000</div>
 
-            <div class="progress-number">0%</div>
+          <div class="bar"><span></span></div>
 
-            <div class="progress-track">
-
-              <div class="progress-fill"></div>
-
-            </div>
-
-          </div>
+        </div>
 
 
-          <button class="buy-btn" type="button">Buy Tiles</button>
+        <div class="actions">
+
+          <button class="action-btn buy">🛒 BUY A TILE</button>
+
+          <button class="action-btn dark">⌕ FIND MY TILE</button>
+
+          <button class="action-btn dark">➜ SHARE</button>
+
+        </div>
+
+      </div>
 
 
-          <button class="action-btn" type="button">
+      <div class="bottom">
 
-            <svg class="action-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <div class="question">
 
-              <circle cx="18" cy="5" r="3"></circle>
+          WHAT WILL THE FINAL ARTWORK BE?
 
-              <circle cx="6" cy="12" r="3"></circle>
+          <span class="underline"></span>
 
-              <circle cx="18" cy="19" r="3"></circle>
-
-              <path d="M8.6 13.5 15.4 17.5"></path>
-
-              <path d="M15.4 6.5 8.6 10.5"></path>
-
-            </svg>
-
-            Share
-
-          </button>
+        </div>
 
 
-          <button class="action-btn" type="button">Find My Tile</button>
+        <div class="message">
+
+          60,000 <strong>tiles</strong>. Create a piece of art.<br />
+
+          <span class="script">Play your tile.</span>
+
+          <strong> Leave your mark.</strong>
+
+        </div>
 
 
-          <div class="socials">
+        <div class="socials">
 
-            <a class="social instagram" href="#" aria-label="Instagram">
+          <div class="social tiktok">♪</div>
 
-              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <div class="social instagram">◎</div>
 
-                <rect x="3" y="3" width="18" height="18" rx="5" ry="5"></rect>
-
-                <circle cx="12" cy="12" r="4"></circle>
-
-                <circle cx="17.5" cy="6.5" r="1"></circle>
-
-              </svg>
-
-            </a>
-
-
-            <a class="social x" href="#" aria-label="X">
-
-              <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-
-                <path d="M4 4 20 20"></path>
-
-                <path d="M20 4 4 20"></path>
-
-              </svg>
-
-            </a>
-
-
-            <a class="social tiktok" href="#" aria-label="TikTok">
-
-              <svg viewBox="0 0 24 24" fill="white" aria-hidden="true">
-
-                <path d="M14.5 3c.3 1.7 1.4 3.2 3 4.1 1 .5 2 .8 3.1.8V11c-1.4 0-2.8-.4-4.1-1.1v5.8a5.5 5.5 0 1 1-5.5-5.5c.3 0 .6 0 .9.1v3c-.3-.1-.6-.2-.9-.2a2.5 2.5 0 1 0 2.5 2.5V3h1z"></path>
-
-              </svg>
-
-            </a>
-
-
-            <a class="social facebook" href="#" aria-label="Facebook">
-
-              <svg viewBox="0 0 24 24" fill="white" aria-hidden="true">
-
-                <path d="M14 8h3V4h-3c-3 0-5 2-5 5v3H6v4h3v4h4v-4h3l1-4h-4V9c0-.7.3-1 1-1z"></path>
-
-              </svg>
-
-            </a>
-
-          </div>
-
-
-          <div class="footer">
-
-            <div><a href="#">Terms &amp; Conditions</a></div>
-
-            <div><a href="#">Privacy Policy</a></div>
-
-            <div>© 2024 One Tile Project</div>
-
-          </div>
-
-        </aside>
+        </div>
 
       </div>
 
@@ -862,11 +887,143 @@
 
   <script>
 
-    const params = new URLSearchParams(window.location.search);
+    const grid = document.getElementById("grid");
 
-    if (params.get("admin") === "true") {
 
-      document.body.classList.add("admin-mode");
+    const filledTiles = [
+
+      [0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0],[10,0],[11,0],[12,0],[13,0],[14,0],[15,0],
+
+      [0,1],[1,1],[2,1],[3,1],[4,1],[5,1],[6,1],[7,1],[8,1],[9,1],[10,1],[11,1],[12,1],[13,1],[14,1],[15,1],
+
+      [0,2],[1,2],[2,2],[3,2],[4,2],[5,2],[6,2],[7,2],[8,2],[9,2],[10,2],[11,2],[12,2],[13,2],
+
+      [0,3],[1,3],[2,3],[3,3],[4,3],[5,3],[6,3],[7,3],[8,3],[9,3],[10,3],[11,3],[12,3],
+
+      [0,4],[1,4],[2,4],[3,4],[4,4],[5,4],[6,4],[7,4],[8,4],[9,4],[10,4],[11,4],
+
+      [0,5],[1,5],[2,5],[3,5],[4,5],[5,5],[6,5],[7,5],[8,5],[9,5],[10,5],
+
+      [0,6],[1,6],[2,6],[3,6],[4,6],[5,6],[6,6],[7,6],[8,6],[9,6],
+
+      [0,7],[1,7],[2,7],[3,7],[4,7],[5,7],[6,7],[7,7],[8,7],
+
+      [0,8],[1,8],[2,8],[3,8],[4,8],[5,8],[6,8],[7,8],
+
+      [0,9],[1,9],[2,9],[3,9],[4,9],[5,9],[6,9],
+
+      [0,10],[1,10],[2,10],[3,10],[4,10],[5,10],[6,10],
+
+      [0,11],[1,11],[2,11],[3,11],[4,11],[5,11],[6,11],
+
+      [0,12],[1,12],[2,12],[3,12],[4,12],[5,12],[6,12],[7,12],
+
+      [0,13],[1,13],[2,13],[3,13],[4,13],[5,13],[6,13],[7,13],[8,13],
+
+      [0,14],[1,14],[2,14],[3,14],[4,14],[5,14],[6,14],[7,14],[8,14],[9,14],
+
+      [0,15],[1,15],[2,15],[3,15],[4,15],[5,15],[6,15],[7,15],[8,15],[9,15],[10,15],
+
+      [0,16],[1,16],[2,16],[3,16],[4,16],[5,16],[6,16],[7,16],[8,16],[9,16],[10,16],[11,16],
+
+      [0,17],[1,17],[2,17],[3,17],[4,17],[5,17],[6,17],[7,17],[8,17],[9,17],[10,17],[11,17],[12,17],
+
+      [0,18],[1,18],[2,18],[3,18],[4,18],[5,18],[6,18],[7,18],[8,18],[9,18],[10,18],[11,18],[12,18],[13,18],
+
+      [0,19],[1,19],[2,19],[3,19],[4,19],[5,19],[6,19],[7,19],[8,19],[9,19],[10,19],[11,19],[12,19],[13,19],[14,19],
+
+      [235,0],[236,0],[237,0],[238,0],[239,0],[240,0],[241,0],[242,0],[243,0],[244,0],[245,0],[246,0],[247,0],[248,0],[249,0],
+
+      [236,1],[237,1],[238,1],[239,1],[240,1],[241,1],[242,1],[243,1],[244,1],[245,1],[246,1],[247,1],[248,1],[249,1],
+
+      [237,2],[238,2],[239,2],[240,2],[241,2],[242,2],[243,2],[244,2],[245,2],[246,2],[247,2],[248,2],[249,2],
+
+      [238,3],[239,3],[240,3],[241,3],[242,3],[243,3],[244,3],[245,3],[246,3],[247,3],[248,3],[249,3],
+
+      [239,4],[240,4],[241,4],[242,4],[243,4],[244,4],[245,4],[246,4],[247,4],[248,4],[249,4],
+
+      [240,5],[241,5],[242,5],[243,5],[244,5],[245,5],[246,5],[247,5],[248,5],[249,5],
+
+      [241,6],[242,6],[243,6],[244,6],[245,6],[246,6],[247,6],[248,6],[249,6],
+
+      [242,7],[243,7],[244,7],[245,7],[246,7],[247,7],[248,7],[249,7],
+
+      [243,8],[244,8],[245,8],[246,8],[247,8],[248,8],[249,8],
+
+      [243,9],[244,9],[245,9],[246,9],[247,9],[248,9],[249,9],
+
+      [243,10],[244,10],[245,10],[246,10],[247,10],[248,10],[249,10],
+
+      [242,11],[243,11],[244,11],[245,11],[246,11],[247,11],[248,11],[249,11],
+
+      [241,12],[242,12],[243,12],[244,12],[245,12],[246,12],[247,12],[248,12],[249,12],
+
+      [240,13],[241,13],[242,13],[243,13],[244,13],[245,13],[246,13],[247,13],[248,13],[249,13],
+
+      [239,14],[240,14],[241,14],[242,14],[243,14],[244,14],[245,14],[246,14],[247,14],[248,14],[249,14],
+
+      [238,15],[239,15],[240,15],[241,15],[242,15],[243,15],[244,15],[245,15],[246,15],[247,15],[248,15],[249,15],
+
+      [237,16],[238,16],[239,16],[240,16],[241,16],[242,16],[243,16],[244,16],[245,16],[246,16],[247,16],[248,16],[249,16],
+
+      [236,17],[237,17],[238,17],[239,17],[240,17],[241,17],[242,17],[243,17],[244,17],[245,17],[246,17],[247,17],[248,17],[249,17],
+
+      [235,18],[236,18],[237,18],[238,18],[239,18],[240,18],[241,18],[242,18],[243,18],[244,18],[245,18],[246,18],[247,18],[248,18],[249,18],
+
+      [234,19],[235,19],[236,19],[237,19],[238,19],[239,19],[240,19],[241,19],[242,19],[243,19],[244,19],[245,19],[246,19],[247,19],[248,19],[249,19]
+
+    ];
+
+
+    const thumbs = [
+
+      "linear-gradient(135deg,#ffb703,#fb8500)",
+
+      "linear-gradient(135deg,#219ebc,#8ecae6)",
+
+      "linear-gradient(135deg,#e63946,#ffb4a2)",
+
+      "linear-gradient(135deg,#3a86ff,#8338ec)",
+
+      "linear-gradient(135deg,#111,#666)",
+
+      "linear-gradient(135deg,#06d6a0,#118ab2)",
+
+      "linear-gradient(135deg,#ff006e,#8338ec)",
+
+      "linear-gradient(135deg,#ffd166,#ef476f)",
+
+      "linear-gradient(135deg,#2a9d8f,#264653)",
+
+      "linear-gradient(135deg,#f72585,#4cc9f0)"
+
+    ];
+
+
+    const filledSet = new Set(filledTiles.map(([x, y]) => `${x}-${y}`));
+
+
+    for (let y = 0; y < 240; y++) {
+
+      for (let x = 0; x < 250; x++) {
+
+        const tile = document.createElement("div");
+
+        tile.className = "tile";
+
+
+        if (filledSet.has(`${x}-${y}`)) {
+
+          tile.classList.add("filled");
+
+          tile.style.background = thumbs[(x + y) % thumbs.length];
+
+        }
+
+
+        grid.appendChild(tile);
+
+      }
 
     }
 
