@@ -13,7 +13,11 @@
 
   <style>
 
-    * { box-sizing: border-box; }
+    * {
+
+      box-sizing: border-box;
+
+    }
 
 
     html, body {
@@ -86,26 +90,26 @@
 
       height: 1024px;
 
-      overflow: hidden;
-
       background: transparent;
+
+      overflow: hidden;
 
     }
 
+
+    /* TITLE */
 
     .title {
 
       position: absolute;
 
-      top: 24px;
+      top: 22px;
 
       left: 50%;
 
       transform: translateX(-50%);
 
       margin: 0;
-
-      color: #111;
 
       font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive;
 
@@ -115,13 +119,11 @@
 
       font-weight: 700;
 
-      letter-spacing: -0.02em;
+      color: #141414;
 
       white-space: nowrap;
 
-      text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-
-      z-index: 4;
+      z-index: 5;
 
     }
 
@@ -144,20 +146,22 @@
 
       font-size: 21px;
 
-      color: #323232;
+      color: #313131;
 
       white-space: nowrap;
 
-      z-index: 4;
+      z-index: 5;
 
     }
 
+
+    /* BOARD */
 
     .board-shell {
 
       position: absolute;
 
-      top: 292px;
+      top: 280px;
 
       left: 75px;
 
@@ -165,11 +169,11 @@
 
       height: 330px;
 
-      border-radius: 10px;
+      border-radius: 8px;
 
       overflow: hidden;
 
-      background: rgba(243, 241, 238, 0.92);
+      background: rgba(243, 241, 238, 0.94);
 
       box-shadow:
 
@@ -195,35 +199,37 @@
     }
 
 
-    .progress-splash {
+    /* PROGRESS BLACK PLATE */
+
+    .progress-plate {
 
       position: absolute;
 
-      top: 640px;
+      top: 625px;
 
       left: 50%;
 
       transform: translateX(-50%);
 
-      width: 700px;
+      width: 720px;
 
-      height: 78px;
+      height: 86px;
 
-      border-radius: 18px;
+      border-radius: 24px;
 
       background:
 
-        radial-gradient(circle at 20% 50%, rgba(0,0,0,0.9), rgba(0,0,0,0.78) 45%, rgba(0,0,0,0.68) 70%, rgba(0,0,0,0.0) 100%),
+        radial-gradient(circle at 12% 45%, rgba(0,0,0,0.95), rgba(0,0,0,0.72) 42%, rgba(0,0,0,0.0) 78%),
 
-        radial-gradient(circle at 80% 50%, rgba(0,0,0,0.9), rgba(0,0,0,0.78) 45%, rgba(0,0,0,0.68) 70%, rgba(0,0,0,0.0) 100%),
+        radial-gradient(circle at 88% 45%, rgba(0,0,0,0.95), rgba(0,0,0,0.72) 42%, rgba(0,0,0,0.0) 78%),
 
-        radial-gradient(circle at 50% 50%, rgba(24,24,24,0.95), rgba(24,24,24,0.82) 60%, rgba(24,24,24,0.0) 100%);
+        radial-gradient(circle at 50% 50%, rgba(18,18,18,0.98), rgba(18,18,18,0.88) 52%, rgba(18,18,18,0.0) 100%);
 
-      filter: blur(1px);
+      filter: blur(0.4px);
 
-      opacity: 0.96;
+      opacity: 0.98;
 
-      z-index: 1;
+      z-index: 2;
 
     }
 
@@ -232,7 +238,7 @@
 
       position: absolute;
 
-      top: 648px;
+      top: 642px;
 
       left: 50%;
 
@@ -240,7 +246,7 @@
 
       width: 610px;
 
-      z-index: 3;
+      z-index: 4;
 
       pointer-events: none;
 
@@ -249,11 +255,11 @@
 
     .progress-label {
 
-      margin-bottom: 8px;
+      margin-bottom: 10px;
 
       text-align: center;
 
-      color: #fff;
+      color: #ffffff;
 
       font-size: 22px;
 
@@ -291,6 +297,8 @@
 
       overflow: hidden;
 
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.1);
+
     }
 
 
@@ -307,11 +315,13 @@
     }
 
 
+    /* BUTTONS */
+
     .actions {
 
       position: absolute;
 
-      top: 718px;
+      top: 730px;
 
       left: 50%;
 
@@ -321,7 +331,7 @@
 
       gap: 22px;
 
-      z-index: 3;
+      z-index: 4;
 
     }
 
@@ -332,7 +342,7 @@
 
       border-radius: 999px;
 
-      height: 66px;
+      height: 64px;
 
       padding: 0 34px;
 
@@ -376,34 +386,36 @@
 
       min-width: 250px;
 
-      color: #fff;
+      color: #ffffff;
 
       background: linear-gradient(180deg, #1b1b1b 0%, #101010 100%);
 
     }
 
 
+    /* FOOTER LEFT */
+
     .footer-left {
 
       position: absolute;
 
-      left: 94px;
+      left: 88px;
 
-      top: 850px;
+      top: 858px;
 
       width: 360px;
 
-      color: #111;
+      color: #111111;
 
       font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
 
-      font-size: 34px;
+      font-size: 33px;
 
-      line-height: 1.02;
+      line-height: 1;
 
       text-transform: uppercase;
 
-      z-index: 3;
+      z-index: 4;
 
     }
 
@@ -414,11 +426,11 @@
 
       display: block;
 
-      width: 210px;
+      width: 205px;
 
       height: 7px;
 
-      margin-top: 8px;
+      margin-top: 9px;
 
       background: #e8b01d;
 
@@ -426,6 +438,8 @@
 
     }
 
+
+    /* FOOTER CENTER */
 
     .footer-center {
 
@@ -437,13 +451,13 @@
 
       transform: translateX(-50%);
 
-      width: 560px;
+      width: 575px;
 
       text-align: center;
 
       color: #171717;
 
-      z-index: 3;
+      z-index: 4;
 
     }
 
@@ -474,19 +488,21 @@
     }
 
 
+    /* SOCIALS */
+
     .footer-socials {
 
       position: absolute;
 
-      top: 885px;
+      top: 880px;
 
-      right: 110px;
+      right: 108px;
 
       display: flex;
 
       gap: 16px;
 
-      z-index: 3;
+      z-index: 4;
 
     }
 
@@ -518,7 +534,11 @@
     }
 
 
-    .social.tiktok { background: #111; }
+    .social.tiktok {
+
+      background: #111111;
+
+    }
 
 
     .social.instagram {
@@ -554,7 +574,7 @@
         </div>
 
 
-        <div class="progress-splash"></div>
+        <div class="progress-plate"></div>
 
 
         <div class="progress-wrap">
@@ -898,7 +918,7 @@
 
         ctx.moveTo(0, y);
 
-        ctx.lineTo(width, y);
+        ctx.lineTo(x = width, y);
 
         ctx.stroke();
 
