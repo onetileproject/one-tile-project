@@ -90,9 +90,9 @@
 
       height: 1024px;
 
-      background: transparent;
-
       overflow: hidden;
+
+      background: transparent;
 
     }
 
@@ -101,7 +101,7 @@
 
       position: absolute;
 
-      top: 22px;
+      top: 24px;
 
       left: 50%;
 
@@ -130,7 +130,7 @@
 
       position: absolute;
 
-      top: 140px;
+      top: 142px;
 
       left: 50%;
 
@@ -157,13 +157,13 @@
 
       position: absolute;
 
-      top: 232px;
+      top: 225px;
 
       left: 42px;
 
       width: 1356px;
 
-      height: 420px;
+      height: 430px;
 
       border-radius: 8px;
 
@@ -205,9 +205,9 @@
 
       transform: translateX(-50%);
 
-      width: 650px;
+      width: 660px;
 
-      height: 74px;
+      height: 78px;
 
       border-radius: 24px;
 
@@ -238,7 +238,7 @@
 
       transform: translateX(-50%);
 
-      width: 540px;
+      width: 560px;
 
       z-index: 4;
 
@@ -313,7 +313,7 @@
 
       position: absolute;
 
-      top: 772px;
+      top: 770px;
 
       left: 50%;
 
@@ -334,7 +334,7 @@
 
       border-radius: 999px;
 
-      height: 52px;
+      height: 54px;
 
       padding: 0 24px;
 
@@ -389,23 +389,23 @@
 
       position: absolute;
 
-      left: 92px;
+      left: 78px;
 
-      top: 875px;
+      top: 872px;
 
       width: auto;
 
       color: #111111;
 
-      font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+      font-family: "Brush Script MT", "Segoe Script", "Lucida Handwriting", cursive;
 
-      font-size: 22px;
+      font-size: 34px;
 
       line-height: 1;
 
-      text-transform: uppercase;
-
       white-space: nowrap;
+
+      display: inline-block;
 
       z-index: 4;
 
@@ -422,7 +422,7 @@
 
       height: 6px;
 
-      margin-top: 7px;
+      margin-top: 8px;
 
       background: #e8b01d;
 
@@ -435,13 +435,13 @@
 
       position: absolute;
 
-      top: 886px;
+      top: 888px;
 
       left: 50%;
 
       transform: translateX(-50%);
 
-      width: 500px;
+      width: 520px;
 
       text-align: center;
 
@@ -454,7 +454,7 @@
 
     .footer-center .line1 {
 
-      font-size: 16px;
+      font-size: 15px;
 
       white-space: nowrap;
 
@@ -465,7 +465,7 @@
 
       margin-top: 8px;
 
-      font-size: 26px;
+      font-size: 30px;
 
       line-height: 1.05;
 
@@ -482,9 +482,9 @@
 
       position: absolute;
 
-      top: 875px;
+      top: 884px;
 
-      right: 108px;
+      right: 110px;
 
       display: flex;
 
@@ -511,7 +511,7 @@
 
       color: #fff;
 
-      font-size: 24px;
+      font-size: 22px;
 
       font-weight: 700;
 
@@ -535,6 +535,10 @@
 
         radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 
+      font-size: 20px;
+
+      font-weight: 900;
+
     }
 
 
@@ -542,7 +546,7 @@
 
       position: absolute;
 
-      bottom: 14px;
+      bottom: 16px;
 
       left: 50%;
 
@@ -613,12 +617,12 @@
 
           <button class="pill-btn dark" type="button">⌕ FIND MY TILE</button>
 
-          <button class="pill-btn dark" type="button">↗ SHARE</button>
+          <button class="pill-btn dark" type="button">⤴ SHARE</button>
 
         </div>
 
 
-        <div class="footer-left">WHAT WILL THE FINAL ARTWORK BE?</div>
+        <div class="footer-left">What will the final artwork be?</div>
 
 
         <div class="footer-center">
@@ -725,9 +729,11 @@
 
       ctx.closePath();
 
+
       ctx.fillStyle = fillStyle;
 
       ctx.fill();
+
 
       if (strokeStyle) {
 
