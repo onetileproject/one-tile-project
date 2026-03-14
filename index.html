@@ -157,13 +157,13 @@
 
       position: absolute;
 
-      top: 225px;
+      top: 220px;
 
       left: 42px;
 
       width: 1356px;
 
-      height: 430px;
+      height: 432px;
 
       border-radius: 8px;
 
@@ -199,25 +199,25 @@
 
       position: absolute;
 
-      top: 690px;
+      top: 692px;
 
       left: 50%;
 
       transform: translateX(-50%);
 
-      width: 660px;
+      width: 650px;
 
-      height: 78px;
+      height: 74px;
 
       border-radius: 24px;
 
       background:
 
-        radial-gradient(circle at 12% 45%, rgba(0,0,0,0.95), rgba(0,0,0,0.72) 42%, rgba(0,0,0,0.0) 78%),
+        radial-gradient(circle at 12% 45%, rgba(0,0,0,0.95), rgba(0,0,0,0.72) 42%, rgba(0,0,0,0) 78%),
 
-        radial-gradient(circle at 88% 45%, rgba(0,0,0,0.95), rgba(0,0,0,0.72) 42%, rgba(0,0,0,0.0) 78%),
+        radial-gradient(circle at 88% 45%, rgba(0,0,0,0.95), rgba(0,0,0,0.72) 42%, rgba(0,0,0,0) 78%),
 
-        radial-gradient(circle at 50% 50%, rgba(18,18,18,0.98), rgba(18,18,18,0.88) 52%, rgba(18,18,18,0.0) 100%);
+        radial-gradient(circle at 50% 50%, rgba(18,18,18,0.98), rgba(18,18,18,0.88) 52%, rgba(18,18,18,0) 100%);
 
       filter: blur(0.4px);
 
@@ -232,13 +232,13 @@
 
       position: absolute;
 
-      top: 706px;
+      top: 707px;
 
       left: 50%;
 
       transform: translateX(-50%);
 
-      width: 560px;
+      width: 540px;
 
       z-index: 4;
 
@@ -334,7 +334,7 @@
 
       border-radius: 999px;
 
-      height: 54px;
+      height: 52px;
 
       padding: 0 24px;
 
@@ -891,48 +891,15 @@
 
       const cells = [];
 
-
       for (let r = 0; r < ROWS; r++) {
 
         for (let c = 0; c < COLS; c++) {
 
-          const topBand = r < 18;
-
-          const bottomBand = r >= ROWS - 24;
-
-          const leftBand = c < 18;
-
-          const rightBand = c >= COLS - 18;
-
-
-          const topTaper = r < 76 && (c < 90 - r || c >= COLS - (90 - r));
-
-          const bottomDepth = ROWS - 1 - r;
-
-          const bottomTaper = bottomDepth < 84 && (c < 110 - bottomDepth || c >= COLS - (110 - bottomDepth));
-
-
-          const fillCell =
-
-            topBand ||
-
-            bottomBand ||
-
-            leftBand ||
-
-            rightBand ||
-
-            topTaper ||
-
-            bottomTaper;
-
-
-          if (fillCell) cells.push([c, r]);
+          cells.push([c, r]);
 
         }
 
       }
-
 
       return cells;
 
@@ -954,9 +921,34 @@
       const ch = height / ROWS;
 
 
-      ctx.strokeStyle = "rgba(84,84,84,0.30)";
+      const filledCells = buildFilledCells();
 
-      ctx.lineWidth = 0.5;
+
+      filledCells.forEach(([c, r], idx) => {
+
+        const x = c * cw;
+
+        const y = r * ch;
+
+
+        if ((c + r) % 7 === 0) {
+
+          drawFakeImageTile(x + 0.15, y + 0.15, cw - 0.3, ch - 0.3, idx + c + r);
+
+        } else {
+
+          ctx.fillStyle = "rgba(252,252,252,0.9)";
+
+          ctx.fillRect(x, y, cw, ch);
+
+        }
+
+      });
+
+
+      ctx.strokeStyle = "rgba(84,84,84,0.22)";
+
+      ctx.lineWidth = 0.45;
 
 
       for (let i = 0; i <= COLS; i++) {
@@ -987,20 +979,6 @@
         ctx.stroke();
 
       }
-
-
-      const filledCells = buildFilledCells();
-
-
-      filledCells.forEach(([c, r], idx) => {
-
-        const x = c * cw;
-
-        const y = r * ch;
-
-        drawFakeImageTile(x + 0.2, y + 0.2, cw - 0.4, ch - 0.4, idx + c + r);
-
-      });
 
     }
 
