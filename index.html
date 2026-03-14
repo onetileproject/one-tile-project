@@ -22,23 +22,44 @@
 
     :root {
 
-      --bg: #f4f0ea;
+      --page-width: 1440px;
 
-      --text: #1f1f1f;
+      --page-height: 1024px;
 
-      --yellow: #f4c21d;
 
-      --blue: #3f8cff;
+      --title-top: 38px;
 
-      --blue2: #5ba7ff;
+      --tagline-top: 154px;
 
-      --dark: #141414;
+      --hero-button-top: 208px;
 
-      --white: #ffffff;
 
-      --panel: rgba(255,255,255,0.88);
+      --board-top: 338px;
 
-      --tile-line: rgba(0,0,0,0.18);
+      --board-left: 75px;
+
+      --board-width: 1290px;
+
+      --board-height: 336px;
+
+
+      --progress-top: 693px;
+
+      --progress-left: 420px;
+
+      --progress-width: 602px;
+
+      --progress-height: 64px;
+
+
+      --actions-top: 780px;
+
+      --actions-left: 375px;
+
+      --actions-gap: 22px;
+
+
+      --footer-top: 880px;
 
     }
 
@@ -47,213 +68,129 @@
 
       margin: 0;
 
-      width: 100%;
+      min-height: 100%;
 
-      height: 100%;
-
-      overflow: hidden;
+      background: #ece8e3;
 
       font-family: Arial, Helvetica, sans-serif;
 
-      background: var(--bg);
-
-      color: var(--text);
+      overflow-x: hidden;
 
     }
 
 
     body {
 
-      position: relative;
+      display: flex;
+
+      justify-content: center;
+
+      align-items: flex-start;
+
+      padding: 0;
 
     }
 
 
-    .page {
+    .site {
 
-      width: 100vw;
+      position: relative;
 
-      height: 100vh;
+      width: 100%;
+
+      max-width: var(--page-width);
+
+      aspect-ratio: 1440 / 1024;
+
+      background: url("page-background.png") center top / cover no-repeat;
 
       overflow: hidden;
 
-      position: relative;
-
-      background:
-
-        radial-gradient(circle at 10% 20%, rgba(28,150,255,0.22), transparent 18%),
-
-        radial-gradient(circle at 90% 18%, rgba(255,208,0,0.22), transparent 18%),
-
-        radial-gradient(circle at 8% 78%, rgba(255,70,170,0.20), transparent 18%),
-
-        radial-gradient(circle at 92% 82%, rgba(30,160,255,0.22), transparent 18%),
-
-        radial-gradient(circle at 72% 65%, rgba(255,190,0,0.12), transparent 14%),
-
-        linear-gradient(180deg, #f8f5f0 0%, #f1ece5 100%);
-
     }
 
 
-    /* street-art splashes */
-
-    .page::before,
-
-    .page::after {
-
-      content: "";
+    .overlay {
 
       position: absolute;
 
       inset: 0;
-
-      pointer-events: none;
-
-    }
-
-
-    .page::before {
-
-      background:
-
-        radial-gradient(circle at 7% 15%, rgba(255,190,0,0.95) 0 4%, transparent 4.2%),
-
-        radial-gradient(circle at 14% 12%, rgba(255,190,0,0.5) 0 1.4%, transparent 1.6%),
-
-        radial-gradient(circle at 94% 14%, rgba(30,160,255,0.95) 0 3%, transparent 3.2%),
-
-        radial-gradient(circle at 86% 10%, rgba(255,70,170,0.9) 0 2%, transparent 2.2%),
-
-        radial-gradient(circle at 5% 82%, rgba(255,70,170,0.95) 0 3%, transparent 3.2%),
-
-        radial-gradient(circle at 11% 88%, rgba(30,160,255,0.95) 0 3.4%, transparent 3.6%),
-
-        radial-gradient(circle at 92% 86%, rgba(255,190,0,0.95) 0 3%, transparent 3.2%),
-
-        radial-gradient(circle at 97% 81%, rgba(255,70,170,0.9) 0 2.2%, transparent 2.4%),
-
-        radial-gradient(circle at 2% 54%, rgba(0,0,0,0.92) 0 2%, transparent 2.2%),
-
-        radial-gradient(circle at 98% 55%, rgba(0,0,0,0.92) 0 2%, transparent 2.2%);
-
-      filter: blur(0.2px);
-
-      opacity: 0.95;
-
-    }
-
-
-    .page::after {
-
-      background-image:
-
-        radial-gradient(circle, rgba(0,0,0,0.08) 1px, transparent 1.4px),
-
-        radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1.4px);
-
-      background-size: 32px 32px, 52px 52px;
-
-      background-position: 0 0, 16px 18px;
-
-      opacity: 0.12;
-
-    }
-
-
-    .shell {
-
-      position: relative;
-
-      z-index: 2;
-
-      width: min(1500px, 96vw);
-
-      height: 100%;
-
-      margin: 0 auto;
-
-      padding: 14px 18px 10px;
-
-      display: grid;
-
-      grid-template-rows: auto auto auto auto auto 1fr;
-
-      justify-items: center;
-
-      align-items: start;
-
-      gap: 10px;
 
     }
 
 
     .title {
 
+      position: absolute;
+
+      top: var(--title-top);
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
       margin: 0;
 
-      font-size: clamp(54px, 5.8vw, 100px);
+      font-size: clamp(46px, 5vw, 86px);
 
-      line-height: 0.95;
-
-      font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+      line-height: 1;
 
       font-weight: 900;
 
-      letter-spacing: -1px;
+      letter-spacing: -0.02em;
 
-      transform: skew(-7deg);
+      color: #141414;
 
-      color: #111;
+      text-transform: uppercase;
 
-      text-shadow: 0 2px 0 rgba(255,255,255,0.35);
+      font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
 
-      position: relative;
+      text-shadow: 0 1px 0 rgba(255,255,255,0.25);
 
-    }
-
-
-    .title::before {
-
-      content: "";
-
-      position: absolute;
-
-      left: 6%;
-
-      right: 8%;
-
-      top: 45%;
-
-      height: 18%;
-
-      background: rgba(244,194,29,0.88);
-
-      z-index: -1;
-
-      transform: rotate(-2deg);
+      white-space: nowrap;
 
     }
 
 
     .tagline {
 
+      position: absolute;
+
+      top: var(--tagline-top);
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
       margin: 0;
+
+      width: min(980px, 80%);
 
       text-align: center;
 
-      font-size: clamp(17px, 1.6vw, 23px);
+      font-size: clamp(16px, 1.6vw, 24px);
 
-      color: #2d2d2d;
+      color: #333;
 
-      letter-spacing: 0.1px;
+      font-weight: 400;
+
+      letter-spacing: 0.01em;
+
+      white-space: nowrap;
 
     }
 
 
     .hero-buy {
 
-      border: none;
+      position: absolute;
+
+      top: var(--hero-button-top);
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      border: 0;
 
       border-radius: 999px;
 
@@ -261,19 +198,27 @@
 
       height: 78px;
 
-      padding: 0 38px;
+      padding: 0 34px;
 
-      background: linear-gradient(135deg, var(--blue), var(--blue2));
+      cursor: pointer;
 
-      color: white;
+      color: #fff;
 
       font-size: 28px;
 
       font-weight: 800;
 
-      cursor: pointer;
+      background:
 
-      box-shadow: 0 10px 22px rgba(52,122,255,0.28);
+        linear-gradient(180deg, rgba(255,255,255,0.16), rgba(255,255,255,0) 35%),
+
+        linear-gradient(135deg, #3f86ff 0%, #4f92ff 38%, #6bb0ff 100%);
+
+      box-shadow:
+
+        inset 0 1px 1px rgba(255,255,255,0.35),
+
+        0 10px 20px rgba(48, 108, 214, 0.28);
 
       display: inline-flex;
 
@@ -281,209 +226,133 @@
 
       justify-content: center;
 
-      gap: 18px;
+      gap: 16px;
 
     }
 
 
-    .hero-buy .arrow {
+    .hero-buy span.arrow {
 
-      font-size: 32px;
+      font-size: 28px;
 
-      line-height: 1;
-
-    }
-
-
-    .board-wrap {
-
-      width: min(1380px, 92vw);
-
-      flex: 1 1 auto;
-
-      display: grid;
-
-      grid-template-rows: auto auto auto auto;
-
-      justify-items: center;
-
-      align-items: start;
-
-      gap: 10px;
-
-      min-height: 0;
+      transform: translateY(-1px);
 
     }
 
 
-    .board {
+    .board-shell {
 
-      width: 100%;
+      position: absolute;
 
-      height: min(43vh, 420px);
+      top: var(--board-top);
 
-      min-height: 340px;
+      left: var(--board-left);
+
+      width: var(--board-width);
+
+      height: var(--board-height);
 
       border-radius: 10px;
 
-      border: 4px solid rgba(255,255,255,0.72);
+      overflow: hidden;
 
       box-shadow:
 
-        0 0 0 2px rgba(0,0,0,0.65),
+        0 0 0 2px rgba(255,255,255,0.68),
 
-        0 14px 24px rgba(0,0,0,0.14);
+        0 0 0 4px rgba(18,18,18,0.78),
 
-      overflow: hidden;
+        0 16px 18px rgba(0,0,0,0.18);
 
-      position: relative;
-
-      background:
-
-        linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.55)),
-
-        rgba(255,255,255,0.48);
+      background: rgba(241,239,236,0.88);
 
     }
 
 
-    .board::before {
+    #tileBoard {
 
-      content: "";
+      display: block;
+
+      width: 100%;
+
+      height: 100%;
+
+    }
+
+
+    .progress-wrap {
 
       position: absolute;
 
-      inset: -18px;
+      top: var(--progress-top);
 
-      z-index: -1;
+      left: var(--progress-left);
 
-      background:
+      width: var(--progress-width);
 
-        radial-gradient(circle at 3% 20%, rgba(0,0,0,0.96) 0 7%, transparent 7.5%),
+      height: var(--progress-height);
 
-        radial-gradient(circle at 97% 17%, rgba(30,160,255,0.92) 0 7%, transparent 7.5%),
-
-        radial-gradient(circle at 7% 86%, rgba(255,70,170,0.92) 0 7%, transparent 7.5%),
-
-        radial-gradient(circle at 95% 82%, rgba(255,190,0,0.92) 0 7%, transparent 7.5%),
-
-        radial-gradient(circle at 12% 50%, rgba(30,160,255,0.72) 0 4%, transparent 4.3%),
-
-        radial-gradient(circle at 90% 54%, rgba(255,70,170,0.72) 0 4%, transparent 4.3%),
-
-        radial-gradient(circle at 50% 100%, rgba(0,0,0,0.82) 0 10%, transparent 10.5%);
-
-      filter: blur(7px);
-
-      opacity: 0.9;
+      pointer-events: none;
 
     }
 
 
-    .grid {
-
-      position: absolute;
-
-      inset: 0;
-
-      display: grid;
-
-      grid-template-columns: repeat(250, 1fr);
-
-      grid-template-rows: repeat(240, 1fr);
-
-      background: rgba(255,255,255,0.38);
-
-    }
-
-
-    .tile {
-
-      border-right: 1px solid var(--tile-line);
-
-      border-bottom: 1px solid var(--tile-line);
-
-      background: rgba(255,255,255,0.26);
-
-      overflow: hidden;
-
-    }
-
-
-    .tile.filled {
-
-      background-size: cover;
-
-      background-position: center;
-
-      background-repeat: no-repeat;
-
-    }
-
-
-    .sold-strip {
-
-      width: min(720px, 70%);
-
-      background: rgba(0,0,0,0.82);
-
-      color: white;
-
-      border-radius: 999px;
-
-      padding: 10px 20px 14px;
-
-      box-shadow: 0 8px 16px rgba(0,0,0,0.14);
-
-    }
-
-
-    .sold-strip .sold-text {
+    .progress-label {
 
       text-align: center;
 
-      font-size: 20px;
+      color: #fff;
 
       font-weight: 800;
 
-      letter-spacing: 0.3px;
+      font-size: 22px;
+
+      letter-spacing: 0.02em;
+
+      text-transform: uppercase;
+
+      text-shadow: 0 1px 1px rgba(0,0,0,0.24);
 
       margin-bottom: 8px;
 
     }
 
 
-    .sold-strip .sold-text .num {
+    .progress-label .sold {
 
-      color: var(--yellow);
+      color: #f0bf34;
+
+      font-size: 28px;
+
+      font-style: italic;
 
     }
 
 
-    .bar {
+    .progress-bar {
 
       width: 100%;
 
-      height: 10px;
+      height: 12px;
 
       border-radius: 999px;
 
-      background: rgba(255,255,255,0.18);
+      background: rgba(32,32,32,0.6);
 
       overflow: hidden;
+
+      box-shadow: inset 0 1px 2px rgba(255,255,255,0.1);
 
     }
 
 
-    .bar > span {
+    .progress-fill {
 
-      display: block;
-
-      width: 21%;
+      width: 20.57%;
 
       height: 100%;
 
-      background: linear-gradient(90deg, #f0bf11, #ffd64d);
+      background: linear-gradient(90deg, #dca50c, #f0bf34, #ffd65a);
 
       border-radius: 999px;
 
@@ -492,30 +361,38 @@
 
     .actions {
 
+      position: absolute;
+
+      top: var(--actions-top);
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
       display: flex;
 
-      gap: 18px;
+      gap: var(--actions-gap);
 
-      flex-wrap: wrap;
+      align-items: center;
 
       justify-content: center;
 
-      align-items: center;
+      flex-wrap: nowrap;
 
     }
 
 
-    .action-btn {
+    .pill-btn {
 
-      min-width: 230px;
-
-      height: 68px;
-
-      border: none;
+      border: 0;
 
       border-radius: 999px;
 
-      font-size: 22px;
+      height: 66px;
+
+      padding: 0 34px;
+
+      font-size: 20px;
 
       font-weight: 800;
 
@@ -529,131 +406,150 @@
 
       gap: 12px;
 
-      box-shadow: 0 8px 16px rgba(0,0,0,0.14);
+      box-shadow:
+
+        inset 0 1px 1px rgba(255,255,255,0.16),
+
+        0 8px 16px rgba(0,0,0,0.14);
 
     }
 
 
-    .action-btn.buy {
+    .pill-btn.buy {
 
-      background: var(--yellow);
+      min-width: 250px;
+
+      color: #1c1c1c;
+
+      background: linear-gradient(180deg, #ffd93d 0%, #efc11b 100%);
+
+    }
+
+
+    .pill-btn.dark {
+
+      min-width: 250px;
+
+      color: white;
+
+      background: linear-gradient(180deg, #1c1c1c 0%, #0f0f0f 100%);
+
+    }
+
+
+    .footer-left {
+
+      position: absolute;
+
+      top: calc(var(--footer-top) + 12px);
+
+      left: 90px;
+
+      color: #111;
+
+      font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
+
+      font-size: clamp(24px, 2.5vw, 52px);
+
+      line-height: 0.95;
+
+      text-transform: uppercase;
+
+      transform: rotate(-2deg);
+
+    }
+
+
+    .footer-left::after {
+
+      content: "";
+
+      display: block;
+
+      width: 210px;
+
+      height: 7px;
+
+      margin-top: 10px;
+
+      background: #e8b01d;
+
+      border-radius: 999px;
+
+      transform: rotate(-2deg);
+
+    }
+
+
+    .footer-center {
+
+      position: absolute;
+
+      top: calc(var(--footer-top) + 8px);
+
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      width: 620px;
+
+      text-align: center;
 
       color: #161616;
 
     }
 
 
-    .action-btn.dark {
+    .footer-center .line1 {
 
-      background: rgba(20,20,20,0.96);
+      font-size: 18px;
 
-      color: #fff;
+      letter-spacing: 0.02em;
 
-    }
-
-
-    .bottom {
-
-      width: min(1380px, 92vw);
-
-      display: grid;
-
-      grid-template-columns: 1.1fr 1.6fr 0.7fr;
-
-      align-items: center;
-
-      gap: 22px;
-
-      margin-top: 2px;
+      font-weight: 500;
 
     }
 
 
-    .question {
-
-      font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
-
-      font-size: clamp(34px, 2.6vw, 52px);
-
-      line-height: 0.95;
-
-      transform: skew(-6deg);
-
-      color: #111;
-
-      text-transform: uppercase;
-
-    }
-
-
-    .question .underline {
-
-      display: block;
-
-      width: 56%;
-
-      height: 8px;
+    .footer-center .line2 {
 
       margin-top: 8px;
 
-      background: var(--yellow);
+      font-size: 26px;
 
-      border-radius: 999px;
-
-    }
-
-
-    .message {
-
-      font-size: clamp(18px, 1.55vw, 28px);
-
-      line-height: 1.28;
-
-      color: #191919;
-
-    }
-
-
-    .message strong {
-
-      font-weight: 900;
-
-    }
-
-
-    .message .script {
+      line-height: 1.05;
 
       font-family: "Brush Script MT", "Segoe Script", cursive;
 
-      font-size: 1.25em;
-
       font-weight: 700;
-
-      letter-spacing: 0.3px;
 
     }
 
 
-    .socials {
+    .footer-socials {
+
+      position: absolute;
+
+      top: calc(var(--footer-top) + 22px);
+
+      right: 116px;
 
       display: flex;
 
-      justify-content: center;
+      gap: 16px;
 
       align-items: center;
-
-      gap: 18px;
 
     }
 
 
     .social {
 
-      width: 72px;
+      width: 58px;
 
-      height: 72px;
+      height: 58px;
 
-      border-radius: 18px;
+      border-radius: 14px;
 
       display: flex;
 
@@ -661,83 +557,116 @@
 
       justify-content: center;
 
-      color: white;
+      color: #fff;
 
-      font-size: 30px;
+      font-size: 26px;
 
-      font-weight: bold;
+      font-weight: 700;
 
-      box-shadow: 0 8px 16px rgba(0,0,0,0.16);
+      box-shadow: 0 8px 14px rgba(0,0,0,0.16);
+
+      user-select: none;
 
     }
 
 
     .social.tiktok {
 
-      background: #141414;
+      background: #111;
 
     }
 
 
     .social.instagram {
 
-      background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 6%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+      background:
+
+        radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
 
     }
 
 
-    @media (max-width: 1200px) {
+    @media (max-width: 1100px) {
 
-      .board {
+      .site {
 
-        height: min(40vh, 380px);
-
-      }
-
-
-      .bottom {
-
-        grid-template-columns: 1fr;
-
-        text-align: center;
-
-      }
-
-
-      .question .underline {
-
-        margin-left: auto;
-
-        margin-right: auto;
-
-      }
-
-    }
-
-
-    @media (max-width: 900px) {
-
-      html, body {
-
-        overflow: auto;
-
-      }
-
-
-      .page {
+        aspect-ratio: auto;
 
         min-height: 100vh;
 
-        height: auto;
+        background-position: center top;
 
       }
 
 
-      .shell {
+      .tagline {
 
-        height: auto;
+        width: 90%;
 
-        padding-bottom: 22px;
+        white-space: normal;
+
+      }
+
+
+      .actions {
+
+        gap: 12px;
+
+      }
+
+
+      .pill-btn {
+
+        min-width: auto !important;
+
+        padding: 0 22px;
+
+        font-size: 18px;
+
+      }
+
+
+      .footer-left {
+
+        left: 36px;
+
+      }
+
+
+      .footer-socials {
+
+        right: 36px;
+
+      }
+
+    }
+
+
+    @media (max-width: 860px) {
+
+      html, body {
+
+        overflow-x: hidden;
+
+      }
+
+
+      .site {
+
+        aspect-ratio: auto;
+
+        min-height: 100vh;
+
+      }
+
+
+      .title {
+
+        white-space: normal;
+
+        width: 90%;
+
+        text-align: center;
 
       }
 
@@ -748,45 +677,23 @@
 
         height: 64px;
 
-        font-size: 24px;
+        font-size: 22px;
 
       }
 
 
-      .board {
+      .actions {
 
-        height: 320px;
-
-        min-height: 320px;
-
-      }
-
-
-      .sold-strip {
+        flex-wrap: wrap;
 
         width: 90%;
 
       }
 
 
-      .action-btn {
+      .footer-center {
 
-        min-width: 200px;
-
-        height: 60px;
-
-        font-size: 20px;
-
-      }
-
-
-      .social {
-
-        width: 60px;
-
-        height: 60px;
-
-        font-size: 24px;
+        width: 86%;
 
       }
 
@@ -798,17 +705,17 @@
 
 <body>
 
-  <div class="page">
+  <main class="site">
 
-    <div class="shell">
+    <div class="overlay">
 
-      <h1 class="title">The Tile Project</h1>
+      <h1 class="title">THE TILE PROJECT</h1>
 
 
       <p class="tagline">Claim your tile. Leave your mark. Be part of digital history.</p>
 
 
-      <button class="hero-buy">
+      <button class="hero-buy" type="button">
 
         <span>Buy a Tile</span>
 
@@ -817,215 +724,358 @@
       </button>
 
 
-      <div class="board-wrap">
+      <div class="board-shell">
 
-        <div class="board">
+        <canvas id="tileBoard"></canvas>
 
-          <div class="grid" id="grid"></div>
-
-        </div>
+      </div>
 
 
-        <div class="sold-strip">
+      <div class="progress-wrap">
 
-          <div class="sold-text">TILES SOLD: <span class="num">12,342</span> / 60,000</div>
+        <div class="progress-label">
 
-          <div class="bar"><span></span></div>
+          TILES SOLD: <span class="sold">12,342</span> / 60,000
 
         </div>
 
+        <div class="progress-bar">
 
-        <div class="actions">
-
-          <button class="action-btn buy">🛒 BUY A TILE</button>
-
-          <button class="action-btn dark">⌕ FIND MY TILE</button>
-
-          <button class="action-btn dark">➜ SHARE</button>
+          <div class="progress-fill"></div>
 
         </div>
 
       </div>
 
 
-      <div class="bottom">
+      <div class="actions">
 
-        <div class="question">
+        <button class="pill-btn buy" type="button">🛒 BUY A TILE</button>
 
-          WHAT WILL THE FINAL ARTWORK BE?
+        <button class="pill-btn dark" type="button">⌕ FIND MY TILE</button>
 
-          <span class="underline"></span>
+        <button class="pill-btn dark" type="button">➜ SHARE</button>
 
-        </div>
-
-
-        <div class="message">
-
-          60,000 <strong>tiles</strong>. Create a piece of art.<br />
-
-          <span class="script">Play your tile.</span>
-
-          <strong> Leave your mark.</strong>
-
-        </div>
+      </div>
 
 
-        <div class="socials">
+      <div class="footer-left">WHAT WILL THE FINAL ARTWORK BE?</div>
 
-          <div class="social tiktok">♪</div>
 
-          <div class="social instagram">◎</div>
+      <div class="footer-center">
 
-        </div>
+        <div class="line1">60,000 Tiles, Create a Piece of Art.</div>
+
+        <div class="line2">Take your tile. Leave your mark.</div>
+
+      </div>
+
+
+      <div class="footer-socials">
+
+        <div class="social tiktok">♪</div>
+
+        <div class="social instagram">◎</div>
 
       </div>
 
     </div>
 
-  </div>
+  </main>
 
 
   <script>
 
-    const grid = document.getElementById("grid");
+    const canvas = document.getElementById("tileBoard");
 
+    const ctx = canvas.getContext("2d");
 
-    const filledTiles = [
 
-      [0,0],[1,0],[2,0],[3,0],[4,0],[5,0],[6,0],[7,0],[8,0],[9,0],[10,0],[11,0],[12,0],[13,0],[14,0],[15,0],
+    const COLS = 250;
 
-      [0,1],[1,1],[2,1],[3,1],[4,1],[5,1],[6,1],[7,1],[8,1],[9,1],[10,1],[11,1],[12,1],[13,1],[14,1],[15,1],
+    const ROWS = 240;
 
-      [0,2],[1,2],[2,2],[3,2],[4,2],[5,2],[6,2],[7,2],[8,2],[9,2],[10,2],[11,2],[12,2],[13,2],
 
-      [0,3],[1,3],[2,3],[3,3],[4,3],[5,3],[6,3],[7,3],[8,3],[9,3],[10,3],[11,3],[12,3],
+    function resizeCanvas() {
 
-      [0,4],[1,4],[2,4],[3,4],[4,4],[5,4],[6,4],[7,4],[8,4],[9,4],[10,4],[11,4],
+      const rect = canvas.getBoundingClientRect();
 
-      [0,5],[1,5],[2,5],[3,5],[4,5],[5,5],[6,5],[7,5],[8,5],[9,5],[10,5],
+      const dpr = window.devicePixelRatio || 1;
 
-      [0,6],[1,6],[2,6],[3,6],[4,6],[5,6],[6,6],[7,6],[8,6],[9,6],
 
-      [0,7],[1,7],[2,7],[3,7],[4,7],[5,7],[6,7],[7,7],[8,7],
+      canvas.width = Math.round(rect.width * dpr);
 
-      [0,8],[1,8],[2,8],[3,8],[4,8],[5,8],[6,8],[7,8],
+      canvas.height = Math.round(rect.height * dpr);
 
-      [0,9],[1,9],[2,9],[3,9],[4,9],[5,9],[6,9],
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      [0,10],[1,10],[2,10],[3,10],[4,10],[5,10],[6,10],
 
-      [0,11],[1,11],[2,11],[3,11],[4,11],[5,11],[6,11],
+      drawBoard(rect.width, rect.height);
 
-      [0,12],[1,12],[2,12],[3,12],[4,12],[5,12],[6,12],[7,12],
+    }
 
-      [0,13],[1,13],[2,13],[3,13],[4,13],[5,13],[6,13],[7,13],[8,13],
 
-      [0,14],[1,14],[2,14],[3,14],[4,14],[5,14],[6,14],[7,14],[8,14],[9,14],
+    function drawRoundedRect(x, y, w, h, r, fillStyle, strokeStyle, lineWidth = 1) {
 
-      [0,15],[1,15],[2,15],[3,15],[4,15],[5,15],[6,15],[7,15],[8,15],[9,15],[10,15],
+      ctx.beginPath();
 
-      [0,16],[1,16],[2,16],[3,16],[4,16],[5,16],[6,16],[7,16],[8,16],[9,16],[10,16],[11,16],
+      ctx.moveTo(x + r, y);
 
-      [0,17],[1,17],[2,17],[3,17],[4,17],[5,17],[6,17],[7,17],[8,17],[9,17],[10,17],[11,17],[12,17],
+      ctx.lineTo(x + w - r, y);
 
-      [0,18],[1,18],[2,18],[3,18],[4,18],[5,18],[6,18],[7,18],[8,18],[9,18],[10,18],[11,18],[12,18],[13,18],
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
 
-      [0,19],[1,19],[2,19],[3,19],[4,19],[5,19],[6,19],[7,19],[8,19],[9,19],[10,19],[11,19],[12,19],[13,19],[14,19],
+      ctx.lineTo(x + w, y + h - r);
 
-      [235,0],[236,0],[237,0],[238,0],[239,0],[240,0],[241,0],[242,0],[243,0],[244,0],[245,0],[246,0],[247,0],[248,0],[249,0],
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
 
-      [236,1],[237,1],[238,1],[239,1],[240,1],[241,1],[242,1],[243,1],[244,1],[245,1],[246,1],[247,1],[248,1],[249,1],
+      ctx.lineTo(x + r, y + h);
 
-      [237,2],[238,2],[239,2],[240,2],[241,2],[242,2],[243,2],[244,2],[245,2],[246,2],[247,2],[248,2],[249,2],
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
 
-      [238,3],[239,3],[240,3],[241,3],[242,3],[243,3],[244,3],[245,3],[246,3],[247,3],[248,3],[249,3],
+      ctx.lineTo(x, y + r);
 
-      [239,4],[240,4],[241,4],[242,4],[243,4],[244,4],[245,4],[246,4],[247,4],[248,4],[249,4],
+      ctx.quadraticCurveTo(x, y, x + r, y);
 
-      [240,5],[241,5],[242,5],[243,5],[244,5],[245,5],[246,5],[247,5],[248,5],[249,5],
+      ctx.closePath();
 
-      [241,6],[242,6],[243,6],[244,6],[245,6],[246,6],[247,6],[248,6],[249,6],
 
-      [242,7],[243,7],[244,7],[245,7],[246,7],[247,7],[248,7],[249,7],
+      ctx.fillStyle = fillStyle;
 
-      [243,8],[244,8],[245,8],[246,8],[247,8],[248,8],[249,8],
+      ctx.fill();
 
-      [243,9],[244,9],[245,9],[246,9],[247,9],[248,9],[249,9],
 
-      [243,10],[244,10],[245,10],[246,10],[247,10],[248,10],[249,10],
+      if (strokeStyle) {
 
-      [242,11],[243,11],[244,11],[245,11],[246,11],[247,11],[248,11],[249,11],
+        ctx.strokeStyle = strokeStyle;
 
-      [241,12],[242,12],[243,12],[244,12],[245,12],[246,12],[247,12],[248,12],[249,12],
+        ctx.lineWidth = lineWidth;
 
-      [240,13],[241,13],[242,13],[243,13],[244,13],[245,13],[246,13],[247,13],[248,13],[249,13],
-
-      [239,14],[240,14],[241,14],[242,14],[243,14],[244,14],[245,14],[246,14],[247,14],[248,14],[249,14],
-
-      [238,15],[239,15],[240,15],[241,15],[242,15],[243,15],[244,15],[245,15],[246,15],[247,15],[248,15],[249,15],
-
-      [237,16],[238,16],[239,16],[240,16],[241,16],[242,16],[243,16],[244,16],[245,16],[246,16],[247,16],[248,16],[249,16],
-
-      [236,17],[237,17],[238,17],[239,17],[240,17],[241,17],[242,17],[243,17],[244,17],[245,17],[246,17],[247,17],[248,17],[249,17],
-
-      [235,18],[236,18],[237,18],[238,18],[239,18],[240,18],[241,18],[242,18],[243,18],[244,18],[245,18],[246,18],[247,18],[248,18],[249,18],
-
-      [234,19],[235,19],[236,19],[237,19],[238,19],[239,19],[240,19],[241,19],[242,19],[243,19],[244,19],[245,19],[246,19],[247,19],[248,19],[249,19]
-
-    ];
-
-
-    const thumbs = [
-
-      "linear-gradient(135deg,#ffb703,#fb8500)",
-
-      "linear-gradient(135deg,#219ebc,#8ecae6)",
-
-      "linear-gradient(135deg,#e63946,#ffb4a2)",
-
-      "linear-gradient(135deg,#3a86ff,#8338ec)",
-
-      "linear-gradient(135deg,#111,#666)",
-
-      "linear-gradient(135deg,#06d6a0,#118ab2)",
-
-      "linear-gradient(135deg,#ff006e,#8338ec)",
-
-      "linear-gradient(135deg,#ffd166,#ef476f)",
-
-      "linear-gradient(135deg,#2a9d8f,#264653)",
-
-      "linear-gradient(135deg,#f72585,#4cc9f0)"
-
-    ];
-
-
-    const filledSet = new Set(filledTiles.map(([x, y]) => `${x}-${y}`));
-
-
-    for (let y = 0; y < 240; y++) {
-
-      for (let x = 0; x < 250; x++) {
-
-        const tile = document.createElement("div");
-
-        tile.className = "tile";
-
-
-        if (filledSet.has(`${x}-${y}`)) {
-
-          tile.classList.add("filled");
-
-          tile.style.background = thumbs[(x + y) % thumbs.length];
-
-        }
-
-
-        grid.appendChild(tile);
+        ctx.stroke();
 
       }
 
     }
+
+
+    function colorFromSeed(seed) {
+
+      const palettes = [
+
+        ["#5ab0ff", "#2e74ff", "#183153"],
+
+        ["#ffcb3c", "#fb8500", "#3d2c00"],
+
+        ["#ef476f", "#ff7aa2", "#41101f"],
+
+        ["#00b4d8", "#90e0ef", "#123b48"],
+
+        ["#8338ec", "#c77dff", "#2a1040"],
+
+        ["#111111", "#5f5f5f", "#d9d9d9"]
+
+      ];
+
+      return palettes[seed % palettes.length];
+
+    }
+
+
+    function drawFakeImageTile(x, y, w, h, seed) {
+
+      const [c1, c2, c3] = colorFromSeed(seed);
+
+
+      drawRoundedRect(x, y, w, h, 2.5, "#f8f8f8", "rgba(0,0,0,0.12)", 0.4);
+
+
+      const pad = Math.max(1, w * 0.06);
+
+      const ix = x + pad;
+
+      const iy = y + pad;
+
+      const iw = w - pad * 2;
+
+      const ih = h - pad * 2;
+
+
+      const grad = ctx.createLinearGradient(ix, iy, ix + iw, iy + ih);
+
+      grad.addColorStop(0, c1);
+
+      grad.addColorStop(0.5, c2);
+
+      grad.addColorStop(1, c3);
+
+
+      drawRoundedRect(ix, iy, iw, ih, 1.8, grad, "rgba(255,255,255,0.35)", 0.25);
+
+
+      ctx.strokeStyle = "rgba(255,255,255,0.55)";
+
+      ctx.lineWidth = 0.45;
+
+      ctx.beginPath();
+
+      ctx.moveTo(ix + iw * 0.1, iy + ih * 0.82);
+
+      ctx.lineTo(ix + iw * 0.45, iy + ih * 0.42);
+
+      ctx.lineTo(ix + iw * 0.68, iy + ih * 0.62);
+
+      ctx.lineTo(ix + iw * 0.92, iy + ih * 0.26);
+
+      ctx.stroke();
+
+
+      ctx.beginPath();
+
+      ctx.arc(ix + iw * 0.26, iy + ih * 0.28, Math.max(0.8, iw * 0.08), 0, Math.PI * 2);
+
+      ctx.fillStyle = "rgba(255,255,255,0.85)";
+
+      ctx.fill();
+
+    }
+
+
+    function buildFilledCells() {
+
+      const cells = [];
+
+
+      for (let c = 0; c < COLS; c++) {
+
+        if (c < 62 || c > 181) cells.push([c, 0]);
+
+        if (c < 55 || c > 189) cells.push([c, 1]);
+
+      }
+
+
+      for (let r = 2; r < 62; r++) {
+
+        const leftWidth = Math.max(6, 56 - r);
+
+        const rightStart = Math.min(COLS - 1, COLS - leftWidth);
+
+
+        for (let c = 0; c < leftWidth; c++) {
+
+          if ((c + r) % 2 === 0 || c < 5) cells.push([c, r]);
+
+        }
+
+
+        for (let c = rightStart; c < COLS; c++) {
+
+          if ((c + r) % 2 === 1 || c > COLS - 6) cells.push([c, r]);
+
+        }
+
+      }
+
+
+      for (let r = ROWS - 58; r < ROWS; r++) {
+
+        const depth = ROWS - r;
+
+        const leftWidth = Math.max(10, 68 - depth);
+
+        const rightStart = Math.min(COLS - 1, COLS - leftWidth);
+
+
+        for (let c = 0; c < leftWidth; c++) {
+
+          if ((c + r) % 2 === 0 || c < 4) cells.push([c, r]);
+
+        }
+
+
+        for (let c = rightStart; c < COLS; c++) {
+
+          if ((c + r) % 2 === 1 || c > COLS - 5) cells.push([c, r]);
+
+        }
+
+      }
+
+
+      return cells;
+
+    }
+
+
+    function drawBoard(width, height) {
+
+      ctx.clearRect(0, 0, width, height);
+
+
+      ctx.fillStyle = "rgba(244,242,239,0.96)";
+
+      ctx.fillRect(0, 0, width, height);
+
+
+      const cw = width / COLS;
+
+      const ch = height / ROWS;
+
+
+      ctx.strokeStyle = "rgba(84,84,84,0.33)";
+
+      ctx.lineWidth = 0.55;
+
+
+      for (let i = 0; i <= COLS; i++) {
+
+        const x = Math.round(i * cw) + 0.5;
+
+        ctx.beginPath();
+
+        ctx.moveTo(x, 0);
+
+        ctx.lineTo(x, height);
+
+        ctx.stroke();
+
+      }
+
+
+      for (let j = 0; j <= ROWS; j++) {
+
+        const y = Math.round(j * ch) + 0.5;
+
+        ctx.beginPath();
+
+        ctx.moveTo(0, y);
+
+        ctx.lineTo(width, y);
+
+        ctx.stroke();
+
+      }
+
+
+      const filledCells = buildFilledCells();
+
+
+      filledCells.forEach(([c, r], idx) => {
+
+        const x = c * cw;
+
+        const y = r * ch;
+
+        drawFakeImageTile(x + 0.3, y + 0.3, cw - 0.6, ch - 0.6, idx + c + r);
+
+      });
+
+    }
+
+
+    window.addEventListener("resize", resizeCanvas);
+
+    resizeCanvas();
 
   </script>
 
