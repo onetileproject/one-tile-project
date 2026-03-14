@@ -656,7 +656,7 @@
 
       const vh = window.innerHeight;
 
-      const scale = Math.max(vw / BASE_W, vh / BASE_H);
+      const scale = Math.min(vw / BASE_W, vh / BASE_H);
 
       stage.style.transform = `scale(${scale})`;
 
@@ -918,7 +918,7 @@
 
         ctx.moveTo(0, y);
 
-        ctx.lineTo(x = width, y);
+        ctx.lineTo(width, y);
 
         ctx.stroke();
 
