@@ -10,31 +10,9 @@
 
   <title>The Tile Project</title>
 
-
   <style>
 
-    * {
-
-      box-sizing: border-box;
-
-    }
-
-
-    :root {
-
-      --bg: #ece8e3;
-
-      --text: #161616;
-
-      --dark: #121212;
-
-      --yellow: #efc11b;
-
-      --yellow2: #ffd93d;
-
-      --white: #ffffff;
-
-    }
+    * { box-sizing: border-box; }
 
 
     html, body {
@@ -47,7 +25,7 @@
 
       overflow: hidden;
 
-      background: var(--bg);
+      background: #e9e5df;
 
       font-family: Arial, Helvetica, sans-serif;
 
@@ -58,9 +36,41 @@
 
       display: flex;
 
+      align-items: center;
+
       justify-content: center;
 
-      align-items: flex-start;
+    }
+
+
+    .viewport {
+
+      position: relative;
+
+      width: 100vw;
+
+      height: 100vh;
+
+      overflow: hidden;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+    }
+
+
+    .stage {
+
+      position: absolute;
+
+      width: 1440px;
+
+      height: 1024px;
+
+      transform-origin: center center;
 
     }
 
@@ -69,13 +79,9 @@
 
       position: relative;
 
-      width: 100vw;
+      width: 1440px;
 
-      height: 100vh;
-
-      max-width: 1440px;
-
-      max-height: 1024px;
+      height: 1024px;
 
       overflow: hidden;
 
@@ -88,7 +94,7 @@
 
       position: absolute;
 
-      top: 34px;
+      top: 28px;
 
       left: 50%;
 
@@ -96,23 +102,19 @@
 
       margin: 0;
 
-      color: #141414;
+      color: #111;
 
       font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
 
-      font-size: clamp(44px, 5.2vw, 84px);
+      font-size: 82px;
 
       line-height: 1;
-
-      font-weight: 900;
 
       letter-spacing: -0.02em;
 
       text-transform: uppercase;
 
       white-space: nowrap;
-
-      text-shadow: 0 1px 0 rgba(255,255,255,0.22);
 
     }
 
@@ -121,23 +123,21 @@
 
       position: absolute;
 
-      top: 138px;
+      top: 140px;
 
       left: 50%;
 
       transform: translateX(-50%);
 
-      width: min(980px, 82vw);
-
       margin: 0;
+
+      width: 900px;
 
       text-align: center;
 
-      color: #2f2f2f;
+      font-size: 21px;
 
-      font-size: clamp(15px, 1.35vw, 23px);
-
-      line-height: 1.25;
+      color: #323232;
 
       white-space: nowrap;
 
@@ -148,13 +148,11 @@
 
       position: absolute;
 
-      top: 300px;
+      top: 292px;
 
-      left: 50%;
+      left: 75px;
 
-      transform: translateX(-50%);
-
-      width: min(1290px, 89vw);
+      width: 1290px;
 
       height: 330px;
 
@@ -162,15 +160,15 @@
 
       overflow: hidden;
 
-      background: rgba(241, 239, 236, 0.90);
+      background: rgba(243, 241, 238, 0.94);
 
       box-shadow:
 
-        0 0 0 2px rgba(255,255,255,0.68),
+        0 0 0 2px rgba(255,255,255,0.72),
 
-        0 0 0 4px rgba(18,18,18,0.78),
+        0 0 0 4px rgba(18,18,18,0.82),
 
-        0 16px 18px rgba(0,0,0,0.18);
+        0 14px 18px rgba(0,0,0,0.18);
 
     }
 
@@ -190,15 +188,15 @@
 
       position: absolute;
 
-      top: 650px;
+      top: 640px;
 
       left: 50%;
 
       transform: translateX(-50%);
 
-      width: min(610px, 52vw);
+      width: 610px;
 
-      pointer-events: none;
+      z-index: 3;
 
     }
 
@@ -209,9 +207,9 @@
 
       text-align: center;
 
-      color: #ffffff;
+      color: #fff;
 
-      font-size: clamp(18px, 1.45vw, 24px);
+      font-size: 22px;
 
       font-weight: 800;
 
@@ -219,7 +217,7 @@
 
       text-transform: uppercase;
 
-      text-shadow: 0 1px 1px rgba(0,0,0,0.24);
+      text-shadow: 0 1px 1px rgba(0,0,0,0.28);
 
     }
 
@@ -228,7 +226,7 @@
 
       color: #f0bf34;
 
-      font-size: 1.18em;
+      font-size: 28px;
 
       font-style: italic;
 
@@ -243,11 +241,9 @@
 
       border-radius: 999px;
 
-      background: rgba(32,32,32,0.60);
+      background: rgba(28,28,28,0.62);
 
       overflow: hidden;
-
-      box-shadow: inset 0 1px 2px rgba(255,255,255,0.1);
 
     }
 
@@ -258,9 +254,9 @@
 
       height: 100%;
 
-      background: linear-gradient(90deg, #dca50c, #f0bf34, #ffd65a);
-
       border-radius: 999px;
+
+      background: linear-gradient(90deg, #dca50c, #f0bf34, #ffd65a);
 
     }
 
@@ -269,7 +265,7 @@
 
       position: absolute;
 
-      top: 735px;
+      top: 715px;
 
       left: 50%;
 
@@ -277,13 +273,9 @@
 
       display: flex;
 
-      align-items: center;
-
-      justify-content: center;
-
       gap: 22px;
 
-      flex-wrap: nowrap;
+      z-index: 3;
 
     }
 
@@ -294,11 +286,11 @@
 
       border-radius: 999px;
 
-      height: 64px;
+      height: 66px;
 
       padding: 0 34px;
 
-      font-size: clamp(17px, 1.35vw, 21px);
+      font-size: 20px;
 
       font-weight: 800;
 
@@ -312,13 +304,13 @@
 
       gap: 12px;
 
+      white-space: nowrap;
+
       box-shadow:
 
-        inset 0 1px 1px rgba(255,255,255,0.16),
+        inset 0 1px 1px rgba(255,255,255,0.18),
 
         0 8px 16px rgba(0,0,0,0.14);
-
-      white-space: nowrap;
 
     }
 
@@ -327,9 +319,9 @@
 
       min-width: 250px;
 
-      color: #1c1c1c;
+      color: #1d1d1d;
 
-      background: linear-gradient(180deg, var(--yellow2) 0%, var(--yellow) 100%);
+      background: linear-gradient(180deg, #ffd93d 0%, #efc11b 100%);
 
     }
 
@@ -338,9 +330,9 @@
 
       min-width: 250px;
 
-      color: #ffffff;
+      color: #fff;
 
-      background: linear-gradient(180deg, #1c1c1c 0%, #0f0f0f 100%);
+      background: linear-gradient(180deg, #1b1b1b 0%, #101010 100%);
 
     }
 
@@ -351,21 +343,23 @@
 
       left: 90px;
 
-      top: 855px;
+      top: 845px;
 
-      width: 350px;
+      width: 360px;
 
-      color: #111111;
+      color: #111;
 
       font-family: Impact, Haettenschweiler, "Arial Black", sans-serif;
 
-      font-size: clamp(22px, 2.3vw, 48px);
+      font-size: 46px;
 
-      line-height: 0.95;
+      line-height: 0.94;
 
       text-transform: uppercase;
 
       transform: rotate(-2deg);
+
+      z-index: 3;
 
     }
 
@@ -395,28 +389,26 @@
 
       position: absolute;
 
-      top: 888px;
+      top: 880px;
 
       left: 50%;
 
       transform: translateX(-50%);
 
-      width: 520px;
+      width: 560px;
 
       text-align: center;
 
-      color: #161616;
+      color: #171717;
+
+      z-index: 3;
 
     }
 
 
     .footer-center .line1 {
 
-      font-size: clamp(15px, 1.15vw, 18px);
-
-      letter-spacing: 0.02em;
-
-      font-weight: 500;
+      font-size: 18px;
 
       white-space: nowrap;
 
@@ -427,7 +419,7 @@
 
       margin-top: 8px;
 
-      font-size: clamp(22px, 1.9vw, 28px);
+      font-size: 28px;
 
       line-height: 1.05;
 
@@ -444,15 +436,15 @@
 
       position: absolute;
 
-      top: 890px;
+      top: 885px;
 
-      right: 112px;
+      right: 110px;
 
       display: flex;
 
       gap: 16px;
 
-      align-items: center;
+      z-index: 3;
 
     }
 
@@ -484,11 +476,7 @@
     }
 
 
-    .social.tiktok {
-
-      background: #111111;
-
-    }
+    .social.tiktok { background: #111; }
 
 
     .social.instagram {
@@ -499,110 +487,84 @@
 
     }
 
-
-    @media (max-width: 1200px) {
-
-      .board-shell {
-
-        width: 90vw;
-
-      }
-
-
-      .progress-wrap {
-
-        width: min(610px, 60vw);
-
-      }
-
-
-      .footer-left {
-
-        left: 40px;
-
-        width: 300px;
-
-      }
-
-
-      .footer-socials {
-
-        right: 40px;
-
-      }
-
-    }
-
   </style>
 
 </head>
 
 <body>
 
-  <main class="site">
+  <div class="viewport">
 
-    <h1 class="title">THE TILE PROJECT</h1>
+    <div class="stage" id="stage">
+
+      <main class="site">
+
+        <h1 class="title">THE TILE PROJECT</h1>
 
 
-    <p class="tagline">Claim your tile. Leave your mark. Be part of digital history.</p>
+        <p class="tagline">Claim your tile. Leave your mark. Be part of digital history.</p>
 
 
-    <div class="board-shell">
+        <div class="board-shell">
 
-      <canvas id="tileBoard"></canvas>
+          <canvas id="tileBoard"></canvas>
+
+        </div>
+
+
+        <div class="progress-wrap">
+
+          <div class="progress-label">
+
+            TILES SOLD: <span class="sold">0</span> / 60,000
+
+          </div>
+
+          <div class="progress-bar">
+
+            <div class="progress-fill"></div>
+
+          </div>
+
+        </div>
+
+
+        <div class="actions">
+
+          <button class="pill-btn buy" type="button">🛒 BUY A TILE</button>
+
+          <button class="pill-btn dark" type="button">⌕ FIND MY TILE</button>
+
+          <button class="pill-btn dark" type="button">➜ SHARE</button>
+
+        </div>
+
+
+        <div class="footer-left">WHAT WILL THE FINAL ARTWORK BE?</div>
+
+
+        <div class="footer-center">
+
+          <div class="line1">60,000 Tiles, Create a Piece of Art.</div>
+
+          <div class="line2">Take your tile. Leave your mark.</div>
+
+        </div>
+
+
+        <div class="footer-socials">
+
+          <div class="social tiktok">♪</div>
+
+          <div class="social instagram">◎</div>
+
+        </div>
+
+      </main>
 
     </div>
 
-
-    <div class="progress-wrap">
-
-      <div class="progress-label">
-
-        TILES SOLD: <span class="sold">0</span> / 60,000
-
-      </div>
-
-      <div class="progress-bar">
-
-        <div class="progress-fill"></div>
-
-      </div>
-
-    </div>
-
-
-    <div class="actions">
-
-      <button class="pill-btn buy" type="button">🛒 BUY A TILE</button>
-
-      <button class="pill-btn dark" type="button">⌕ FIND MY TILE</button>
-
-      <button class="pill-btn dark" type="button">➜ SHARE</button>
-
-    </div>
-
-
-    <div class="footer-left">WHAT WILL THE FINAL ARTWORK BE?</div>
-
-
-    <div class="footer-center">
-
-      <div class="line1">60,000 Tiles, Create a Piece of Art.</div>
-
-      <div class="line2">Take your tile. Leave your mark.</div>
-
-    </div>
-
-
-    <div class="footer-socials">
-
-      <div class="social tiktok">♪</div>
-
-      <div class="social instagram">◎</div>
-
-    </div>
-
-  </main>
+  </div>
 
 
   <script>
@@ -611,10 +573,29 @@
 
     const ctx = canvas.getContext("2d");
 
+    const stage = document.getElementById("stage");
+
+
+    const BASE_W = 1440;
+
+    const BASE_H = 1024;
 
     const COLS = 250;
 
     const ROWS = 240;
+
+
+    function scaleStage() {
+
+      const vw = window.innerWidth;
+
+      const vh = window.innerHeight;
+
+      const scale = Math.min(vw / BASE_W, vh / BASE_H);
+
+      stage.style.transform = `scale(${scale})`;
+
+    }
 
 
     function resizeCanvas() {
@@ -663,11 +644,9 @@
 
       ctx.closePath();
 
-
       ctx.fillStyle = fillStyle;
 
       ctx.fill();
-
 
       if (strokeStyle) {
 
@@ -897,9 +876,18 @@
     }
 
 
-    window.addEventListener("resize", resizeCanvas);
+    function init() {
 
-    resizeCanvas();
+      scaleStage();
+
+      resizeCanvas();
+
+    }
+
+
+    window.addEventListener("resize", init);
+
+    init();
 
   </script>
 
